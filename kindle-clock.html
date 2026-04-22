@@ -101,11 +101,16 @@
 
     /* ── Bottom Row ──────────────────────────────────────── */
     .bottom-row {
-      overflow: hidden;
       height: 367px;
       -webkit-flex-shrink: 0;
       flex-shrink: 0;
       margin-bottom: 8px;
+    }
+
+    .bottom-row::after {
+      content: '';
+      display: block;
+      clear: both;
     }
 
     /* ── Date Card & Quote Card (shared) ─────────────────── */
