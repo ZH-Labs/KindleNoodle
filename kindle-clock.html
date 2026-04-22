@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=758, initial-scale=1.0">
+  <meta http-equiv="refresh" content="43200">
+  <title>Kindle Clock</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      width: 758px;
+      height: 100%;
+      background: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+      overflow: hidden;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-flex-direction: column;
+      flex-direction: column;
+    }
+
+    /* ── Content ─────────────────────────────────────────── */
+    .content {
+      -webkit-box-flex: 1;
+      -webkit-flex: 1;
+      flex: 1;
+      padding: 8px;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-flex-direction: column;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    /* ── Clock Card ──────────────────────────────────────── */
+    .clock-card {
+      background: #fff;
+      border-radius: 36px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.12);
+      padding: 31px 32px;
+      -webkit-box-flex: 1;
+      -webkit-flex: 1;
+      flex: 1;
+      min-height: 0;
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+
+    .clock-digits {
+      overflow: hidden;
+      width: 678px;
+      height: 356px;
+    }
+
+    .digit-card {
+      float: left;
+      width: 326px;
+      height: 356px;
+      background: #000;
+      border-radius: 32px;
+      overflow: hidden;
+      text-align: center;
+      line-height: 356px;
+      position: relative;
+    }
+
+    .digit-card + .digit-card {
+      margin-left: 26px;
+    }
+
+    .digit-number {
+      font-weight: bold;
+      font-size: 180px;
+      color: #fff;
+      line-height: 356px;
+      white-space: nowrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .digit-line {
+      position: absolute;
+      top: 50%;
+      left: 34px;
+      right: 34px;
+      height: 6px;
+      margin-top: -3px;
+      background: rgba(0,0,0,.85);
+      z-index: 2;
+    }
+
+    /* ── Bottom Row ──────────────────────────────────────── */
+    .bottom-row {
+      overflow: hidden;
+      height: 367px;
+      -webkit-flex-shrink: 0;
+      flex-shrink: 0;
+      margin-bottom: 8px;
+    }
+
+    /* ── Date Card & Quote Card (shared) ─────────────────── */
+    .date-card, .quote-card {
+      float: left;
+      background: #fff;
+      border-radius: 36px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.12);
+      padding: 32px;
+      width: 367px;
+      height: 367px;
+    }
+
+    .date-card {
+      margin-right: 8px;
+      text-align: center;
+    }
+
+    .date-weekday {
+      font-size: 32px;
+      font-weight: 500;
+      color: #000;
+      margin-bottom: 16px;
+    }
+
+    .date-rule {
+      height: 1px;
+      background: #e0e0e0;
+      margin-bottom: 28px;
+    }
+
+    .date-day {
+      font-size: 120px;
+      font-weight: bold;
+      color: #000;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .date-lunar {
+      font-size: 32px;
+      color: #ababab;
+    }
+
+    /* ── Quote Card ──────────────────────────────────────── */
+    .quote-label {
+      background: #ededed;
+      border-radius: 38px;
+      height: 56px;
+      line-height: 56px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: 500;
+      color: #000;
+      margin-bottom: 20px;
+    }
+
+    .quote-body {
+      font-size: 30px;
+      font-weight: 500;
+      color: #000;
+      line-height: 1.4;
+      margin-bottom: 16px;
+      overflow: hidden;
+      max-height: 168px;
+    }
+
+    .quote-author {
+      font-size: 22px;
+      color: #ababab;
+      text-align: right;
+    }
+
+    /* ── Nav Bar ─────────────────────────────────────────── */
+    .bottom-nav {
+      background: #fff;
+      border-radius: 60px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.12);
+      height: 90px;
+      -webkit-flex-shrink: 0;
+      flex-shrink: 0;
+      padding: 17px 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-active-bar {
+      position: absolute;
+      bottom: 0;
+      left: 85px;
+      width: 86px;
+      height: 6px;
+      background: #000;
+      border-radius: 58px 58px 0 0;
+    }
+
+    /* float-based horizontal layout — same fix as clock-digits */
+    .nav-icons {
+      overflow: hidden;
+    }
+
+    /* Each icon slot: drop in any <img>, <svg>, or icon-font <span> */
+    .nav-icon {
+      float: left;
+      width: 56px;
+      height: 56px;
+      overflow: hidden;
+    }
+
+    .nav-icon + .nav-icon {
+      margin-left: 106px;
+    }
+
+    .nav-icon svg,
+    .nav-icon img {
+      width: 56px;
+      height: 56px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="content">
+
+    <!-- Clock Card -->
+    <div class="clock-card">
+      <div class="clock-digits">
+        <div class="digit-card">
+          <span class="digit-number" id="hour">00</span>
+          <div class="digit-line"></div>
+        </div>
+        <div class="digit-card">
+          <span class="digit-number" id="minute">00</span>
+          <div class="digit-line"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Row -->
+    <div class="bottom-row">
+
+      <div class="date-card">
+        <div class="date-weekday" id="weekday-month">星期四 四月</div>
+        <div class="date-rule"></div>
+        <div class="date-day" id="day-number">09</div>
+        <div class="date-lunar" id="lunar-date">二月廿二</div>
+      </div>
+
+      <div class="quote-card">
+        <div class="quote-label">励志语录</div>
+        <div class="quote-body">再多的焦虑也改变不了未来。再多的后悔也改变不了过去。</div>
+        <div class="quote-author">- Karen Salmansohn</div>
+      </div>
+
+    </div>
+
+    <!-- Nav Bar -->
+    <div class="bottom-nav">
+      <div class="nav-active-bar"></div>
+      <div class="nav-icons">
+
+        <div class="nav-icon">
+          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="28" cy="28" r="20" stroke="#000" stroke-width="3"/>
+            <line x1="28" y1="28" x2="28" y2="14" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+            <line x1="28" y1="28" x2="38" y2="33" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="28" cy="28" r="2.5" fill="#000"/>
+          </svg>
+        </div>
+
+        <div class="nav-icon">
+          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 10h24M16 46h24M18 10 c0 10 10 10 10 18S18 36 18 46h20c0-10-10-10-10-18s10-8 10-18H18z" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M22 40 c1-4 3-6 6-7" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <div class="nav-icon">
+          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="14" y1="20" x2="42" y2="20" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+            <line x1="14" y1="28" x2="42" y2="28" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+            <line x1="14" y1="36" x2="42" y2="36" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <div class="nav-icon">
+          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="12" y="10" width="30" height="36" rx="2" stroke="#000" stroke-width="2.5"/>
+            <line x1="18" y1="10" x2="18" y2="46" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+            <line x1="23" y1="19" x2="35" y2="19" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="23" y1="26" x2="35" y2="26" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="23" y1="33" x2="30" y2="33" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    var WEEKDAYS = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+    var MONTHS   = ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
+    var LUNAR_MONTHS = ['正月','二月','三月','四月','五月','六月','七月','八月','九月','十月','冬月','腊月'];
+    var LUNAR_DAYS = ['初一','初二','初三','初四','初五','初六','初七','初八','初九','初十',
+      '十一','十二','十三','十四','十五','十六','十七','十八','十九','二十',
+      '廿一','廿二','廿三','廿四','廿五','廿六','廿七','廿八','廿九','三十'];
+
+    var MS_PER_DAY = 86400000;
+    var LUNAR_ANCHORS = [
+      { g: Date.UTC(2025, 0, 29), lm: 0 },
+      { g: Date.UTC(2026, 0, 28), lm: 0 }
+    ];
+    var LUNAR_MONTH_LENGTHS = [30,29,30,29,30,30,29,30,29,30,29,30];
+
+    /* timezone offset ms, default UTC+8; updated by fetchTimezone() */
+    var tzOffsetMs = 8 * 3600000;
+    /* reserved for weather: var geoCity=''; var geoLat=0; var geoLon=0; */
+
+    var _lunarCache = { day: -1, label: '' };
+
+    /* Returns a Date whose getUTC* values equal the current local (tz-adjusted) time */
+    function getLocalDate() {
+      return new Date(Date.now() + tzOffsetMs);
+    }
+
+    function toLunarLabel(date) {
+      var y = date.getUTCFullYear(), mo = date.getUTCMonth(), d = date.getUTCDate();
+      var key = d + mo * 31 + y * 372;
+      if (_lunarCache.day === key) { return _lunarCache.label; }
+      var dayMs = Date.UTC(y, mo, d);
+      var anchor = LUNAR_ANCHORS[0];
+      for (var i = 0; i < LUNAR_ANCHORS.length; i++) {
+        if (dayMs >= LUNAR_ANCHORS[i].g) { anchor = LUNAR_ANCHORS[i]; } else { break; }
+      }
+      var remaining = Math.floor((dayMs - anchor.g) / MS_PER_DAY);
+      var lm = anchor.lm, ld = 0;
+      for (var j = 0; j < LUNAR_MONTH_LENGTHS.length; j++) {
+        var len = LUNAR_MONTH_LENGTHS[(lm + j) % 12];
+        if (remaining < len) { lm = (lm + j) % 12; ld = remaining; break; }
+        remaining -= len;
+      }
+      _lunarCache.day = key;
+      _lunarCache.label = LUNAR_MONTHS[lm] + LUNAR_DAYS[ld];
+      return _lunarCache.label;
+    }
+
+    function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+    var elHour    = document.getElementById('hour');
+    var elMinute  = document.getElementById('minute');
+    var elWeekday = document.getElementById('weekday-month');
+    var elDay     = document.getElementById('day-number');
+    var elLunar   = document.getElementById('lunar-date');
+
+    function updateClock() {
+      var now = getLocalDate();
+      elHour.textContent    = pad(now.getUTCHours());
+      elMinute.textContent  = pad(now.getUTCMinutes());
+      elWeekday.textContent = WEEKDAYS[now.getUTCDay()] + ' ' + MONTHS[now.getUTCMonth()];
+      elDay.textContent     = pad(now.getUTCDate());
+      elLunar.textContent   = toLunarLabel(now);
+    }
+
+    function fetchTimezone() {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'http://ip-api.com/json?fields=offset,city,lat,lon', true);
+      xhr.timeout = 5000;
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          try {
+            var data = JSON.parse(xhr.responseText);
+            if (typeof data.offset === 'number') {
+              tzOffsetMs = data.offset * 1000;
+              /* geoCity = data.city; geoLat = data.lat; geoLon = data.lon; */
+              _lunarCache.day = -1;
+              updateClock();
+            }
+          } catch(e) {}
+        }
+      };
+      xhr.send();
+    }
+
+    updateClock();
+    fetchTimezone();
+    setInterval(updateClock, 60000);
+  </script>
+</body>
+</html>
