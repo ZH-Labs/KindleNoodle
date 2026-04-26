@@ -6,312 +6,432 @@
   <meta http-equiv="refresh" content="43200">
   <title>Kindle Clock</title>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html {
-      height: 100%;
-      overflow: hidden;
+    *, *::before, *::after {
+      box-sizing: border-box; margin: 0; padding: 0;
+      -webkit-animation: none !important; animation: none !important;
+      -webkit-transition: none !important; transition: none !important;
     }
 
+    html { height: 100%; overflow: hidden; }
+
     body {
-      width: 758px;
-      height: 100%;
+      width: 758px; height: 100%;
       background: #fff;
       font-family: Arial, Helvetica, sans-serif;
       overflow: hidden;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-orient: vertical;
-      -webkit-flex-direction: column;
-      flex-direction: column;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
     }
 
-    /* ── Content ─────────────────────────────────────────── */
-    .content {
-      -webkit-box-flex: 1;
-      -webkit-flex: 1;
-      flex: 1;
-      padding: 8px;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-orient: vertical;
-      -webkit-flex-direction: column;
-      flex-direction: column;
+    /* ── Page Wrapper ──────────────────────────────────── */
+    #page-wrapper {
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
+      min-height: 0; overflow: hidden;
+    }
+
+    .page {
+      width: 758px; overflow: hidden;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
       min-height: 0;
     }
 
-    /* ── Clock Card ──────────────────────────────────────── */
+    /* ── Clock Page ────────────────────────────────────── */
+    .content {
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
+      min-height: 0; padding: 8px;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
+    }
+
     .clock-card {
-      background: #fff;
-      border-radius: 36px;
+      background: #fff; border-radius: 36px;
       box-shadow: 0 2px 12px rgba(0,0,0,.12);
       padding: 31px 32px;
-      -webkit-box-flex: 1;
-      -webkit-flex: 1;
-      flex: 1;
-      min-height: 0;
-      margin-bottom: 8px;
-      overflow: hidden;
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
+      min-height: 0; margin-bottom: 8px; overflow: hidden;
     }
 
-    .clock-digits {
-      overflow: hidden;
-      width: 678px;
-      height: 356px;
-    }
+    .clock-digits { overflow: hidden; width: 678px; height: 356px; }
 
     .digit-card {
-      float: left;
-      width: 326px;
-      height: 356px;
-      background: #000;
-      border-radius: 32px;
-      overflow: hidden;
-      text-align: center;
-      line-height: 356px;
-      position: relative;
+      float: left; width: 326px; height: 356px;
+      background: #000; border-radius: 32px; overflow: hidden;
+      text-align: center; line-height: 356px; position: relative;
     }
-
-    .digit-card + .digit-card {
-      margin-left: 26px;
-    }
+    .digit-card + .digit-card { margin-left: 26px; }
 
     .digit-number {
-      font-weight: bold;
-      font-size: 180px;
-      color: #fff;
-      line-height: 356px;
-      white-space: nowrap;
-      position: relative;
-      z-index: 1;
+      font-weight: bold; font-size: 180px; color: #fff;
+      line-height: 356px; white-space: nowrap; position: relative; z-index: 1;
     }
 
     .digit-line {
-      position: absolute;
-      top: 50%;
-      left: 34px;
-      right: 34px;
-      height: 6px;
-      margin-top: -3px;
-      background: rgba(0,0,0,.85);
-      z-index: 2;
+      position: absolute; top: 50%; left: 34px; right: 34px;
+      height: 6px; margin-top: -3px; background: rgba(0,0,0,.85); z-index: 2;
     }
 
-    /* ── Bottom Row ──────────────────────────────────────── */
     .bottom-row {
-      height: 367px;
-      -webkit-flex-shrink: 0;
-      flex-shrink: 0;
-      margin-bottom: 8px;
+      height: 367px; -webkit-flex-shrink: 0; flex-shrink: 0; margin-bottom: 8px;
     }
+    .bottom-row::after { content: ''; display: block; clear: both; }
 
-    .bottom-row::after {
-      content: '';
-      display: block;
-      clear: both;
-    }
-
-    /* ── Date Card & Quote Card (shared) ─────────────────── */
     .date-card, .quote-card {
-      float: left;
-      background: #fff;
-      border-radius: 36px;
+      float: left; background: #fff; border-radius: 36px;
       box-shadow: 0 2px 12px rgba(0,0,0,.12);
-      padding: 32px;
-      width: 367px;
-      height: 367px;
+      padding: 32px; width: 367px; height: 367px;
     }
+    .date-card { margin-right: 8px; text-align: center; }
+    .date-weekday { font-size: 32px; font-weight: 500; color: #000; margin-bottom: 16px; }
+    .date-rule { height: 1px; background: #e0e0e0; margin-bottom: 28px; }
+    .date-day { font-size: 120px; font-weight: bold; color: #000; line-height: 1; margin-bottom: 20px; }
+    .date-lunar { font-size: 32px; color: #ababab; }
 
-    .date-card {
-      margin-right: 8px;
-      text-align: center;
-    }
-
-    .date-weekday {
-      font-size: 32px;
-      font-weight: 500;
-      color: #000;
-      margin-bottom: 16px;
-    }
-
-    .date-rule {
-      height: 1px;
-      background: #e0e0e0;
-      margin-bottom: 28px;
-    }
-
-    .date-day {
-      font-size: 120px;
-      font-weight: bold;
-      color: #000;
-      line-height: 1;
-      margin-bottom: 20px;
-    }
-
-    .date-lunar {
-      font-size: 32px;
-      color: #ababab;
-    }
-
-    /* ── Quote Card ──────────────────────────────────────── */
     .quote-label {
-      background: #ededed;
-      border-radius: 38px;
-      height: 56px;
-      line-height: 56px;
-      text-align: center;
-      font-size: 24px;
-      font-weight: 500;
-      color: #000;
-      margin-bottom: 20px;
+      background: #ededed; border-radius: 38px; height: 56px; line-height: 56px;
+      text-align: center; font-size: 24px; font-weight: 500; color: #000; margin-bottom: 20px;
     }
-
     .quote-body {
-      font-size: 30px;
-      font-weight: 500;
-      color: #000;
-      line-height: 1.4;
-      margin-bottom: 16px;
-      overflow: hidden;
-      max-height: 168px;
+      font-size: 30px; font-weight: 500; color: #000;
+      line-height: 1.4; margin-bottom: 16px; overflow: hidden; max-height: 168px;
     }
+    .quote-author { font-size: 22px; color: #ababab; text-align: right; }
 
-    .quote-author {
-      font-size: 22px;
-      color: #ababab;
-      text-align: right;
-    }
-
-    /* ── Nav Bar ─────────────────────────────────────────── */
+    /* ── Nav Bar ───────────────────────────────────────── */
     .bottom-nav {
-      background: #fff;
-      border-radius: 60px;
+      background: #fff; border-radius: 60px;
       box-shadow: 0 2px 12px rgba(0,0,0,.12);
-      height: 90px;
-      -webkit-flex-shrink: 0;
-      flex-shrink: 0;
-      padding: 17px 100px;
-      position: relative;
-      overflow: hidden;
+      height: 90px; -webkit-flex-shrink: 0; flex-shrink: 0;
+      padding: 17px 100px; position: relative; overflow: hidden;
+      margin: 0 8px 8px;
     }
 
     .nav-active-bar {
-      position: absolute;
-      bottom: 0;
-      left: 85px;
-      width: 86px;
-      height: 6px;
-      background: #000;
+      position: absolute; bottom: 0; left: 85px;
+      width: 86px; height: 6px; background: #000;
       border-radius: 58px 58px 0 0;
     }
 
-    /* float-based horizontal layout — same fix as clock-digits */
-    .nav-icons {
-      overflow: hidden;
-    }
-
-    /* Each icon slot: drop in any <img>, <svg>, or icon-font <span> */
+    .nav-icons { overflow: hidden; }
     .nav-icon {
-      float: left;
-      width: 56px;
-      height: 56px;
+      float: left; width: 56px; height: 56px; overflow: hidden; cursor: pointer;
+    }
+    .nav-icon + .nav-icon { margin-left: 106px; }
+    .nav-icon svg, .nav-icon img { width: 56px; height: 56px; }
+
+    /* ── Noodle Page ───────────────────────────────────── */
+    .noodle-page {
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
+      min-height: 0;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
+      padding: 8px;
+    }
+
+    .noodle-state {
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
+      min-height: 0;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
+    }
+
+    .noodle-title {
+      font-size: 48px; font-weight: bold; color: #000;
+      padding: 24px 20px 0;
+      -webkit-flex-shrink: 0; flex-shrink: 0;
+    }
+
+    .noodle-img-wrap {
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
+      min-height: 0; overflow: hidden; position: relative;
+    }
+
+    .noodle-img-wrap img {
+      position: absolute;
+      top: 50%; left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      width: 480px; height: 480px;
+    }
+
+    .noodle-actions {
+      -webkit-flex-shrink: 0; flex-shrink: 0;
+      padding: 12px 56px 20px;
       overflow: hidden;
     }
 
-    .nav-icon + .nav-icon {
-      margin-left: 106px;
+    /* Time segmented control */
+    .time-seg {
+      float: left;
+      border: 2px solid #000; border-radius: 45px; overflow: hidden;
+    }
+    .tseg-btn {
+      float: left;
+      font-size: 32px; font-weight: bold;
+      padding: 15px 36px; cursor: pointer; color: #000; background: none;
+    }
+    .tseg-btn.selected { background: rgba(0,0,0,0.12); }
+    .tseg-sep { float: left; width: 2px; height: 80px; background: #000; }
+
+    /* Start button (state 0) */
+    .btn-start {
+      float: right;
+      background: #000; color: #fff; border-radius: 45px;
+      font-size: 32px; font-weight: bold; text-align: center;
+      padding: 15px 40px; cursor: pointer;
     }
 
-    .nav-icon svg,
-    .nav-icon img {
-      width: 56px;
-      height: 56px;
+    /* Outline buttons */
+    .btn-outline {
+      display: inline-block;
+      border: 2px solid #000; border-radius: 45px; background: none;
+      font-size: 32px; font-weight: bold; color: #000;
+      padding: 14px 36px; cursor: pointer; vertical-align: top;
+    }
+
+    /* State 1 buttons: centered */
+    .action-center { text-align: center; }
+
+    /* State 2: 再来 + 去读书 */
+    .btn-again {
+      float: left; margin-right: 16px;
+      border: 2px solid #000; border-radius: 45px; background: none;
+      font-size: 32px; font-weight: bold; color: #000;
+      padding: 15px 40px; cursor: pointer;
+    }
+    .btn-goread {
+      overflow: hidden;
+      background: #000; color: #fff; border-radius: 45px;
+      font-size: 32px; font-weight: bold; text-align: center;
+      padding: 15px 32px; cursor: pointer;
+    }
+
+    /* ── Reading Page ──────────────────────────────────── */
+    .reading-page {
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
+      min-height: 0;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
+      padding: 40px 56px 24px;
+    }
+
+    .reading-title { font-size: 48px; font-weight: bold; color: #000; margin-bottom: 10px; }
+    .reading-subtitle { font-size: 24px; color: #000; opacity: 0.5; margin-bottom: 40px; }
+
+    .reading-steps {
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; min-height: 0;
+    }
+
+    .reading-step {
+      border: 2px solid #000; border-radius: 32px;
+      padding: 20px 24px; margin-bottom: 16px;
+    }
+    .reading-step::after { content: ''; display: block; clear: both; }
+
+    .step-num {
+      float: left; width: 56px; height: 56px;
+      background: #000; color: #fff; border-radius: 12px;
+      font-size: 40px; font-weight: bold;
+      text-align: center; line-height: 56px; margin-right: 18px;
+    }
+
+    .step-text { overflow: hidden; }
+    .step-main { font-size: 32px; font-weight: bold; color: #000; }
+    .step-sub { font-size: 24px; color: #000; opacity: 0.5; margin-top: 4px; }
+
+    .reading-cta {
+      display: block; background: #000; color: #fff; border-radius: 45px;
+      font-size: 32px; font-weight: bold; text-align: center;
+      padding: 16px 32px; cursor: pointer; margin-bottom: 28px;
+      -webkit-flex-shrink: 0; flex-shrink: 0;
+    }
+
+    .reading-footer {
+      font-size: 24px; color: #000; opacity: 0.5;
+      text-align: center; -webkit-flex-shrink: 0; flex-shrink: 0;
     }
   </style>
 </head>
 <body>
 
-  <div class="content">
+  <div id="page-wrapper">
 
-    <!-- Clock Card -->
-    <div class="clock-card">
-      <div class="clock-digits">
-        <div class="digit-card">
-          <span class="digit-number" id="hour">00</span>
-          <div class="digit-line"></div>
+    <!-- Page 0: Clock -->
+    <div id="page-0" class="page">
+      <div class="content">
+        <div class="clock-card">
+          <div class="clock-digits">
+            <div class="digit-card">
+              <span class="digit-number" id="hour">00</span>
+              <div class="digit-line"></div>
+            </div>
+            <div class="digit-card">
+              <span class="digit-number" id="minute">00</span>
+              <div class="digit-line"></div>
+            </div>
+          </div>
         </div>
-        <div class="digit-card">
-          <span class="digit-number" id="minute">00</span>
-          <div class="digit-line"></div>
+        <div class="bottom-row">
+          <div class="date-card">
+            <div class="date-weekday" id="weekday-month">星期四 四月</div>
+            <div class="date-rule"></div>
+            <div class="date-day" id="day-number">09</div>
+            <div class="date-lunar" id="lunar-date">二月廿二</div>
+          </div>
+          <div class="quote-card">
+            <div class="quote-label">励志语录</div>
+            <div class="quote-body">再多的焦虑也改变不了未来。再多的后悔也改变不了过去。</div>
+            <div class="quote-author">- Karen Salmansohn</div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Bottom Row -->
-    <div class="bottom-row">
-
-      <div class="date-card">
-        <div class="date-weekday" id="weekday-month">星期四 四月</div>
-        <div class="date-rule"></div>
-        <div class="date-day" id="day-number">09</div>
-        <div class="date-lunar" id="lunar-date">二月廿二</div>
+    <!-- Page 1: Placeholder -->
+    <div id="page-1" class="page" style="display:none">
+      <div style="height:100%;text-align:center;padding-top:300px;">
+        <p style="font-size:32px;color:#ababab;">敬请期待</p>
       </div>
-
-      <div class="quote-card">
-        <div class="quote-label">励志语录</div>
-        <div class="quote-body">再多的焦虑也改变不了未来。再多的后悔也改变不了过去。</div>
-        <div class="quote-author">- Karen Salmansohn</div>
-      </div>
-
     </div>
 
-    <!-- Nav Bar -->
-    <div class="bottom-nav">
-      <div class="nav-active-bar"></div>
-      <div class="nav-icons">
+    <!-- Page 2: Noodle Timer -->
+    <div id="page-2" class="page" style="display:none">
+      <div class="noodle-page">
 
-        <div class="nav-icon">
-          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="28" cy="28" r="20" stroke="#000" stroke-width="3"/>
-            <line x1="28" y1="28" x2="28" y2="14" stroke="#000" stroke-width="3" stroke-linecap="round"/>
-            <line x1="28" y1="28" x2="38" y2="33" stroke="#000" stroke-width="3" stroke-linecap="round"/>
-            <circle cx="28" cy="28" r="2.5" fill="#000"/>
-          </svg>
+        <!-- State 0: Waiting -->
+        <div id="noodle-s0" class="noodle-state">
+          <div class="noodle-title">听说用Kindle盖泡面会更香～</div>
+          <div class="noodle-img-wrap">
+            <img src="kindle_noodle_1_v2.png" alt="">
+          </div>
+          <div class="noodle-actions">
+            <div class="time-seg">
+              <div class="tseg-btn selected" id="btn-3min" onclick="selectTime(3)">3分钟</div>
+              <div class="tseg-sep"></div>
+              <div class="tseg-btn" id="btn-5min" onclick="selectTime(5)">5分钟</div>
+            </div>
+            <div class="btn-start" onclick="startNoodle()">开始焖煮</div>
+          </div>
         </div>
 
-        <div class="nav-icon">
-          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16 10h24M16 46h24M18 10 c0 10 10 10 10 18S18 36 18 46h20c0-10-10-10-10-18s10-8 10-18H18z" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M22 40 c1-4 3-6 6-7" stroke="#000" stroke-width="2" stroke-linecap="round"/>
-          </svg>
+        <!-- State 1: Counting -->
+        <div id="noodle-s1" class="noodle-state" style="display:none">
+          <div class="noodle-title" id="noodle-countdown">焖煮中...剩余 03:00</div>
+          <div class="noodle-img-wrap">
+            <img src="kindle_noodle_2_v2.png" alt="">
+          </div>
+          <div class="noodle-actions">
+            <div class="action-center">
+              <div class="btn-outline" onclick="cancelNoodle()">取消</div>
+              <div class="btn-outline" style="margin-left:16px" onclick="finishNoodle()">提前结束</div>
+            </div>
+          </div>
         </div>
 
-        <div class="nav-icon">
-          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <line x1="14" y1="20" x2="42" y2="20" stroke="#000" stroke-width="3" stroke-linecap="round"/>
-            <line x1="14" y1="28" x2="42" y2="28" stroke="#000" stroke-width="3" stroke-linecap="round"/>
-            <line x1="14" y1="36" x2="42" y2="36" stroke="#000" stroke-width="3" stroke-linecap="round"/>
-          </svg>
-        </div>
-
-        <div class="nav-icon">
-          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="12" y="10" width="30" height="36" rx="2" stroke="#000" stroke-width="2.5"/>
-            <line x1="18" y1="10" x2="18" y2="46" stroke="#000" stroke-width="2" stroke-linecap="round"/>
-            <line x1="23" y1="19" x2="35" y2="19" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="23" y1="26" x2="35" y2="26" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="23" y1="33" x2="30" y2="33" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
+        <!-- State 2: Done -->
+        <div id="noodle-s2" class="noodle-state" style="display:none">
+          <div class="noodle-title">开动吧～</div>
+          <div class="noodle-img-wrap">
+            <img src="kindle_noodle_1_v2.png" alt="">
+          </div>
+          <div class="noodle-actions">
+            <div class="btn-again" onclick="resetNoodle()">再来</div>
+            <div class="btn-goread" onclick="switchTab(3)">去读书 →</div>
+          </div>
         </div>
 
       </div>
     </div>
 
+    <!-- Page 3: Reading Redirect -->
+    <div id="page-3" class="page" style="display:none">
+      <div class="reading-page">
+        <div class="reading-title">跳转到微信读书</div>
+        <div class="reading-subtitle">读完想回到「正号」的两种方式：</div>
+        <div class="reading-steps">
+          <div class="reading-step">
+            <div class="step-num">1</div>
+            <div class="step-text">
+              <div class="step-main">点击浏览器「返回」键</div>
+              <div class="step-sub">顶部工具栏的 ← 箭头</div>
+            </div>
+          </div>
+          <div class="reading-step">
+            <div class="step-num">2</div>
+            <div class="step-text">
+              <div class="step-main">打开浏览器书签栏</div>
+              <div class="step-sub">找到之前收藏的「XX」即可返回</div>
+            </div>
+          </div>
+        </div>
+        <div class="reading-cta" onclick="window.location.href='https://weread.qq.com'">我知道了，跳转</div>
+        <div class="reading-footer">不要说我不务正业，看书才是我的主业</div>
+      </div>
+    </div>
+
+  </div><!-- #page-wrapper -->
+
+  <!-- Shared Nav Bar -->
+  <div class="bottom-nav">
+    <div class="nav-active-bar" id="nav-bar"></div>
+    <div class="nav-icons">
+
+      <div class="nav-icon" onclick="switchTab(0)">
+        <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="28" cy="28" r="20" stroke="#000" stroke-width="3"/>
+          <line x1="28" y1="28" x2="28" y2="14" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+          <line x1="28" y1="28" x2="38" y2="33" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="28" cy="28" r="2.5" fill="#000"/>
+        </svg>
+      </div>
+
+      <div class="nav-icon" onclick="switchTab(1)">
+        <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 10h24M16 46h24M18 10 c0 10 10 10 10 18S18 36 18 46h20c0-10-10-10-10-18s10-8 10-18H18z" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M22 40 c1-4 3-6 6-7" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <div class="nav-icon" onclick="switchTab(2)">
+        <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="14" y1="20" x2="42" y2="20" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+          <line x1="14" y1="28" x2="42" y2="28" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+          <line x1="14" y1="36" x2="42" y2="36" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <div class="nav-icon" onclick="switchTab(3)">
+        <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="12" y="10" width="30" height="36" rx="2" stroke="#000" stroke-width="2.5"/>
+          <line x1="18" y1="10" x2="18" y2="46" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+          <line x1="23" y1="19" x2="35" y2="19" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="23" y1="26" x2="35" y2="26" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="23" y1="33" x2="30" y2="33" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+    </div>
   </div>
 
   <script>
+    /* ── Tab Switching ──────────────────────────────────── */
+    var currentTab = 0;
+    var NAV_LEFT = [85, 247, 409, 571];
+
+    function switchTab(tab) {
+      if (currentTab === 2 && tab !== 2) { pauseNoodleTimer(); }
+      if (tab === 2 && noodleState === 1) { resumeNoodleTimer(); }
+      for (var i = 0; i < 4; i++) {
+        document.getElementById('page-' + i).style.display = (i === tab) ? '' : 'none';
+      }
+      document.getElementById('nav-bar').style.left = NAV_LEFT[tab] + 'px';
+      currentTab = tab;
+    }
+
+    /* ── Clock ──────────────────────────────────────────── */
     var WEEKDAYS = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
     var MONTHS   = ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
     var LUNAR_MONTHS = ['正月','二月','三月','四月','五月','六月','七月','八月','九月','十月','冬月','腊月'];
@@ -325,17 +445,10 @@
       { g: Date.UTC(2026, 0, 28), lm: 0 }
     ];
     var LUNAR_MONTH_LENGTHS = [30,29,30,29,30,30,29,30,29,30,29,30];
-
-    /* timezone offset ms, default UTC+8; updated by fetchTimezone() */
     var tzOffsetMs = 8 * 3600000;
-    /* reserved for weather: var geoCity=''; var geoLat=0; var geoLon=0; */
-
     var _lunarCache = { day: -1, label: '' };
 
-    /* Returns a Date whose getUTC* values equal the current local (tz-adjusted) time */
-    function getLocalDate() {
-      return new Date(Date.now() + tzOffsetMs);
-    }
+    function getLocalDate() { return new Date(Date.now() + tzOffsetMs); }
 
     function toLunarLabel(date) {
       var y = date.getUTCFullYear(), mo = date.getUTCMonth(), d = date.getUTCDate();
@@ -385,7 +498,6 @@
             var data = JSON.parse(xhr.responseText);
             if (typeof data.offset === 'number') {
               tzOffsetMs = data.offset * 1000;
-              /* geoCity = data.city; geoLat = data.lat; geoLon = data.lon; */
               _lunarCache.day = -1;
               updateClock();
             }
@@ -398,6 +510,65 @@
     updateClock();
     fetchTimezone();
     setInterval(updateClock, 60000);
+
+    /* ── Noodle Timer ───────────────────────────────────── */
+    var noodleState = 0;
+    var noodleMins = 3;
+    var noodleSecsLeft = 0;
+    var noodleTimer = null;
+
+    function selectTime(m) {
+      noodleMins = m;
+      document.getElementById('btn-3min').className = 'tseg-btn' + (m === 3 ? ' selected' : '');
+      document.getElementById('btn-5min').className = 'tseg-btn' + (m === 5 ? ' selected' : '');
+    }
+
+    function showNoodleState(s) {
+      for (var i = 0; i < 3; i++) {
+        document.getElementById('noodle-s' + i).style.display = (i === s) ? '' : 'none';
+      }
+      noodleState = s;
+    }
+
+    function updateCountdown() {
+      document.getElementById('noodle-countdown').textContent =
+        '焖煮中...剩余 ' + pad(Math.floor(noodleSecsLeft / 60)) + ':' + pad(noodleSecsLeft % 60);
+    }
+
+    function noodleTick() {
+      noodleSecsLeft--;
+      updateCountdown();
+      if (noodleSecsLeft <= 0) { finishNoodle(); }
+    }
+
+    function startNoodle() {
+      noodleSecsLeft = noodleMins * 60;
+      showNoodleState(1);
+      updateCountdown();
+      noodleTimer = setInterval(noodleTick, 1000);
+    }
+
+    function cancelNoodle() {
+      if (noodleTimer) { clearInterval(noodleTimer); noodleTimer = null; }
+      showNoodleState(0);
+    }
+
+    function finishNoodle() {
+      if (noodleTimer) { clearInterval(noodleTimer); noodleTimer = null; }
+      showNoodleState(2);
+    }
+
+    function resetNoodle() { showNoodleState(0); }
+
+    function pauseNoodleTimer() {
+      if (noodleTimer) { clearInterval(noodleTimer); noodleTimer = null; }
+    }
+
+    function resumeNoodleTimer() {
+      if (noodleState === 1 && !noodleTimer) {
+        noodleTimer = setInterval(noodleTick, 1000);
+      }
+    }
   </script>
 </body>
 </html>
