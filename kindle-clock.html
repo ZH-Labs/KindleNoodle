@@ -422,14 +422,26 @@
     var currentTab = 0;
     var NAV_LEFT = [85, 247, 409, 571];
 
+    function forceEinkRefresh(callback) {
+      var overlay = document.createElement('div');
+      overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:99999;';
+      document.body.appendChild(overlay);
+      setTimeout(function() {
+        callback();
+        document.body.removeChild(overlay);
+      }, 100);
+    }
+
     function switchTab(tab) {
       if (currentTab === 2 && tab !== 2) { pauseNoodleTimer(); }
       if (tab === 2 && noodleState === 1) { resumeNoodleTimer(); }
-      for (var i = 0; i < 4; i++) {
-        document.getElementById('page-' + i).style.display = (i === tab) ? '' : 'none';
-      }
-      document.getElementById('nav-bar').style.left = NAV_LEFT[tab] + 'px';
-      currentTab = tab;
+      forceEinkRefresh(function() {
+        for (var i = 0; i < 4; i++) {
+          document.getElementById('page-' + i).style.display = (i === tab) ? '' : 'none';
+        }
+        document.getElementById('nav-bar').style.left = NAV_LEFT[tab] + 'px';
+        currentTab = tab;
+      });
     }
 
     /* ── Clock ──────────────────────────────────────────── */
