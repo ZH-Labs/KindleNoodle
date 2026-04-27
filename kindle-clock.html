@@ -151,45 +151,46 @@
 
     .noodle-img-wrap img {
       position: absolute;
-      top: 50%; left: 50%;
-      -webkit-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%);
-      width: 480px; height: 480px;
+      bottom: 0; left: 50%;
+      -webkit-transform: translateX(-50%);
+      transform: translateX(-50%);
+      width: 600px; height: 600px;
     }
 
     .noodle-actions {
       -webkit-flex-shrink: 0; flex-shrink: 0;
-      padding: 12px 56px 20px;
-      overflow: hidden;
+      padding: 24px 56px 20px;
+      text-align: center;
     }
 
     /* Time segmented control */
     .time-seg {
-      float: left;
+      display: inline-block; vertical-align: top;
       border: 2px solid #000; border-radius: 45px; overflow: hidden;
     }
     .tseg-btn {
       float: left;
-      font-size: 32px; font-weight: bold;
-      padding: 15px 36px; cursor: pointer; color: #000; background: none;
+      font-size: 32px; font-weight: bold; line-height: 1;
+      padding: 20px 36px; cursor: pointer; color: #000; background: none;
     }
     .tseg-btn.selected { background: rgba(0,0,0,0.12); }
-    .tseg-sep { float: left; width: 2px; height: 80px; background: #000; }
+    /* 72px inner height + 2px border top/bottom = 76px outer */
+    .tseg-sep { float: left; width: 2px; height: 72px; background: #000; }
 
-    /* Start button (state 0) */
+    /* Start button (state 0) — no border so padding: 22px → 76px total */
     .btn-start {
-      float: right;
+      display: inline-block; vertical-align: top; margin-left: 24px;
       background: #000; color: #fff; border-radius: 45px;
-      font-size: 32px; font-weight: bold; text-align: center;
-      padding: 15px 40px; cursor: pointer;
+      font-size: 32px; font-weight: bold; line-height: 1; text-align: center;
+      padding: 22px 40px; cursor: pointer;
     }
 
-    /* Outline buttons */
+    /* Outline buttons — 2px border so padding: 20px → 76px total */
     .btn-outline {
       display: inline-block;
       border: 2px solid #000; border-radius: 45px; background: none;
-      font-size: 32px; font-weight: bold; color: #000;
-      padding: 14px 36px; cursor: pointer; vertical-align: top;
+      font-size: 32px; font-weight: bold; line-height: 1; color: #000;
+      padding: 20px 36px; cursor: pointer; vertical-align: top;
     }
 
     /* State 1 buttons: centered */
@@ -197,16 +198,16 @@
 
     /* State 2: 再来 + 去读书 */
     .btn-again {
-      float: left; margin-right: 16px;
+      float: left; margin-right: 24px;
       border: 2px solid #000; border-radius: 45px; background: none;
-      font-size: 32px; font-weight: bold; color: #000;
-      padding: 15px 40px; cursor: pointer;
+      font-size: 32px; font-weight: bold; line-height: 1; color: #000;
+      padding: 20px 40px; cursor: pointer;
     }
     .btn-goread {
       overflow: hidden;
       background: #000; color: #fff; border-radius: 45px;
-      font-size: 32px; font-weight: bold; text-align: center;
-      padding: 15px 32px; cursor: pointer;
+      font-size: 32px; font-weight: bold; line-height: 1; text-align: center;
+      padding: 22px 32px; cursor: pointer;
     }
 
     /* ── Reading Page ──────────────────────────────────── */
@@ -326,7 +327,7 @@
           <div class="noodle-actions">
             <div class="action-center">
               <div class="btn-outline" onclick="cancelNoodle()">取消</div>
-              <div class="btn-outline" style="margin-left:16px" onclick="finishNoodle()">提前结束</div>
+              <div class="btn-outline" style="margin-left:24px" onclick="finishNoodle()">提前结束</div>
             </div>
           </div>
         </div>
