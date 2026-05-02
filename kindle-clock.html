@@ -254,6 +254,116 @@
       font-size: 24px; color: #000; opacity: 0.5;
       text-align: center; -webkit-flex-shrink: 0; flex-shrink: 0;
     }
+
+    /* ── Pomodoro Page ────────────────────────────────── */
+    .pomo-page {
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
+      min-height: 0;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
+    }
+
+    .pomo-setup-header { -webkit-flex-shrink: 0; flex-shrink: 0; padding: 24px 56px 0; }
+    .pomo-title { font-size: 56px; font-weight: bold; color: #000; line-height: 1; margin-bottom: 12px; }
+    .pomo-subtitle { font-size: 28px; color: #000; opacity: 0.5; }
+
+    .pomo-config {
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
+      min-height: 0; padding: 32px 56px 0;
+    }
+    .pomo-config-row { margin-bottom: 24px; }
+    .pomo-config-label { font-size: 28px; color: #000; opacity: 0.5; margin-bottom: 16px; }
+
+    .pomo-seg3-wrap { border: 2px solid #000; border-radius: 38px; overflow: hidden; }
+    .pomo-seg3 { display: table; width: 100%; border-collapse: collapse; }
+    .pseg-btn {
+      display: table-cell; text-align: center; cursor: pointer;
+      font-size: 32px; font-weight: bold; line-height: 1;
+      padding: 20px 8px; color: #000; background: none;
+    }
+    .pseg-btn.selected { background: rgba(0,0,0,0.10); }
+    .pseg-sep { display: table-cell; width: 2px; padding: 0; background: #000; }
+
+    .pomo-start-btn {
+      -webkit-flex-shrink: 0; flex-shrink: 0;
+      margin: 0 56px 24px;
+      background: #000; color: #fff; border-radius: 45px;
+      font-size: 32px; font-weight: bold; line-height: 1; text-align: center;
+      padding: 22px 40px; cursor: pointer;
+    }
+
+    .pomo-timer-header { -webkit-flex-shrink: 0; flex-shrink: 0; padding: 24px 30px 0; }
+    .pomo-round-label { font-size: 28px; color: #000; opacity: 0.5; margin-bottom: 8px; }
+    .pomo-phase-title { font-size: 56px; font-weight: bold; color: #000; line-height: 1; }
+
+    .pomo-circle-wrap {
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
+      min-height: 0;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
+      -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
+    }
+
+    .pomo-circle-area { position: relative; width: 405px; height: 405px; }
+    .pomo-circle-area svg { position: absolute; top: 0; left: 0; display: block; }
+    .pomo-circle-overlay {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
+      -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
+      text-align: center;
+    }
+    .pomo-circle-label { font-size: 28px; color: #000; opacity: 0.5; letter-spacing: 4px; margin-bottom: 4px; }
+    .pomo-circle-time { font-size: 100px; font-weight: bold; color: #000; line-height: 1; }
+
+    .pomo-controls { -webkit-flex-shrink: 0; flex-shrink: 0; text-align: center; padding: 24px 0 40px; }
+    .pomo-ctrl-btn {
+      display: inline-block; vertical-align: middle; position: relative;
+      width: 76px; height: 76px; border-radius: 50%;
+      border: 2px solid #000; cursor: pointer;
+    }
+    .pomo-ctrl-btn svg {
+      position: absolute; top: 50%; left: 50%;
+      margin-top: -20px; margin-left: -20px; width: 40px; height: 40px;
+    }
+    .pomo-ctrl-main {
+      display: inline-block; vertical-align: middle; position: relative;
+      width: 100px; height: 100px; border-radius: 50%;
+      background: #000; cursor: pointer; margin: 0 32px;
+    }
+    .pomo-ctrl-main svg {
+      position: absolute; top: 50%; left: 50%;
+      margin-top: -28px; margin-left: -28px; width: 56px; height: 56px;
+    }
+
+    .pomo-done-wrap {
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
+      min-height: 0;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
+      -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
+      text-align: center; padding: 0 40px;
+    }
+    .pomo-done-number { font-size: 160px; font-weight: bold; color: #000; line-height: 1; }
+    .pomo-done-sublabel { font-size: 28px; color: #000; opacity: 0.5; margin-bottom: 40px; }
+    .pomo-done-title { font-size: 48px; font-weight: bold; color: #000; line-height: 1.2; margin-bottom: 16px; }
+    .pomo-done-sub { font-size: 28px; color: #000; opacity: 0.5; margin-bottom: 56px; }
+    .pomo-done-actions { overflow: hidden; }
+    .pomo-btn-again {
+      float: left; margin-right: 24px;
+      border: 2px solid #000; border-radius: 45px; background: none;
+      font-size: 32px; font-weight: bold; line-height: 1; color: #000;
+      padding: 20px 40px; cursor: pointer;
+    }
+    .pomo-btn-finish {
+      overflow: hidden;
+      background: #000; color: #fff; border-radius: 45px;
+      font-size: 32px; font-weight: bold; line-height: 1; text-align: center;
+      padding: 22px 40px; cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -291,11 +401,113 @@
       </div>
     </div>
 
-    <!-- Page 1: Placeholder -->
+    <!-- Page 1: Pomodoro Timer -->
     <div id="page-1" class="page" style="display:none">
-      <div style="height:100%;text-align:center;padding-top:300px;">
-        <p style="font-size:32px;color:#ababab;">敬请期待</p>
+
+      <!-- State 0: Setup -->
+      <div id="pomo-s0" class="pomo-page">
+        <div class="pomo-setup-header">
+          <div class="pomo-title">保持专注</div>
+          <div class="pomo-subtitle">选择一个节奏，然后开始专注</div>
+        </div>
+        <div class="pomo-config">
+          <div class="pomo-config-row">
+            <div class="pomo-config-label">专注时长</div>
+            <div class="pomo-seg3-wrap"><div class="pomo-seg3">
+              <div class="pseg-btn" id="pomo-f15" onclick="setPomoFocus(15)">15 分钟</div>
+              <div class="pseg-sep"></div>
+              <div class="pseg-btn selected" id="pomo-f25" onclick="setPomoFocus(25)">25 分钟</div>
+              <div class="pseg-sep"></div>
+              <div class="pseg-btn" id="pomo-f45" onclick="setPomoFocus(45)">45 分钟</div>
+            </div></div>
+          </div>
+          <div class="pomo-config-row">
+            <div class="pomo-config-label">休息时长</div>
+            <div class="pomo-seg3-wrap"><div class="pomo-seg3">
+              <div class="pseg-btn" id="pomo-b3" onclick="setPomoBreak(3)">3 分钟</div>
+              <div class="pseg-sep"></div>
+              <div class="pseg-btn selected" id="pomo-b5" onclick="setPomoBreak(5)">5 分钟</div>
+              <div class="pseg-sep"></div>
+              <div class="pseg-btn" id="pomo-b10" onclick="setPomoBreak(10)">10 分钟</div>
+            </div></div>
+          </div>
+          <div class="pomo-config-row">
+            <div class="pomo-config-label">循环次数</div>
+            <div class="pomo-seg3-wrap"><div class="pomo-seg3">
+              <div class="pseg-btn" id="pomo-r2" onclick="setPomoRounds(2)">2 轮</div>
+              <div class="pseg-sep"></div>
+              <div class="pseg-btn selected" id="pomo-r4" onclick="setPomoRounds(4)">4 轮</div>
+              <div class="pseg-sep"></div>
+              <div class="pseg-btn" id="pomo-r6" onclick="setPomoRounds(6)">6 轮</div>
+            </div></div>
+          </div>
+        </div>
+        <div class="pomo-start-btn" onclick="startPomo()">开始专注</div>
       </div>
+
+      <!-- State 1: Timer -->
+      <div id="pomo-s1" class="pomo-page" style="display:none">
+        <div class="pomo-timer-header">
+          <div class="pomo-round-label" id="pomo-round-label">第1/4轮</div>
+          <div class="pomo-phase-title" id="pomo-phase-title">专注中</div>
+        </div>
+        <div class="pomo-circle-wrap">
+          <div class="pomo-circle-area">
+            <svg viewBox="0 0 405 405" width="405" height="405" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="202.5" cy="202.5" r="185" fill="none" stroke="#e0e0e0" stroke-width="6"/>
+              <circle id="pomo-arc" cx="202.5" cy="202.5" r="185" fill="none" stroke="#000" stroke-width="6"
+                stroke-dasharray="1162.4" stroke-dashoffset="1162.4"
+                transform="rotate(-90 202.5 202.5)"/>
+            </svg>
+            <div class="pomo-circle-overlay">
+              <div class="pomo-circle-label" id="pomo-circle-label">FOCUS</div>
+              <div class="pomo-circle-time" id="pomo-circle-time">25:00</div>
+            </div>
+          </div>
+        </div>
+        <div class="pomo-controls">
+          <div class="pomo-ctrl-btn" onclick="restartPomo()">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 20a12 12 0 1 0 2.4-7.2" stroke="#000" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M7 11.5l1 8.5 8.5-1" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="pomo-ctrl-main" onclick="togglePomo()">
+            <svg id="pomo-icon-pause" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="17" y="14" width="8" height="28" rx="2" fill="#fff"/>
+              <rect x="31" y="14" width="8" height="28" rx="2" fill="#fff"/>
+            </svg>
+            <svg id="pomo-icon-play" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none">
+              <path d="M20 14l22 14-22 14z" fill="#fff"/>
+            </svg>
+          </div>
+          <div class="pomo-ctrl-btn" onclick="pomoRightAction()">
+            <svg id="pomo-icon-close" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <line x1="10" y1="10" x2="30" y2="30" stroke="#000" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="30" y1="10" x2="10" y2="30" stroke="#000" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+            <svg id="pomo-icon-skip" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none">
+              <path d="M7 10l16 10-16 10z" fill="#000"/>
+              <rect x="27" y="10" width="5" height="20" rx="1.5" fill="#000"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- State 2: Done -->
+      <div id="pomo-s2" class="pomo-page" style="display:none">
+        <div class="pomo-done-wrap">
+          <div class="pomo-done-number" id="pomo-done-rounds">4</div>
+          <div class="pomo-done-sublabel">轮专注已完成</div>
+          <div class="pomo-done-title" id="pomo-done-title">今天已沉下心100分钟</div>
+          <div class="pomo-done-sub">保持这个节奏，日积月累会是很可观的一段路</div>
+          <div class="pomo-done-actions">
+            <div class="pomo-btn-again" onclick="resetPomo()">再来一组</div>
+            <div class="pomo-btn-finish" onclick="switchTab(0)">完成</div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <!-- Page 2: Noodle Timer -->
@@ -435,12 +647,13 @@
         setTimeout(function() {
           callback();
           document.body.removeChild(white);
-        }, 1);
-      }, 1);
+        }, 10);
+      }, 10);
     }
 
     function switchTab(tab) {
       if (currentTab === 2 && tab !== 2) { pauseNoodleTimer(); }
+      if (currentTab === 1 && tab !== 1) { pausePomoTimer(); }
       if (tab === 2 && noodleState === 1) { resumeNoodleTimer(); }
       forceEinkRefresh(function() {
         for (var i = 0; i < 4; i++) {
@@ -588,6 +801,151 @@
       if (noodleState === 1 && !noodleTimer) {
         noodleTimer = setInterval(noodleTick, 1000);
       }
+    }
+
+    /* ── Pomodoro Timer ─────────────────────────────────── */
+    var pomo = {
+      phase: 'focus', running: false,
+      focusMins: 25, breakMins: 5, totalRounds: 4,
+      currentRound: 1, secsLeft: 0, totalFocusSecs: 0, timer: null
+    };
+    var POMO_CIRC = 1162.4;
+
+    function showPomoState(s) {
+      for (var i = 0; i < 3; i++) {
+        document.getElementById('pomo-s' + i).style.display = (i === s) ? '' : 'none';
+      }
+    }
+
+    function setPomoFocus(m) {
+      pomo.focusMins = m;
+      var ids = ['pomo-f15','pomo-f25','pomo-f45'], vals = [15,25,45];
+      for (var i = 0; i < 3; i++) {
+        document.getElementById(ids[i]).className = 'pseg-btn' + (vals[i] === m ? ' selected' : '');
+      }
+    }
+
+    function setPomoBreak(m) {
+      pomo.breakMins = m;
+      var ids = ['pomo-b3','pomo-b5','pomo-b10'], vals = [3,5,10];
+      for (var i = 0; i < 3; i++) {
+        document.getElementById(ids[i]).className = 'pseg-btn' + (vals[i] === m ? ' selected' : '');
+      }
+    }
+
+    function setPomoRounds(n) {
+      pomo.totalRounds = n;
+      var ids = ['pomo-r2','pomo-r4','pomo-r6'], vals = [2,4,6];
+      for (var i = 0; i < 3; i++) {
+        document.getElementById(ids[i]).className = 'pseg-btn' + (vals[i] === n ? ' selected' : '');
+      }
+    }
+
+    function startPomo() {
+      pomo.currentRound = 1;
+      pomo.totalFocusSecs = 0;
+      pomo.phase = 'focus';
+      pomo.secsLeft = pomo.focusMins;
+      pomo.running = true;
+      showPomoState(1);
+      updatePomoDisplay();
+      pomo.timer = setInterval(pomoTick, 1000);
+    }
+
+    function pomoTick() {
+      pomo.secsLeft--;
+      if (pomo.phase === 'focus') { pomo.totalFocusSecs++; }
+      if (pomo.secsLeft <= 0) { pomoPhaseEnd(); } else { updatePomoDisplay(); }
+    }
+
+    function pomoPhaseEnd() {
+      if (pomo.timer) { clearInterval(pomo.timer); pomo.timer = null; }
+      if (pomo.phase === 'focus') {
+        if (pomo.currentRound >= pomo.totalRounds) {
+          pomo.running = false;
+          showPomoDone();
+        } else {
+          pomo.phase = 'break';
+          pomo.secsLeft = pomo.breakMins;
+          pomo.running = false;
+          updatePomoDisplay();
+        }
+      } else {
+        pomo.currentRound++;
+        pomo.phase = 'focus';
+        pomo.secsLeft = pomo.focusMins;
+        pomo.running = false;
+        updatePomoDisplay();
+      }
+    }
+
+    function togglePomo() {
+      if (pomo.running) {
+        if (pomo.timer) { clearInterval(pomo.timer); pomo.timer = null; }
+        pomo.running = false;
+      } else {
+        pomo.running = true;
+        pomo.timer = setInterval(pomoTick, 1000);
+      }
+      updatePomoDisplay();
+    }
+
+    function restartPomo() {
+      if (pomo.timer) { clearInterval(pomo.timer); pomo.timer = null; }
+      pomo.secsLeft = (pomo.phase === 'focus' ? pomo.focusMins : pomo.breakMins);
+      pomo.running = false;
+      updatePomoDisplay();
+    }
+
+    function pomoRightAction() {
+      if (pomo.phase === 'focus') {
+        if (pomo.timer) { clearInterval(pomo.timer); pomo.timer = null; }
+        pomo.running = false;
+        showPomoState(0);
+      } else {
+        if (pomo.timer) { clearInterval(pomo.timer); pomo.timer = null; }
+        pomo.currentRound++;
+        pomo.phase = 'focus';
+        pomo.secsLeft = pomo.focusMins;
+        pomo.running = false;
+        updatePomoDisplay();
+      }
+    }
+
+    function showPomoDone() {
+      var totalMins = Math.floor(pomo.totalFocusSecs / 60);
+      document.getElementById('pomo-done-rounds').textContent = pomo.totalRounds;
+      document.getElementById('pomo-done-title').textContent = '今天已沉下心' + totalMins + '分钟';
+      showPomoState(2);
+    }
+
+    function resetPomo() { showPomoState(0); }
+
+    function pausePomoTimer() {
+      if (pomo.timer) {
+        clearInterval(pomo.timer);
+        pomo.timer = null;
+        pomo.running = false;
+        updatePomoDisplay();
+      }
+    }
+
+    function updatePomoDisplay() {
+      var totalSecs = (pomo.phase === 'focus' ? pomo.focusMins : pomo.breakMins);
+      var progress = (totalSecs - pomo.secsLeft) / totalSecs;
+      document.getElementById('pomo-arc').setAttribute('stroke-dashoffset', String(POMO_CIRC * (1 - progress)));
+      document.getElementById('pomo-round-label').textContent =
+        '第' + pomo.currentRound + '/' + pomo.totalRounds + '轮' +
+        (pomo.phase === 'break' ? ' 已完成专注' : '');
+      document.getElementById('pomo-phase-title').textContent =
+        pomo.phase === 'focus' ? (pomo.running ? '专注中' : '暂停专注') : '休息一下';
+      document.getElementById('pomo-circle-label').textContent = pomo.phase === 'focus' ? 'FOCUS' : 'BREAK';
+      document.getElementById('pomo-circle-time').textContent =
+        pad(Math.floor(pomo.secsLeft / 60)) + ':' + pad(pomo.secsLeft % 60);
+      document.getElementById('pomo-icon-pause').style.display = pomo.running ? '' : 'none';
+      document.getElementById('pomo-icon-play').style.display = pomo.running ? 'none' : '';
+      document.getElementById('pomo-icon-close').style.display = pomo.phase === 'focus' ? '' : 'none';
+      document.getElementById('pomo-icon-skip').style.display = pomo.phase === 'break' ? '' : 'none';
     }
   </script>
 </body>
