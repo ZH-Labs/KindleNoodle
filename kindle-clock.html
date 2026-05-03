@@ -84,21 +84,44 @@
       box-shadow: 0 2px 12px rgba(0,0,0,.12);
       padding: 32px; width: 367px; height: 367px;
     }
-    .date-card { margin-right: 8px; text-align: center; }
-    .date-weekday { font-size: 32px; font-weight: 500; color: #000; margin-bottom: 16px; }
-    .date-rule { height: 1px; background: #e0e0e0; margin-bottom: 28px; }
-    .date-day { font-size: 120px; font-weight: bold; color: #000; line-height: 1; margin-bottom: 20px; }
-    .date-lunar { font-size: 32px; color: #ababab; }
+    .date-card {
+      margin-right: 8px; text-align: center;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
+    }
+    .date-weekday { font-size: 32px; font-weight: 500; color: #000; margin-bottom: 16px; -webkit-flex-shrink: 0; flex-shrink: 0; }
+    .date-rule { height: 1px; background: #e0e0e0; -webkit-flex-shrink: 0; flex-shrink: 0; }
+    .date-day-wrap {
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
+      -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
+    }
+    .date-day { font-size: 120px; font-weight: bold; color: #000; line-height: 1; }
+    .date-lunar { font-size: 32px; color: #ababab; -webkit-flex-shrink: 0; flex-shrink: 0; }
 
+    .quote-card {
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
+    }
     .quote-label {
       background: #ededed; border-radius: 38px; height: 56px; line-height: 56px;
-      text-align: center; font-size: 24px; font-weight: 500; color: #000; margin-bottom: 20px;
+      text-align: center; font-size: 24px; font-weight: 500; color: #000;
+      margin-bottom: 16px; -webkit-flex-shrink: 0; flex-shrink: 0;
+    }
+    .quote-body-wrap {
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
+      -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
+      overflow: hidden;
     }
     .quote-body {
       font-size: 30px; font-weight: 500; color: #000;
-      line-height: 1.4; margin-bottom: 16px; overflow: hidden; max-height: 168px;
+      line-height: 1.4; overflow: hidden;
     }
-    .quote-author { font-size: 22px; color: #ababab; text-align: right; }
+    .quote-author { font-size: 22px; color: #ababab; text-align: right; -webkit-flex-shrink: 0; flex-shrink: 0; }
 
     /* ── Nav Bar ───────────────────────────────────────── */
     .bottom-nav {
@@ -389,13 +412,17 @@
           <div class="date-card">
             <div class="date-weekday" id="weekday-month">星期四 四月</div>
             <div class="date-rule"></div>
-            <div class="date-day" id="day-number">09</div>
+            <div class="date-day-wrap">
+              <div class="date-day" id="day-number">09</div>
+            </div>
             <div class="date-lunar" id="lunar-date">二月廿二</div>
           </div>
           <div class="quote-card">
             <div class="quote-label">励志语录</div>
-            <div class="quote-body">再多的焦虑也改变不了未来。再多的后悔也改变不了过去。</div>
-            <div class="quote-author">- Karen Salmansohn</div>
+            <div class="quote-body-wrap">
+              <div class="quote-body" id="quote-body">再多的焦虑也改变不了未来。再多的后悔也改变不了过去。</div>
+            </div>
+            <div class="quote-author" id="quote-author">- Karen Salmansohn</div>
           </div>
         </div>
       </div>
@@ -947,6 +974,61 @@
       document.getElementById('pomo-icon-close').style.display = pomo.phase === 'focus' ? '' : 'none';
       document.getElementById('pomo-icon-skip').style.display = pomo.phase === 'break' ? '' : 'none';
     }
+
+    /* ── Hitokoto Quote ──────────────────────────────────── */
+    var FALLBACK_QUOTES = [
+      { text: '再多的焦虑也改变不了未来。再多的后悔也改变不了过去。', author: 'Karen Salmansohn' },
+      { text: '占位语录 2，请替换成你喜欢的句子。', author: '作者 2' },
+      { text: '占位语录 3，请替换成你喜欢的句子。', author: '作者 3' },
+      { text: '占位语录 4，请替换成你喜欢的句子。', author: '作者 4' },
+      { text: '占位语录 5，请替换成你喜欢的句子。', author: '作者 5' },
+      { text: '占位语录 6，请替换成你喜欢的句子。', author: '作者 6' },
+      { text: '占位语录 7，请替换成你喜欢的句子。', author: '作者 7' },
+      { text: '占位语录 8，请替换成你喜欢的句子。', author: '作者 8' },
+      { text: '占位语录 9，请替换成你喜欢的句子。', author: '作者 9' },
+      { text: '占位语录 10，请替换成你喜欢的句子。', author: '作者 10' }
+    ];
+
+    function setQuote(text, author) {
+      var bodyEl = document.getElementById('quote-body');
+      var wrapEl = bodyEl.parentNode;
+      var authorEl = document.getElementById('quote-author');
+      bodyEl.style.fontSize = '30px';
+      bodyEl.textContent = text;
+      var size = 30;
+      while (bodyEl.offsetHeight > wrapEl.offsetHeight && size > 18) {
+        size -= 2;
+        bodyEl.style.fontSize = size + 'px';
+      }
+      authorEl.textContent = author ? '- ' + author : '';
+    }
+
+    function useFallbackQuote() {
+      var q = FALLBACK_QUOTES[Math.floor(Math.random() * FALLBACK_QUOTES.length)];
+      setQuote(q.text, q.author);
+    }
+
+    function fetchQuote() {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'https://v1.hitokoto.cn/', true);
+      xhr.timeout = 5000;
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            try {
+              var data = JSON.parse(xhr.responseText);
+              var author = data.from_who || data.from || '';
+              setQuote(data.hitokoto, author);
+            } catch(e) { useFallbackQuote(); }
+          } else { useFallbackQuote(); }
+        }
+      };
+      xhr.ontimeout = function() { useFallbackQuote(); };
+      xhr.onerror = function() { useFallbackQuote(); };
+      xhr.send();
+    }
+
+    fetchQuote();
   </script>
 </body>
 </html>
