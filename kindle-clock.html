@@ -387,9 +387,231 @@
       font-size: 32px; font-weight: bold; line-height: 1; text-align: center;
       padding: 22px 40px; cursor: pointer;
     }
+
+    /* ── Onboarding ──────────────────────────────────────── */
+    #ob-overlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: #fff; z-index: 10000; overflow: hidden;
+    }
+    .ob-screen {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: #fff;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
+    }
+    .ob-eyebrow {
+      -webkit-flex-shrink: 0; flex-shrink: 0;
+      text-align: center; padding: 40px 56px 0;
+      font-size: 22px; font-weight: 500; color: #9a9a9a; letter-spacing: 2px;
+    }
+    .ob-img-grow {
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
+      min-height: 0; overflow: hidden; text-align: center; padding: 16px 0;
+    }
+    .ob-img-grow img { width: 360px; height: 360px; }
+    .ob-brand-wrap { -webkit-flex-shrink: 0; flex-shrink: 0; text-align: center; padding: 0 56px; }
+    .ob-brand-title { font-size: 76px; font-weight: 800; color: #000; line-height: 0.95; letter-spacing: -1px; }
+    .ob-brand-line2 { font-size: 76px; font-weight: 800; color: #000; line-height: 0.95; letter-spacing: -1px; margin-top: 10px; }
+    .ob-b-dash { display: inline-block; vertical-align: middle; width: 56px; height: 2px; background: #000; margin: 0 18px; }
+    .ob-brand-sub { margin-top: 18px; font-size: 18px; color: #9a9a9a; font-style: italic; letter-spacing: 1px; }
+    .ob-footer { -webkit-flex-shrink: 0; flex-shrink: 0; padding: 20px 48px 40px; text-align: center; }
+    .ob-next-btn {
+      display: block; width: 88px; height: 88px; border-radius: 44px;
+      background: #000; cursor: pointer; margin: 0 auto 22px; padding-top: 27px;
+    }
+    .ob-start-btn {
+      display: block; width: 100%; height: 76px; border-radius: 38px;
+      background: #000; color: #fff; border: none;
+      font-size: 26px; font-weight: 600; letter-spacing: 1px;
+      cursor: pointer; margin-bottom: 22px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .ob-dot {
+      display: inline-block; width: 10px; height: 10px; border-radius: 5px;
+      background: transparent; border: 1.5px solid #000; margin: 0 6px;
+    }
+    .ob-dot-active { background: #000; }
+    .ob-s2-head { -webkit-flex-shrink: 0; flex-shrink: 0; padding: 40px 56px 16px; }
+    .ob-s2-label { font-size: 24px; font-weight: 500; color: #9a9a9a; letter-spacing: 2px; margin-bottom: 10px; }
+    .ob-s2-title-big { font-size: 60px; font-weight: 800; color: #000; line-height: 0.95; letter-spacing: -1px; }
+    .ob-s2-title-indent { font-size: 60px; font-weight: 800; color: #000; line-height: 0.95; letter-spacing: -1px; margin-top: 6px; padding-left: 76px; position: relative; }
+    .ob-indent-dash { position: absolute; left: 0; top: 50%; width: 56px; height: 2px; background: #000; margin-top: -1px; }
+    .ob-roles {
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
+      min-height: 0; overflow: hidden; padding: 0 56px; position: relative;
+    }
+    .ob-timeline { position: absolute; left: 88px; top: 50px; bottom: 44px; width: 0; border-left: 1.5px dashed #c8c8c8; }
+    .ob-tl-dot { position: absolute; left: 84px; width: 7px; height: 7px; border-radius: 4px; background: #000; }
+    .ob-tl-top { top: 46px; }
+    .ob-tl-bottom { bottom: 40px; }
+    .ob-role-item { overflow: hidden; padding: 14px 0; border-bottom: 1px solid #ececec; position: relative; z-index: 1; }
+    .ob-role-item:last-child { border-bottom: none; }
+    .ob-role-icon { float: left; width: 64px; height: 64px; background: #fff; margin-right: 24px; text-align: center; }
+    .ob-role-text { overflow: hidden; padding-top: 8px; }
+    .ob-role-main { font-size: 28px; font-weight: 700; color: #000; line-height: 1.2; }
+    .ob-role-sub { font-size: 18px; color: #9a9a9a; margin-top: 2px; }
+    .ob-s3-head { -webkit-flex-shrink: 0; flex-shrink: 0; padding: 40px 56px 16px; }
+    .ob-s3-label { font-size: 22px; font-weight: 500; color: #9a9a9a; letter-spacing: 2px; margin-bottom: 10px; }
+    .ob-s3-title { font-size: 56px; font-weight: 800; color: #000; line-height: 0.95; letter-spacing: -1px; }
+    .ob-s3-dash { display: inline-block; vertical-align: middle; width: 48px; height: 2px; background: #000; margin-right: 20px; }
+    .ob-tips {
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; min-height: 0;
+      padding: 12px 48px 0;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
+      -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
+    }
+    .ob-tip-card { border: 1.5px solid #d8d8d8; border-radius: 24px; padding: 24px 26px; overflow: hidden; background: #fff; }
+    .ob-tip-card + .ob-tip-card { margin-top: 20px; }
+    .ob-tip-num { float: left; width: 56px; height: 56px; border-radius: 14px; background: #000; color: #fff; font-size: 30px; font-weight: 700; text-align: center; line-height: 56px; margin-right: 22px; }
+    .ob-tip-text { overflow: hidden; padding-top: 4px; }
+    .ob-tip-title { font-size: 26px; font-weight: 700; color: #000; line-height: 1.2; }
+    .ob-tip-sub { font-size: 18px; color: #9a9a9a; margin-top: 6px; line-height: 1.35; }
+    .ob-tail { -webkit-flex-shrink: 0; flex-shrink: 0; font-size: 16px; color: #a0a0a0; text-align: center; padding: 0 48px 20px; }
   </style>
 </head>
 <body>
+
+  <!-- ── Onboarding Overlay (first-run only) ──────────── -->
+  <div id="ob-overlay">
+
+    <!-- Screen 1: Brand reveal (01A · 居中版) -->
+    <div id="ob-s1" class="ob-screen">
+      <div class="ob-img-grow" style="padding-top:30px;">
+        <img src="kindle_noodle_2_v2.png" alt="Kindle Noodle" style="width:420px;height:420px;">
+      </div>
+      <div style="-webkit-flex-shrink:0;flex-shrink:0;text-align:center;padding:0 48px;">
+        <div style="font-size:64px;font-weight:900;color:#000;letter-spacing:-1px;line-height:1.05;">Kindle Noodle</div>
+        <div style="margin-top:12px;font-size:22px;color:#9a9a9a;font-style:italic;letter-spacing:0.5px;">Much More Than A Soup</div>
+        <div style="margin-top:28px;font-size:26px;color:#666;line-height:1.5;">不只是泡面，是你 Kindle 的新生活</div>
+      </div>
+      <div class="ob-footer">
+        <div class="ob-next-btn" onclick="obGo(2)">
+          <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+            <path d="M8 17 L26 17 M19 9 L27 17 L19 25" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="ob-dots">
+          <span class="ob-dot ob-dot-active"></span>
+          <span class="ob-dot"></span>
+          <span class="ob-dot"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screen 2: Four roles -->
+    <div id="ob-s2" class="ob-screen" style="display:none">
+      <div class="ob-s2-head">
+        <div class="ob-s2-label">你的桌面搭子</div>
+        <div class="ob-s2-title-big">随时</div>
+        <div class="ob-s2-title-indent">
+          <span class="ob-indent-dash"></span>切换角色
+        </div>
+      </div>
+      <div class="ob-roles">
+        <div class="ob-timeline"></div>
+        <div class="ob-tl-dot ob-tl-top"></div>
+        <div class="ob-tl-dot ob-tl-bottom"></div>
+        <div class="ob-role-item">
+          <div class="ob-role-icon">
+            <svg width="52" height="52" viewBox="0 0 56 56" fill="none" style="display:block;margin:6px auto 0">
+              <circle cx="28" cy="28" r="22" stroke="#000" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M28 14 L28 28 L38 34" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="ob-role-text">
+            <div class="ob-role-main">帮你看时间</div>
+            <div class="ob-role-sub">闲着的时候</div>
+          </div>
+        </div>
+        <div class="ob-role-item">
+          <div class="ob-role-icon">
+            <svg width="52" height="52" viewBox="0 0 56 56" fill="none" style="display:block;margin:6px auto 0">
+              <path d="M14 8 H42 M14 48 H42" stroke="#000" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M14 8 C14 22 28 24 28 28 C28 32 14 34 14 48" stroke="#000" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M42 8 C42 22 28 24 28 28 C28 32 42 34 42 48" stroke="#000" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="ob-role-text">
+            <div class="ob-role-main">陪你专注</div>
+            <div class="ob-role-sub">忙起来的时候</div>
+          </div>
+        </div>
+        <div class="ob-role-item">
+          <div class="ob-role-icon">
+            <svg width="52" height="52" viewBox="0 0 56 56" fill="none" style="display:block;margin:6px auto 0">
+              <path d="M14 10 L14 26 M10 10 L10 18 M18 10 L18 18 M14 26 L14 46" stroke="#000" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M42 10 C46 14 46 22 42 26 L42 46" stroke="#000" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="ob-role-text">
+            <div class="ob-role-main">陪你焖面</div>
+            <div class="ob-role-sub">饿了的时候</div>
+          </div>
+        </div>
+        <div class="ob-role-item">
+          <div class="ob-role-icon">
+            <svg width="52" height="52" viewBox="0 0 56 56" fill="none" style="display:block;margin:6px auto 0">
+              <rect x="10" y="6" width="36" height="44" rx="2" stroke="#000" stroke-width="2.5" fill="none"/>
+              <path d="M28 6 L28 50" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="ob-role-text">
+            <div class="ob-role-main">提醒你喂喂脑子</div>
+            <div class="ob-role-sub">吃饱了</div>
+          </div>
+        </div>
+      </div>
+      <div class="ob-footer">
+        <div class="ob-next-btn" onclick="obGo(3)">
+          <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+            <path d="M8 17 L26 17 M19 9 L27 17 L19 25" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="ob-dots">
+          <span class="ob-dot"></span>
+          <span class="ob-dot ob-dot-active"></span>
+          <span class="ob-dot"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screen 3: Tips + Start -->
+    <div id="ob-s3" class="ob-screen" style="display:none">
+      <div class="ob-s3-head">
+        <div class="ob-s3-label">开始之前</div>
+        <div class="ob-s3-title">
+          <span class="ob-s3-dash"></span>两个小提示
+        </div>
+      </div>
+      <div class="ob-tips">
+        <div class="ob-tip-card">
+          <div class="ob-tip-num">1</div>
+          <div class="ob-tip-text">
+            <div class="ob-tip-title">建议先收藏到书签</div>
+            <div class="ob-tip-sub">方便下次快速打开</div>
+          </div>
+        </div>
+        <div class="ob-tip-card">
+          <div class="ob-tip-num">2</div>
+          <div class="ob-tip-text">
+            <div class="ob-tip-title">从微信读书返回</div>
+            <div class="ob-tip-sub">点击浏览器顶部的 ← 返回键即可</div>
+          </div>
+        </div>
+      </div>
+      <div class="ob-footer">
+        <button class="ob-start-btn" onclick="obFinish()">开始使用</button>
+        <div class="ob-dots">
+          <span class="ob-dot"></span>
+          <span class="ob-dot"></span>
+          <span class="ob-dot ob-dot-active"></span>
+        </div>
+      </div>
+      <div class="ob-tail">不要说我不务正业，看书才是我的主业</div>
+    </div>
+
+  </div><!-- #ob-overlay -->
 
   <div id="page-wrapper">
 
@@ -1039,6 +1261,29 @@
     }
 
     fetchQuote();
+
+    /* ── Onboarding (first-run) ─────────────────────────── */
+    (function() {
+      var KEY = 'kindle_ob_done';
+      var overlay = document.getElementById('ob-overlay');
+      try {
+        if (localStorage.getItem(KEY)) {
+          overlay.style.display = 'none';
+          return;
+        }
+      } catch(e) {}
+
+      window.obGo = function(n) {
+        document.getElementById('ob-s1').style.display = (n === 1) ? '' : 'none';
+        document.getElementById('ob-s2').style.display = (n === 2) ? '' : 'none';
+        document.getElementById('ob-s3').style.display = (n === 3) ? '' : 'none';
+      };
+
+      window.obFinish = function() {
+        try { localStorage.setItem(KEY, '1'); } catch(e) {}
+        overlay.style.display = 'none';
+      };
+    })();
   </script>
 </body>
 </html>
