@@ -420,9 +420,9 @@
           <div class="quote-card">
             <div class="quote-label">励志语录</div>
             <div class="quote-body-wrap">
-              <div class="quote-body" id="quote-body">再多的焦虑也改变不了未来。再多的后悔也改变不了过去。</div>
+              <div class="quote-body" id="quote-body"></div>
             </div>
-            <div class="quote-author" id="quote-author">- Karen Salmansohn</div>
+            <div class="quote-author" id="quote-author"></div>
           </div>
         </div>
       </div>
@@ -575,7 +575,7 @@
         <div id="noodle-s2" class="noodle-state" style="display:none">
           <div class="noodle-title">开动吧～</div>
           <div class="noodle-img-wrap">
-            <img src="kindle_noodle_1_v2.png" alt="">
+            <img src="kindle_noodle_3_v2.png" alt="">
           </div>
           <div class="noodle-actions">
             <div class="btn-again" onclick="resetNoodle()">再来</div>
@@ -620,36 +620,41 @@
     <div class="nav-icons">
 
       <div class="nav-icon" onclick="switchTab(0)">
-        <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="28" cy="28" r="20" stroke="#000" stroke-width="3"/>
-          <line x1="28" y1="28" x2="28" y2="14" stroke="#000" stroke-width="3" stroke-linecap="round"/>
-          <line x1="28" y1="28" x2="38" y2="33" stroke="#000" stroke-width="3" stroke-linecap="round"/>
-          <circle cx="28" cy="28" r="2.5" fill="#000"/>
+        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#clip-nav-clock)">
+            <circle cx="28" cy="28" r="21" stroke="black" stroke-width="5.83333" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M25.6666 18.6666V30.3333H37.3333" stroke="black" stroke-width="5.83333" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+          <defs>
+            <clipPath id="clip-nav-clock">
+              <rect width="56" height="56" fill="white"/>
+            </clipPath>
+          </defs>
         </svg>
       </div>
 
       <div class="nav-icon" onclick="switchTab(1)">
-        <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M16 10h24M16 46h24M18 10 c0 10 10 10 10 18S18 36 18 46h20c0-10-10-10-10-18s10-8 10-18H18z" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M22 40 c1-4 3-6 6-7" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M28 28L42.2926 37.7285C43.5693 38.5976 44.3334 40.0419 44.3334 41.5863V47.8333C44.3334 48.4777 43.811 49 43.1667 49H12.8334C12.189 49 11.6667 48.4777 11.6667 47.8333V41.5863C11.6667 40.0419 12.4308 38.5976 13.7075 37.7285L28 28ZM28 28L42.2926 18.2715C43.5693 17.4024 44.3334 15.9581 44.3334 14.4137V8.16667C44.3334 7.52233 43.811 7 43.1667 7H12.8334C12.189 7 11.6667 7.52233 11.6667 8.16667V14.4137C11.6667 15.9581 12.4308 17.4024 13.7075 18.2715L28 28Z" stroke="black" stroke-width="4.66667" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M35 47.1499V48.65C35 48.8433 34.8433 49 34.65 49H21.35C21.1567 49 21 48.8433 21 48.65V47.1499C21 46.8405 21.1229 46.5437 21.3417 46.3249L26.6801 40.9866C27.409 40.2576 28.591 40.2576 29.3199 40.9866L34.6583 46.3249C34.8771 46.5437 35 46.8405 35 47.1499Z" fill="black"/>
+          <path d="M28 25.6666L39.6666 18.6666H16.3333L28 25.6666Z" fill="black"/>
+          <path d="M28 42V28" stroke="black" stroke-width="4.66667" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
 
       <div class="nav-icon" onclick="switchTab(2)">
-        <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <line x1="14" y1="20" x2="42" y2="20" stroke="#000" stroke-width="3" stroke-linecap="round"/>
-          <line x1="14" y1="28" x2="42" y2="28" stroke="#000" stroke-width="3" stroke-linecap="round"/>
-          <line x1="14" y1="36" x2="42" y2="36" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M33.75 10.75C36.3959 10.75 39.0064 11.3587 41.3795 12.5289C43.7525 13.6992 45.8246 15.3997 47.4353 17.4989C49.0461 19.598 50.1523 22.0396 50.6685 24.6347C51.1847 27.2298 51.097 29.9088 50.4122 32.4646C49.7274 35.0204 48.4638 37.3844 46.7192 39.3737C44.9746 41.363 42.7958 42.9244 40.3513 43.9369C37.9068 44.9495 35.2621 45.3861 32.6218 45.2131C29.9815 45.04 27.4164 44.2619 25.125 42.9389" stroke="black" stroke-width="5.75" stroke-linecap="round"/>
+          <path d="M13.625 48.125V7.875" stroke="black" stroke-width="5.75"/>
+          <path d="M22.25 7.875V20.8125C22.25 23.1942 20.3192 25.125 17.9375 25.125C15.5558 25.125 13.625 23.1942 13.625 20.8125V7.875" stroke="black" stroke-width="5.75"/>
+          <path d="M5 7.875V20.8125C5 23.1942 6.93077 25.125 9.3125 25.125C11.6942 25.125 13.625 23.1942 13.625 20.8125V7.875" stroke="black" stroke-width="5.75"/>
         </svg>
       </div>
 
       <div class="nav-icon" onclick="switchTab(3)">
-        <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="12" y="10" width="30" height="36" rx="2" stroke="#000" stroke-width="2.5"/>
-          <line x1="18" y1="10" x2="18" y2="46" stroke="#000" stroke-width="2" stroke-linecap="round"/>
-          <line x1="23" y1="19" x2="35" y2="19" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="23" y1="26" x2="35" y2="26" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="23" y1="33" x2="30" y2="33" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M46.6666 28V39.6667C46.6666 44.0664 46.6666 46.2663 45.2998 47.6332C43.933 49 41.7331 49 37.3333 49H15.1666C11.945 49 9.33331 46.3883 9.33331 43.1667M46.6666 28V16.3333C46.6666 11.9336 46.6666 9.73367 45.2998 8.36684C43.933 7 41.7331 7 37.3333 7H18.6666C14.2669 7 12.067 7 10.7001 8.36684C9.33331 9.73367 9.33331 11.9336 9.33331 16.3333V43.1667M46.6666 28C46.6666 32.3998 46.6666 34.5997 45.2998 35.9665C43.933 37.3333 41.7331 37.3333 37.3333 37.3333H15.1666C11.945 37.3333 9.33331 39.945 9.33331 43.1667" stroke="black" stroke-width="4.66667"/>
+          <path d="M21 18.6666L35 18.6666" stroke="black" stroke-width="4.66667" stroke-linecap="round"/>
         </svg>
       </div>
 
@@ -977,16 +982,21 @@
 
     /* ── Hitokoto Quote ──────────────────────────────────── */
     var FALLBACK_QUOTES = [
-      { text: '再多的焦虑也改变不了未来。再多的后悔也改变不了过去。', author: 'Karen Salmansohn' },
-      { text: '占位语录 2，请替换成你喜欢的句子。', author: '作者 2' },
-      { text: '占位语录 3，请替换成你喜欢的句子。', author: '作者 3' },
-      { text: '占位语录 4，请替换成你喜欢的句子。', author: '作者 4' },
-      { text: '占位语录 5，请替换成你喜欢的句子。', author: '作者 5' },
-      { text: '占位语录 6，请替换成你喜欢的句子。', author: '作者 6' },
-      { text: '占位语录 7，请替换成你喜欢的句子。', author: '作者 7' },
-      { text: '占位语录 8，请替换成你喜欢的句子。', author: '作者 8' },
-      { text: '占位语录 9，请替换成你喜欢的句子。', author: '作者 9' },
-      { text: '占位语录 10，请替换成你喜欢的句子。', author: '作者 10' }
+      { text: 'Get busy living, or get busy dying.', author: 'The Shawshank Redemption' },
+      { text: '虽千万人，吾往矣。', author: '孟子' },
+      { text: '人生就像一盒巧克力，你永远不知道下一颗是什么味道。', author: '《阿甘正传》' },
+      { text: '大道至简。', author: '老子' },
+      { text: '当某件事足够重要，即使所有人都不看好，你也要去做。', author: '埃隆·马斯克' },
+      { text: '凡事不能杀死我的，终将使我更强。', author: '尼采' },
+      { text: 'Good artists copy, great artists steal.', author: 'Pablo Picasso' },
+      { text: '长风破浪会有时，直挂云帆济沧海。', author: '李白' },
+      { text: '在别人贪婪时恐惧，在别人恐惧时贪婪。', author: '巴菲特' },
+      { text: '真正的发现之旅，不在于寻找新风景，而在于拥有新眼光。', author: '普鲁斯特' },
+      { text: '千里之行，始于足下。', author: '老子' },
+      { text: '博观而约取，厚积而薄发。', author: '苏轼' },
+      { text: '成为你自己，其他角色都已经有人演了。', author: '王尔德' },
+      { text: '世上本没有路，走的人多了，也便成了路。', author: '鲁迅' },
+      { text: '你的时间有限，别浪费在过别人的生活上。', author: '乔布斯' }
     ];
 
     function setQuote(text, author) {
