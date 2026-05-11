@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=758, initial-scale=1.0">
   <meta http-equiv="refresh" content="43200">
   <title>Kindle Noodle</title>
+  <script>try{if(localStorage.getItem('kindle_ob_done'))document.write('<style>#ob-overlay{display:none}</style>');}catch(e){}</script>
   <style>
     *, *::before, *::after {
       box-sizing: border-box; margin: 0; padding: 0;
@@ -48,25 +49,36 @@
     }
 
     .clock-card {
-      background: #fff; border-radius: 36px;
-      box-shadow: 0 2px 12px rgba(0,0,0,.12);
-      padding: 31px 32px;
+      background: #fff; border-radius: 60px;
+      border-top: 1px solid #DDDDDD; border-left: 1px solid #DDDDDD; border-right: 1px solid #DDDDDD; border-bottom: 3px solid #DDDDDD;
+      padding: 31px 31px;
       -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
-      min-height: 0; margin-bottom: 8px; overflow: hidden;
+      min-height: 0; margin-bottom: 12px; overflow: hidden;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
     }
 
-    .clock-digits { overflow: hidden; width: 678px; height: 356px; }
+    .clock-digits {
+      width: 678px; overflow: hidden;
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; min-height: 0;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: horizontal; -webkit-flex-direction: row; flex-direction: row;
+      -webkit-box-align: stretch; -webkit-align-items: stretch; align-items: stretch;
+    }
 
     .digit-card {
-      float: left; width: 326px; height: 356px;
-      background: #000; border-radius: 32px; overflow: hidden;
-      text-align: center; line-height: 356px; position: relative;
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
+      background: #000; border-radius: 32px; overflow: hidden; position: relative;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
+      -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
     }
     .digit-card + .digit-card { margin-left: 26px; }
 
     .digit-number {
       font-weight: bold; font-size: 180px; color: #fff;
-      line-height: 356px; white-space: nowrap; position: relative; z-index: 1;
+      line-height: 1; white-space: nowrap; position: relative; z-index: 1;
     }
 
     .digit-line {
@@ -75,17 +87,17 @@
     }
 
     .bottom-row {
-      height: 367px; -webkit-flex-shrink: 0; flex-shrink: 0; margin-bottom: 8px;
+      height: 365px; -webkit-flex-shrink: 0; flex-shrink: 0; margin-bottom: 4px;
     }
     .bottom-row::after { content: ''; display: block; clear: both; }
 
     .date-card, .quote-card {
-      float: left; background: #fff; border-radius: 36px;
-      box-shadow: 0 2px 12px rgba(0,0,0,.12);
-      padding: 32px; width: 367px; height: 367px;
+      float: left; background: #fff; border-radius: 60px;
+      border-top: 1px solid #DDDDDD; border-left: 1px solid #DDDDDD; border-right: 1px solid #DDDDDD; border-bottom: 3px solid #DDDDDD;
+      padding: 32px; width: 365px; height: 365px;
     }
     .date-card {
-      margin-right: 8px; text-align: center;
+      margin-right: 12px; text-align: center;
       display: -webkit-box; display: -webkit-flex; display: flex;
       -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
     }
@@ -126,9 +138,9 @@
     /* ── Nav Bar ───────────────────────────────────────── */
     .bottom-nav {
       background: #fff; border-radius: 60px;
-      box-shadow: 0 2px 12px rgba(0,0,0,.12);
+      border-top: 1px solid #DDDDDD; border-left: 1px solid #DDDDDD; border-right: 1px solid #DDDDDD; border-bottom: 3px solid #DDDDDD;
       height: 90px; -webkit-flex-shrink: 0; flex-shrink: 0;
-      padding: 17px 100px; position: relative; overflow: hidden;
+      padding: 15px 99px; position: relative; overflow: hidden;
       margin: 0 8px 8px;
     }
 
@@ -444,7 +456,7 @@
     .ob-tl-dot { position: absolute; left: 84px; width: 7px; height: 7px; border-radius: 4px; background: #000; }
     .ob-tl-top { top: 46px; }
     .ob-tl-bottom { bottom: 40px; }
-    .ob-role-item { overflow: hidden; padding: 14px 0; border-bottom: 1px solid #ececec; position: relative; z-index: 1; }
+    .ob-role-item { overflow: hidden; padding: 14px 0; border-bottom: 1px solid #DDDDDD; position: relative; z-index: 1; }
     .ob-role-item:last-child { border-bottom: none; }
     .ob-role-icon { float: left; width: 64px; height: 64px; background: #fff; margin-right: 24px; text-align: center; }
     .ob-role-text { overflow: hidden; padding-top: 8px; }
@@ -886,7 +898,7 @@
   <script>
     /* ── Tab Switching ──────────────────────────────────── */
     var currentTab = 0;
-    var NAV_LEFT = [85, 247, 409, 571];
+    var NAV_LEFT = [84, 246, 408, 570];
 
     function forceEinkRefresh(callback) {
       var base = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999;';
