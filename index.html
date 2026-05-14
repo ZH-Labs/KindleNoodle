@@ -1300,6 +1300,25 @@
     };
     var POMO_CIRC = 1162.4;
 
+    function pomoTodayKey() {
+      var d = getLocalDate();
+      return d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate();
+    }
+    function pomoLoadTodayMins() {
+      try {
+        var data = JSON.parse(localStorage.getItem('pomo_daily') || '{}');
+        return (data.date === pomoTodayKey()) ? (data.mins || 0) : 0;
+      } catch(e) { return 0; }
+    }
+    function pomoSaveSessionMins(sessionMins) {
+      try {
+        var key = pomoTodayKey();
+        var data = JSON.parse(localStorage.getItem('pomo_daily') || '{}');
+        var prev = (data.date === key) ? (data.mins || 0) : 0;
+        localStorage.setItem('pomo_daily', JSON.stringify({ date: key, mins: prev + sessionMins }));
+      } catch(e) {}
+    }
+
     function showPomoState(s) {
       for (var i = 0; i < 3; i++) {
         document.getElementById('pomo-s' + i).style.display = (i === s) ? '' : 'none';
@@ -1336,7 +1355,7 @@
       pomo.currentRound = 1;
       pomo.totalFocusSecs = 0;
       pomo.phase = 'focus';
-      pomo.secsLeft = pomo.focusMins;
+      pomo.secsLeft = pomo.focusMins * 60;
       pomo.waitingToStart = false;
       pomo.running = true;
       showPomoState(1);
@@ -1358,7 +1377,7 @@
           showPomoDone();
         } else {
           pomo.phase = 'break';
-          pomo.secsLeft = pomo.breakMins;
+          pomo.secsLeft = pomo.breakMins * 60;
           pomo.running = false;
           pomo.waitingToStart = true;
           updatePomoDisplay();
@@ -1366,7 +1385,7 @@
       } else {
         pomo.currentRound++;
         pomo.phase = 'focus';
-        pomo.secsLeft = pomo.focusMins;
+        pomo.secsLeft = pomo.focusMins * 60;
         pomo.running = false;
         pomo.waitingToStart = true;
         updatePomoDisplay();
@@ -1401,7 +1420,7 @@
         if (pomo.timer) { clearInterval(pomo.timer); pomo.timer = null; }
         pomo.currentRound++;
         pomo.phase = 'focus';
-        pomo.secsLeft = pomo.focusMins;
+        pomo.secsLeft = pomo.focusMins * 60;
         pomo.running = false;
         pomo.waitingToStart = true;
         updatePomoDisplay();
@@ -1409,9 +1428,11 @@
     }
 
     function showPomoDone() {
-      var totalMins = Math.floor(pomo.totalFocusSecs / 60);
+      var sessionMins = Math.floor(pomo.totalFocusSecs / 60);
+      pomoSaveSessionMins(sessionMins);
+      var todayMins = pomoLoadTodayMins();
       document.getElementById('pomo-done-rounds').textContent = pomo.totalRounds;
-      document.getElementById('pomo-done-title').textContent = '今天已沉下心' + totalMins + '分钟';
+      document.getElementById('pomo-done-title').textContent = '今天已沉下心' + todayMins + '分钟';
       showPomoState(2);
     }
 
@@ -1445,7 +1466,7 @@
       if (illusEl) { illusEl.src = (pomo.phase === 'break' || (pomo.phase === 'focus' && pomo.waitingToStart)) ? 'img/pomo-break.png' : 'img/pomo-focus.png'; }
       var blackPath = document.getElementById('pomo-black-path');
       if (blackPath) {
-        var totalSecs = pomo.phase === 'focus' ? pomo.focusMins : pomo.breakMins;
+        var totalSecs = (pomo.phase === 'focus' ? pomo.focusMins : pomo.breakMins) * 60;
         var elapsed = totalSecs - pomo.secsLeft;
         var progress = totalSecs > 0 ? elapsed / totalSecs : 0;
         if (progress <= 0) {
