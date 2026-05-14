@@ -253,136 +253,133 @@
 
     /* ── Noodle Page ───────────────────────────────────── */
     .noodle-page {
-      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
-      min-height: 0;
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; min-height: 0;
       display: -webkit-box; display: -webkit-flex; display: flex;
       -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
-      padding: 8px;
     }
-
     .noodle-state {
-      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
-      min-height: 0;
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; min-height: 0;
       display: -webkit-box; display: -webkit-flex; display: flex;
       -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
     }
-
-    .noodle-title {
-      font-size: 48px; font-weight: bold; color: #000;
-      padding: 24px 20px 0;
-      -webkit-flex-shrink: 0; flex-shrink: 0;
-    }
-
+    .noodle-header { -webkit-flex-shrink: 0; flex-shrink: 0; padding: 31px 63px 0; text-align: center; }
+    .noodle-title { font-size: 48px; font-weight: bold; color: #000; line-height: 1.2; }
+    .noodle-subtitle { font-size: 24px; color: #555; margin-top: 8px; }
     .noodle-img-wrap {
-      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
-      min-height: 0; overflow: hidden; position: relative;
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; min-height: 0;
+      overflow: hidden; position: relative;
     }
-
     .noodle-img-wrap img {
-      position: absolute;
-      bottom: 0; left: 50%;
-      -webkit-transform: translateX(-50%);
-      transform: translateX(-50%);
-      width: 600px; height: 600px;
+      position: absolute; bottom: 0; left: 50%;
+      -webkit-transform: translateX(-50%); transform: translateX(-50%);
+      width: 564px; height: 564px;
     }
-
     .noodle-actions {
-      -webkit-flex-shrink: 0; flex-shrink: 0;
-      padding: 24px 56px 20px;
-      text-align: center;
+      -webkit-flex-shrink: 0; flex-shrink: 0; padding: 0 56px 24px;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: horizontal; -webkit-flex-direction: row; flex-direction: row;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
     }
-
-    /* Time segmented control */
-    .time-seg {
-      display: inline-block; vertical-align: top;
-      border: 2px solid #000; border-radius: 45px; overflow: hidden;
+    .noodle-actions-center {
+      -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
     }
-    .tseg-btn {
-      float: left;
-      font-size: 32px; font-weight: bold; line-height: 1;
-      padding: 20px 36px; cursor: pointer; color: #000; background: none;
+    .noodle-time-group {
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; margin-right: 24px;
     }
-    .tseg-btn.selected { background: rgba(0,0,0,0.12); }
-    /* 72px inner height + 2px border top/bottom = 76px outer */
-    .tseg-sep { float: left; width: 2px; height: 72px; background: #000; }
-
-    /* Start button (state 0) — no border so padding: 22px → 76px total */
-    .btn-start {
-      display: inline-block; vertical-align: top; margin-left: 24px;
-      background: #000; color: #fff; border-radius: 45px;
-      font-size: 32px; font-weight: bold; line-height: 1; text-align: center;
-      padding: 22px 40px; cursor: pointer;
+    .ntg-btn {
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
+      padding: 22px 32px; cursor: pointer; border: 2px solid #000; background: none;
     }
-
-    /* Outline buttons — 2px border so padding: 20px → 76px total */
-    .btn-outline {
-      display: inline-block;
+    .ntg-left { border-radius: 45px 0 0 45px; margin-right: -1px; }
+    .ntg-right { border-radius: 0 45px 45px 0; }
+    .ntg-btn.selected { background: #000; }
+    .ntg-val { font-size: 32px; font-weight: bold; line-height: 1; color: #000; }
+    .ntg-unit { font-size: 24px; line-height: 1; color: #000; margin-left: 4px; }
+    .ntg-btn.selected .ntg-val, .ntg-btn.selected .ntg-unit { color: #fff; }
+    .btn-noodle-start {
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
+      background: #000; color: #fff; border-radius: 45px; border: 2px solid #000;
+      font-size: 32px; font-weight: bold; line-height: 1; padding: 22px 32px; cursor: pointer;
+    }
+    .btn-noodle-outline {
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
       border: 2px solid #000; border-radius: 45px; background: none;
       font-size: 32px; font-weight: bold; line-height: 1; color: #000;
-      padding: 20px 36px; cursor: pointer; vertical-align: top;
+      padding: 22px 32px; cursor: pointer; -webkit-flex-shrink: 0; flex-shrink: 0;
     }
-
-    /* State 1 buttons: centered */
-    .action-center { text-align: center; }
-
-    /* State 2: 再来 + 去读书 */
-    .btn-again {
-      float: left; margin-right: 24px;
-      border: 2px solid #000; border-radius: 45px; background: none;
-      font-size: 32px; font-weight: bold; line-height: 1; color: #000;
-      padding: 20px 40px; cursor: pointer;
-    }
-    .btn-goread {
-      overflow: hidden;
+    .btn-noodle-fill {
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
       background: #000; color: #fff; border-radius: 45px;
-      font-size: 32px; font-weight: bold; line-height: 1; text-align: center;
-      padding: 22px 32px; cursor: pointer;
+      font-size: 32px; font-weight: bold; line-height: 1; padding: 22px 32px; cursor: pointer;
     }
 
     /* ── Reading Page ──────────────────────────────────── */
     .reading-page {
-      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
-      min-height: 0;
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; min-height: 0;
       display: -webkit-box; display: -webkit-flex; display: flex;
       -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
-      padding: 40px 56px 24px;
+      padding: 40px 56px 48px;
     }
-
-    .reading-title { font-size: 48px; font-weight: bold; color: #000; margin-bottom: 10px; }
-    .reading-subtitle { font-size: 24px; color: #000; opacity: 0.5; margin-bottom: 40px; }
-
-    .reading-steps {
-      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; min-height: 0;
-    }
-
-    .reading-step {
-      border: 2px solid #000; border-radius: 32px;
-      padding: 20px 24px; margin-bottom: 16px;
-    }
-    .reading-step::after { content: ''; display: block; clear: both; }
-
-    .step-num {
-      float: left; width: 56px; height: 56px;
-      background: #000; color: #fff; border-radius: 12px;
-      font-size: 40px; font-weight: bold;
-      text-align: center; line-height: 56px; margin-right: 18px;
-    }
-
-    .step-text { overflow: hidden; }
-    .step-main { font-size: 32px; font-weight: bold; color: #000; }
-    .step-sub { font-size: 24px; color: #000; opacity: 0.5; margin-top: 4px; }
-
-    .reading-cta {
-      display: block; background: #000; color: #fff; border-radius: 45px;
-      font-size: 32px; font-weight: bold; text-align: center;
-      padding: 16px 32px; cursor: pointer; margin-bottom: 28px;
+    .reading-header {
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: horizontal; -webkit-flex-direction: row; flex-direction: row;
+      -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
       -webkit-flex-shrink: 0; flex-shrink: 0;
+      margin-bottom: 40px;
     }
+    .reading-header-text {
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
+    }
+    .reading-title { font-size: 48px; font-weight: bold; color: #000; line-height: 1.2; margin-bottom: 8px; }
+    .reading-subtitle { font-size: 24px; color: #555; }
+    .reading-icon { width: 160px; height: 160px; -webkit-flex-shrink: 0; flex-shrink: 0; }
+    .reading-icon svg { display: block; }
 
-    .reading-footer {
-      font-size: 24px; color: #000; opacity: 0.5;
-      text-align: center; -webkit-flex-shrink: 0; flex-shrink: 0;
+    .reading-steps { -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; min-height: 0; margin-bottom: 32px; }
+    .reading-step {
+      border: 2px solid #000; border-radius: 32px; padding: 24px; margin-bottom: 24px;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: horizontal; -webkit-flex-direction: row; flex-direction: row;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
     }
+    .reading-step:last-child { margin-bottom: 0; }
+    .step-num {
+      width: 56px; height: 56px; -webkit-flex-shrink: 0; flex-shrink: 0;
+      background: #000; color: #fff; border-radius: 12px;
+      font-size: 40px; font-weight: bold; text-align: center; line-height: 56px;
+      margin-right: 18px;
+    }
+    .step-text { overflow: hidden; }
+    .step-main { font-size: 32px; font-weight: bold; color: #000; line-height: 1.3; }
+    .step-sub { font-size: 24px; color: #555; margin-top: 4px; }
+
+    .reading-cta-section {
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
+    }
+    .reading-cta {
+      background: #000; color: #fff; border-radius: 45px;
+      font-size: 32px; font-weight: bold; text-align: center;
+      padding: 22px 32px; cursor: pointer; margin-bottom: 24px;
+      -webkit-flex-shrink: 0; flex-shrink: 0;
+      width: 100%; -webkit-box-sizing: border-box; box-sizing: border-box;
+    }
+    .reading-footer { font-size: 24px; color: #000; text-align: center; -webkit-flex-shrink: 0; flex-shrink: 0; }
 
     /* ── Pomodoro Page ────────────────────────────────── */
     .pomo-page {
@@ -392,106 +389,170 @@
       -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
     }
 
-    .pomo-setup-header { -webkit-flex-shrink: 0; flex-shrink: 0; padding: 24px 56px 0; }
-    .pomo-title { font-size: 56px; font-weight: bold; color: #000; line-height: 1; margin-bottom: 12px; }
-    .pomo-subtitle { font-size: 28px; color: #000; opacity: 0.5; }
-
-    .pomo-config {
-      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
-      min-height: 0; padding: 32px 56px 0;
+    .pomo-setup-header {
+      -webkit-flex-shrink: 0; flex-shrink: 0; padding: 32px 56px 0;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: horizontal; -webkit-flex-direction: row; flex-direction: row;
+      -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
     }
+    .pomo-header-text {
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
+    }
+    .pomo-header-img {
+      width: 192px; height: 192px; overflow: hidden;
+      -webkit-flex-shrink: 0; flex-shrink: 0;
+    }
+    .pomo-header-img img { display: block; width: 216px; height: 216px; margin-left: -12px; margin-top: -12px; }
+    .pomo-setup-spacer { -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; min-height: 0; }
+    .pomo-title { font-size: 48px; font-weight: bold; color: #000; line-height: 1.2; margin-bottom: 8px; }
+    .pomo-subtitle { font-size: 24px; color: #555; }
+
+    .pomo-config { -webkit-flex-shrink: 0; flex-shrink: 0; padding: 0 56px; }
     .pomo-config-row { margin-bottom: 24px; }
-    .pomo-config-label { font-size: 28px; color: #000; opacity: 0.5; margin-bottom: 16px; }
+    .pomo-config-row:last-child { margin-bottom: 0; }
+    .pomo-config-label { font-size: 24px; color: #555; margin-bottom: 16px; }
 
-    .pomo-seg3-wrap { border: 2px solid #000; border-radius: 38px; overflow: hidden; }
-    .pomo-seg3 { display: table; width: 100%; border-collapse: collapse; }
-    .pseg-btn {
-      display: table-cell; text-align: center; cursor: pointer;
-      font-size: 32px; font-weight: bold; line-height: 1;
-      padding: 20px 8px; color: #000; background: none;
+    .pomo-seg3-wrap {
+      border: 2px solid #000; border-radius: 45px; overflow: hidden;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      width: 100%;
     }
-    .pseg-btn.selected { background: rgba(0,0,0,0.10); }
-    .pseg-sep { display: table-cell; width: 2px; padding: 0; background: #000; }
+    .pomo-seg3 {
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: horizontal; -webkit-flex-direction: row; flex-direction: row;
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
+    }
+    .pseg-btn {
+      width: 33.333%; -webkit-box-flex: 1; -webkit-flex: 1 1 0%; flex: 1 1 0%;
+      min-width: 0; -webkit-box-sizing: border-box; box-sizing: border-box;
+      cursor: pointer; padding: 16px 8px; color: #000;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: horizontal; -webkit-flex-direction: row; flex-direction: row;
+      -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
+    }
+    .pseg-val { font-size: 32px; font-weight: bold; line-height: 1; }
+    .pseg-unit { font-size: 24px; line-height: 1; margin-left: 4px; }
+    .pseg-btn.selected { background: #000; border-radius: 45px; }
+    .pseg-btn.selected .pseg-val,
+    .pseg-btn.selected .pseg-unit { color: #fff; }
 
     .pomo-start-btn {
       -webkit-flex-shrink: 0; flex-shrink: 0;
-      margin: 0 56px 24px;
+      margin: 48px 56px 56px;
       background: #000; color: #fff; border-radius: 45px;
       font-size: 32px; font-weight: bold; line-height: 1; text-align: center;
       padding: 22px 40px; cursor: pointer;
     }
 
-    .pomo-timer-header { -webkit-flex-shrink: 0; flex-shrink: 0; padding: 24px 30px 0; }
-    .pomo-round-label { font-size: 28px; color: #000; opacity: 0.5; margin-bottom: 8px; }
-    .pomo-phase-title { font-size: 56px; font-weight: bold; color: #000; line-height: 1; }
-
-    .pomo-circle-wrap {
-      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
-      min-height: 0;
+    .pomo-timer-screen {
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; min-height: 0;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
+    }
+    .pomo-top-section {
+      position: relative; -webkit-flex-shrink: 0; flex-shrink: 0;
+      height: 430px; overflow: hidden;
+    }
+    .pomo-illus {
+      position: absolute; top: 13px; left: 106px; width: 546px; height: 366px; overflow: hidden;
+    }
+    .pomo-illus img { width: 100%; height: 100%; display: block; }
+    .pomo-wave-container {
+      position: absolute; top: 300px; left: -27px; width: 812px; height: 140px;
+      overflow: visible;
+    }
+    .pomo-wave-gray, .pomo-wave-black {
+      position: absolute; top: 0; left: 0; height: 100%;
+    }
+    .pomo-wave-gray { width: 100%; overflow: visible; }
+    .pomo-wave-gray svg { display: block; width: 100%; height: 100%; overflow: visible; }
+    .pomo-wave-black { overflow: visible; width: 812px; }
+    .pomo-wave-black svg { display: block; width: 812px; height: 100%; overflow: visible; }
+    .pomo-mid-section {
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; min-height: 0;
       display: -webkit-box; display: -webkit-flex; display: flex;
       -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
       -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
       -webkit-box-align: center; -webkit-align-items: center; align-items: center;
     }
-
-    .pomo-circle-area { position: relative; width: 405px; height: 405px; }
-    .pomo-circle-area svg { position: absolute; top: 0; left: 0; display: block; }
-    .pomo-circle-overlay {
-      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    .pomo-timer-info { text-align: center; }
+    .pomo-info-row {
       display: -webkit-box; display: -webkit-flex; display: flex;
-      -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
       -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
       -webkit-box-align: center; -webkit-align-items: center; align-items: center;
-      text-align: center;
+      margin-bottom: 8px;
     }
-    .pomo-circle-label { font-size: 28px; color: #000; opacity: 0.5; letter-spacing: 4px; margin-bottom: 4px; }
-    .pomo-circle-time { font-size: 100px; font-weight: bold; color: #000; line-height: 1; }
-
-    .pomo-controls { -webkit-flex-shrink: 0; flex-shrink: 0; text-align: center; padding: 24px 0 40px; }
-    .pomo-ctrl-btn {
-      display: inline-block; vertical-align: middle; position: relative;
-      width: 76px; height: 76px; border-radius: 50%;
-      border: 2px solid #000; cursor: pointer;
+    .pomo-info-round, .pomo-info-phase { font-size: 32px; color: #555; line-height: 1; }
+    .pomo-info-sep { width: 1px; height: 33px; background: #ccc; margin: 0 16px; -webkit-flex-shrink: 0; flex-shrink: 0; }
+    .pomo-clock { font-size: 88px; font-weight: bold; color: #000; line-height: 1; }
+    .pomo-new-controls {
+      -webkit-flex-shrink: 0; flex-shrink: 0; padding: 16px 0;
     }
-    .pomo-ctrl-btn svg {
-      position: absolute; top: 50%; left: 50%;
-      margin-top: -20px; margin-left: -20px; width: 40px; height: 40px;
+    .pomo-focus-mode .pomo-mid-section {
+      -webkit-box-pack: start; -webkit-justify-content: flex-start; justify-content: flex-start;
+      padding-top: 76px;
     }
-    .pomo-ctrl-main {
-      display: inline-block; vertical-align: middle; position: relative;
-      width: 100px; height: 100px; border-radius: 50%;
-      background: #000; cursor: pointer; margin: 0 32px;
+    .pomo-focus-mode .pomo-new-controls {
+      padding: 0 0 80px;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
     }
-    .pomo-ctrl-main svg {
-      position: absolute; top: 50%; left: 50%;
-      margin-top: -28px; margin-left: -28px; width: 56px; height: 56px;
+    .pomo-ctrl-side {
+      width: 76px; height: 76px; border-radius: 50%; border: 2px solid #000; cursor: pointer;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
+      margin: 0 24px;
     }
+    .pomo-ctrl-side svg { width: 40px; height: 40px; display: block; }
+    .pomo-ctrl-center {
+      width: 100px; height: 100px; border-radius: 50%; background: #000; cursor: pointer;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
+    }
+    .pomo-ctrl-center svg { width: 56px; height: 56px; display: block; }
 
     .pomo-done-wrap {
-      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
-      min-height: 0;
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; min-height: 0;
       display: -webkit-box; display: -webkit-flex; display: flex;
       -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
       -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
       -webkit-box-align: center; -webkit-align-items: center; align-items: center;
       text-align: center; padding: 0 40px;
     }
-    .pomo-done-number { font-size: 160px; font-weight: bold; color: #000; line-height: 1; }
-    .pomo-done-sublabel { font-size: 28px; color: #000; opacity: 0.5; margin-bottom: 40px; }
-    .pomo-done-title { font-size: 48px; font-weight: bold; color: #000; line-height: 1.2; margin-bottom: 16px; }
-    .pomo-done-sub { font-size: 28px; color: #000; opacity: 0.5; margin-bottom: 56px; }
-    .pomo-done-actions { overflow: hidden; }
+    .pomo-done-circle {
+      width: 300px; height: 300px; border-radius: 50%; border: 5px solid #000;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
+      -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
+      margin-bottom: 40px;
+    }
+    .pomo-done-number { font-size: 120px; font-weight: bold; color: #000; line-height: 1; }
+    .pomo-done-sublabel { font-size: 24px; color: #555; }
+    .pomo-done-title { font-size: 48px; font-weight: bold; color: #000; line-height: 1.2; margin-bottom: 8px; }
+    .pomo-done-sub { font-size: 24px; color: #555; margin-bottom: 48px; }
+    .pomo-done-actions {
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: horizontal; -webkit-flex-direction: row; flex-direction: row;
+      -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
+    }
     .pomo-btn-again {
-      float: left; margin-right: 24px;
       border: 2px solid #000; border-radius: 45px; background: none;
       font-size: 32px; font-weight: bold; line-height: 1; color: #000;
-      padding: 20px 40px; cursor: pointer;
+      padding: 16px 32px; cursor: pointer; margin-right: 24px;
     }
     .pomo-btn-finish {
-      overflow: hidden;
       background: #000; color: #fff; border-radius: 45px;
-      font-size: 32px; font-weight: bold; line-height: 1; text-align: center;
-      padding: 22px 40px; cursor: pointer;
+      border: 2px solid #000;
+      font-size: 32px; font-weight: bold; line-height: 1;
+      padding: 16px 32px; cursor: pointer;
     }
 
     /* ── Onboarding ──────────────────────────────────────── */
@@ -764,38 +825,38 @@
       <!-- State 0: Setup -->
       <div id="pomo-s0" class="pomo-page">
         <div class="pomo-setup-header">
-          <div class="pomo-title">保持专注</div>
-          <div class="pomo-subtitle">选择一个节奏，然后开始专注</div>
+          <div class="pomo-header-text">
+            <div class="pomo-title">保持专注</div>
+            <div class="pomo-subtitle">选择一个节奏，然后开始专注</div>
+          </div>
+          <div class="pomo-header-img">
+            <img src="img/pomo-tomato.png" alt="">
+          </div>
         </div>
+        <div class="pomo-setup-spacer"></div>
         <div class="pomo-config">
           <div class="pomo-config-row">
             <div class="pomo-config-label">专注时长</div>
             <div class="pomo-seg3-wrap"><div class="pomo-seg3">
-              <div class="pseg-btn" id="pomo-f15" onclick="setPomoFocus(15)">15 分钟</div>
-              <div class="pseg-sep"></div>
-              <div class="pseg-btn selected" id="pomo-f25" onclick="setPomoFocus(25)">25 分钟</div>
-              <div class="pseg-sep"></div>
-              <div class="pseg-btn" id="pomo-f45" onclick="setPomoFocus(45)">45 分钟</div>
+              <div class="pseg-btn" id="pomo-f15" onclick="setPomoFocus(15)"><span class="pseg-val">15</span><span class="pseg-unit">分钟</span></div>
+              <div class="pseg-btn selected" id="pomo-f25" onclick="setPomoFocus(25)"><span class="pseg-val">25</span><span class="pseg-unit">分钟</span></div>
+              <div class="pseg-btn" id="pomo-f45" onclick="setPomoFocus(45)"><span class="pseg-val">45</span><span class="pseg-unit">分钟</span></div>
             </div></div>
           </div>
           <div class="pomo-config-row">
             <div class="pomo-config-label">休息时长</div>
             <div class="pomo-seg3-wrap"><div class="pomo-seg3">
-              <div class="pseg-btn" id="pomo-b3" onclick="setPomoBreak(3)">3 分钟</div>
-              <div class="pseg-sep"></div>
-              <div class="pseg-btn selected" id="pomo-b5" onclick="setPomoBreak(5)">5 分钟</div>
-              <div class="pseg-sep"></div>
-              <div class="pseg-btn" id="pomo-b10" onclick="setPomoBreak(10)">10 分钟</div>
+              <div class="pseg-btn" id="pomo-b3" onclick="setPomoBreak(3)"><span class="pseg-val">3</span><span class="pseg-unit">分钟</span></div>
+              <div class="pseg-btn selected" id="pomo-b5" onclick="setPomoBreak(5)"><span class="pseg-val">5</span><span class="pseg-unit">分钟</span></div>
+              <div class="pseg-btn" id="pomo-b10" onclick="setPomoBreak(10)"><span class="pseg-val">10</span><span class="pseg-unit">分钟</span></div>
             </div></div>
           </div>
           <div class="pomo-config-row">
             <div class="pomo-config-label">循环次数</div>
             <div class="pomo-seg3-wrap"><div class="pomo-seg3">
-              <div class="pseg-btn" id="pomo-r2" onclick="setPomoRounds(2)">2 轮</div>
-              <div class="pseg-sep"></div>
-              <div class="pseg-btn selected" id="pomo-r4" onclick="setPomoRounds(4)">4 轮</div>
-              <div class="pseg-sep"></div>
-              <div class="pseg-btn" id="pomo-r6" onclick="setPomoRounds(6)">6 轮</div>
+              <div class="pseg-btn" id="pomo-r2" onclick="setPomoRounds(2)"><span class="pseg-val">2</span><span class="pseg-unit">轮</span></div>
+              <div class="pseg-btn selected" id="pomo-r4" onclick="setPomoRounds(4)"><span class="pseg-val">4</span><span class="pseg-unit">轮</span></div>
+              <div class="pseg-btn" id="pomo-r6" onclick="setPomoRounds(6)"><span class="pseg-val">6</span><span class="pseg-unit">轮</span></div>
             </div></div>
           </div>
         </div>
@@ -803,33 +864,42 @@
       </div>
 
       <!-- State 1: Timer -->
-      <div id="pomo-s1" class="pomo-page" style="display:none">
-        <div class="pomo-timer-header">
-          <div class="pomo-round-label" id="pomo-round-label">第1/4轮</div>
-          <div class="pomo-phase-title" id="pomo-phase-title">专注中</div>
-        </div>
-        <div class="pomo-circle-wrap">
-          <div class="pomo-circle-area">
-            <svg viewBox="0 0 405 405" width="405" height="405" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="202.5" cy="202.5" r="185" fill="none" stroke="#e0e0e0" stroke-width="6"/>
-              <circle id="pomo-arc" cx="202.5" cy="202.5" r="185" fill="none" stroke="#000" stroke-width="6"
-                stroke-dasharray="1162.4" stroke-dashoffset="1162.4"
-                transform="rotate(-90 202.5 202.5)"/>
-            </svg>
-            <div class="pomo-circle-overlay">
-              <div class="pomo-circle-label" id="pomo-circle-label">FOCUS</div>
-              <div class="pomo-circle-time" id="pomo-circle-time">25:00</div>
+      <div id="pomo-s1" class="pomo-page pomo-timer-screen pomo-focus-mode" style="display:none">
+        <div class="pomo-top-section">
+          <div class="pomo-illus">
+            <img id="pomo-illus-img" src="img/pomo-focus.png" alt="">
+          </div>
+          <div class="pomo-wave-container">
+            <div class="pomo-wave-gray">
+              <svg width="812" height="172" viewBox="0 0 812 140" xmlns="http://www.w3.org/2000/svg" style="display:block;overflow:visible">
+                <path d="M -200,-50 C 200,160 612,160 1012,-50" fill="none" stroke="#D8D8D8" stroke-width="40" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="pomo-wave-black">
+              <svg width="812" height="172" viewBox="0 0 812 140" xmlns="http://www.w3.org/2000/svg" style="display:block;overflow:visible">
+                <path id="pomo-black-path" d="" fill="none" stroke="#000" stroke-width="40" stroke-linecap="round" style="display:none"/>
+              </svg>
             </div>
           </div>
         </div>
-        <div class="pomo-controls">
-          <div class="pomo-ctrl-btn" onclick="restartPomo()">
+        <div class="pomo-mid-section">
+          <div class="pomo-timer-info">
+            <div class="pomo-info-row">
+              <span class="pomo-info-round" id="pomo-round-label">第1/4轮</span>
+              <div class="pomo-info-sep"></div>
+              <span class="pomo-info-phase" id="pomo-phase-title">专注中</span>
+            </div>
+            <div class="pomo-clock" id="pomo-circle-time">25:00</div>
+          </div>
+        </div>
+        <div class="pomo-new-controls">
+          <div class="pomo-ctrl-side" onclick="restartPomo()">
             <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M8 20a12 12 0 1 0 2.4-7.2" stroke="#000" stroke-width="2.5" stroke-linecap="round"/>
               <path d="M7 11.5l1 8.5 8.5-1" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
-          <div class="pomo-ctrl-main" onclick="togglePomo()">
+          <div class="pomo-ctrl-center" onclick="togglePomo()">
             <svg id="pomo-icon-pause" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="17" y="14" width="8" height="28" rx="2" fill="#fff"/>
               <rect x="31" y="14" width="8" height="28" rx="2" fill="#fff"/>
@@ -838,7 +908,7 @@
               <path d="M20 14l22 14-22 14z" fill="#fff"/>
             </svg>
           </div>
-          <div class="pomo-ctrl-btn" onclick="pomoRightAction()">
+          <div class="pomo-ctrl-side" onclick="pomoRightAction()">
             <svg id="pomo-icon-close" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
               <line x1="10" y1="10" x2="30" y2="30" stroke="#000" stroke-width="2.5" stroke-linecap="round"/>
               <line x1="30" y1="10" x2="10" y2="30" stroke="#000" stroke-width="2.5" stroke-linecap="round"/>
@@ -854,8 +924,10 @@
       <!-- State 2: Done -->
       <div id="pomo-s2" class="pomo-page" style="display:none">
         <div class="pomo-done-wrap">
-          <div class="pomo-done-number" id="pomo-done-rounds">4</div>
-          <div class="pomo-done-sublabel">轮专注已完成</div>
+          <div class="pomo-done-circle">
+            <div class="pomo-done-number" id="pomo-done-rounds">4</div>
+            <div class="pomo-done-sublabel">轮专注已完成</div>
+          </div>
           <div class="pomo-done-title" id="pomo-done-title">今天已沉下心100分钟</div>
           <div class="pomo-done-sub">保持这个节奏，日积月累会是很可观的一段路</div>
           <div class="pomo-done-actions">
@@ -873,43 +945,53 @@
 
         <!-- State 0: Waiting -->
         <div id="noodle-s0" class="noodle-state">
-          <div class="noodle-title">听说用Kindle盖泡面会更香～</div>
+          <div class="noodle-header">
+            <div class="noodle-title">听说用Kindle盖泡面会更香～</div>
+            <div class="noodle-subtitle">倒入热水，选好时间，把 Kindle 盖上去</div>
+          </div>
           <div class="noodle-img-wrap">
             <img src="kindle_noodle_1_v2.png" alt="">
           </div>
           <div class="noodle-actions">
-            <div class="time-seg">
-              <div class="tseg-btn selected" id="btn-3min" onclick="selectTime(3)">3分钟</div>
-              <div class="tseg-sep"></div>
-              <div class="tseg-btn" id="btn-5min" onclick="selectTime(5)">5分钟</div>
+            <div class="noodle-time-group">
+              <div class="ntg-btn ntg-left selected" id="btn-3min" onclick="selectTime(3)">
+                <span class="ntg-val">3</span><span class="ntg-unit">分钟</span>
+              </div>
+              <div class="ntg-btn ntg-right" id="btn-5min" onclick="selectTime(5)">
+                <span class="ntg-val">5</span><span class="ntg-unit">分钟</span>
+              </div>
             </div>
-            <div class="btn-start" onclick="startNoodle()">开始焖煮</div>
+            <div class="btn-noodle-start" onclick="startNoodle()">开始，盖上去</div>
           </div>
         </div>
 
         <!-- State 1: Counting -->
         <div id="noodle-s1" class="noodle-state" style="display:none">
-          <div class="noodle-title" id="noodle-countdown">焖煮中...剩余 03:00</div>
+          <div class="noodle-header">
+            <div class="noodle-title" id="noodle-countdown">泡面焖煮中...剩余 03:00</div>
+            <div class="noodle-subtitle">Kindle 正在发挥它最大的价值</div>
+          </div>
           <div class="noodle-img-wrap">
             <img src="kindle_noodle_2_v2.png" alt="">
           </div>
-          <div class="noodle-actions">
-            <div class="action-center">
-              <div class="btn-outline" onclick="cancelNoodle()">取消</div>
-              <div class="btn-outline" style="margin-left:24px" onclick="finishNoodle()">提前结束</div>
-            </div>
+          <div class="noodle-actions noodle-actions-center">
+            <div class="btn-noodle-outline" style="margin-right:24px" onclick="cancelNoodle()">取消</div>
+            <div class="btn-noodle-outline" onclick="finishNoodle()">提前结束</div>
           </div>
         </div>
 
         <!-- State 2: Done -->
         <div id="noodle-s2" class="noodle-state" style="display:none">
-          <div class="noodle-title">开动吧～</div>
+          <div class="noodle-header">
+            <div class="noodle-title">面好了，趁热吃～</div>
+            <div class="noodle-subtitle">泡面到位，精神食粮也不能少</div>
+          </div>
           <div class="noodle-img-wrap">
             <img src="kindle_noodle_3_v2.png" alt="">
           </div>
           <div class="noodle-actions">
-            <div class="btn-again" onclick="resetNoodle()">再来</div>
-            <div class="btn-goread" onclick="switchTab(3)">去读书 →</div>
+            <div class="btn-noodle-outline" style="margin-right:24px" onclick="resetNoodle()">再来一碗</div>
+            <div class="btn-noodle-fill" onclick="switchTab(3)">去读书 →</div>
           </div>
         </div>
 
@@ -919,26 +1001,45 @@
     <!-- Page 3: Reading Redirect -->
     <div id="page-3" class="page" style="display:none">
       <div class="reading-page">
-        <div class="reading-title">跳转到微信读书</div>
-        <div class="reading-subtitle">读完想回到「正号」的两种方式：</div>
+        <div class="reading-header">
+          <div class="reading-header-text">
+            <div class="reading-title">准备去微信读书</div>
+            <div class="reading-subtitle">读完想回到Kindle Noodle的两种方式：</div>
+          </div>
+          <div class="reading-icon">
+            <svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <clipPath id="wxIconClip">
+                  <rect x="2" y="2" width="156" height="156" rx="38"/>
+                </clipPath>
+              </defs>
+              <rect x="2" y="2" width="156" height="156" rx="38" fill="black"/>
+              <path d="M96.2638 135.824C92.6337 135.824 89.103 137.01 86.2082 139.2C83.3134 141.39 81.2129 144.466 80.2261 147.959C79.2393 144.466 77.1389 141.39 74.2441 139.2C71.3493 137.01 67.8185 135.824 64.1885 135.824H1.19238C2.85397 142.714 6.78465 148.844 12.3521 153.229C17.9196 157.614 24.8003 159.999 31.8872 160H128.113C135.2 159.999 142.081 157.614 147.648 153.229C153.216 148.844 157.146 142.714 158.808 135.824H96.2638ZM136.176 115.802C129.199 122.704 120.703 124.386 111.517 121.305C108.493 120.289 106.008 120.05 103.36 121.807C102.787 122.051 102.196 122.249 101.591 122.397C104.006 118.199 102.218 115.577 100.179 112.602C95.6488 105.995 96.5711 97.487 101.961 91.3444C110.745 81.3051 128.013 81.3051 136.822 91.3444C143.222 98.6353 143.084 108.945 136.176 115.802Z" fill="white"/>
+              <path d="M127.963 95.498C127.551 95.4811 127.139 95.5457 126.752 95.688C126.365 95.8303 126.01 96.0475 125.707 96.3273C125.404 96.607 125.159 96.9438 124.986 97.3183C124.813 97.6928 124.716 98.0977 124.7 98.5099C124.658 98.9215 124.701 99.3373 124.826 99.7318C124.95 100.126 125.153 100.491 125.423 100.805C125.693 101.118 126.024 101.374 126.396 101.555C126.768 101.737 127.173 101.84 127.586 101.86C127.997 101.902 128.412 101.862 128.807 101.743C129.203 101.624 129.571 101.428 129.89 101.166C130.21 100.904 130.474 100.582 130.669 100.218C130.864 99.8534 130.984 99.4543 131.024 99.0433C131.068 98.6072 131.022 98.167 130.889 97.7492C130.757 97.3315 130.541 96.9451 130.254 96.6135C129.968 96.2819 129.617 96.012 129.223 95.8202C128.829 95.6284 128.4 95.5188 127.962 95.498H127.963ZM110.946 95.498C110.505 95.4955 110.067 95.5862 109.663 95.7642C109.259 95.9422 108.897 96.2036 108.601 96.5311C108.305 96.8586 108.081 97.245 107.945 97.6649C107.808 98.0848 107.762 98.5288 107.809 98.9678C107.83 99.3802 107.934 99.784 108.115 100.155C108.297 100.526 108.551 100.856 108.864 101.126C109.177 101.396 109.541 101.599 109.934 101.724C110.327 101.849 110.742 101.894 111.153 101.854C111.566 101.838 111.971 101.74 112.346 101.567C112.721 101.394 113.058 101.149 113.338 100.845C113.618 100.541 113.835 100.185 113.977 99.7975C114.118 99.4097 114.182 98.9977 114.165 98.5852C114.119 97.7587 113.761 96.9804 113.164 96.4074C112.566 95.8345 111.774 95.5094 110.946 95.498Z" fill="black"/>
+              <rect x="2" y="2" width="156" height="156" rx="38" fill="none" stroke="black" stroke-width="8" clip-path="url(#wxIconClip)"/>
+            </svg>
+          </div>
+        </div>
         <div class="reading-steps">
           <div class="reading-step">
             <div class="step-num">1</div>
             <div class="step-text">
               <div class="step-main">点击浏览器「返回」键</div>
-              <div class="step-sub">顶部工具栏的 ← 箭头</div>
+              <div class="step-sub">顶部工具栏的←箭头</div>
             </div>
           </div>
           <div class="reading-step">
             <div class="step-num">2</div>
             <div class="step-text">
               <div class="step-main">打开浏览器书签栏</div>
-              <div class="step-sub">找到之前收藏的「XX」即可返回</div>
+              <div class="step-sub">找到之前收藏的「Kindle Noodle」即可返回</div>
             </div>
           </div>
         </div>
-        <div class="reading-cta" onclick="window.location.href='https://weread.qq.com'">我知道了，跳转</div>
-        <div class="reading-footer">不要说我不务正业，看书才是我的主业</div>
+        <div class="reading-cta-section">
+          <div class="reading-cta" onclick="window.location.href='https://weread.qq.com'">知道了，去读书</div>
+          <div class="reading-footer">不要说我不务正业，看书才是我的主业</div>
+        </div>
       </div>
     </div>
 
@@ -971,7 +1072,7 @@
   </div>
 
   <!-- Shared Nav Bar -->
-  <div class="bottom-nav">
+  <div class="bottom-nav" id="bottom-nav">
     <div class="nav-active-bar" id="nav-bar"></div>
     <div class="nav-icons">
 
@@ -1140,8 +1241,8 @@
 
     function selectTime(m) {
       noodleMins = m;
-      document.getElementById('btn-3min').className = 'tseg-btn' + (m === 3 ? ' selected' : '');
-      document.getElementById('btn-5min').className = 'tseg-btn' + (m === 5 ? ' selected' : '');
+      document.getElementById('btn-3min').className = 'ntg-btn ntg-left' + (m === 3 ? ' selected' : '');
+      document.getElementById('btn-5min').className = 'ntg-btn ntg-right' + (m === 5 ? ' selected' : '');
     }
 
     function showNoodleState(s) {
@@ -1153,7 +1254,7 @@
 
     function updateCountdown() {
       document.getElementById('noodle-countdown').textContent =
-        '焖煮中...剩余 ' + pad(Math.floor(noodleSecsLeft / 60)) + ':' + pad(noodleSecsLeft % 60);
+        '泡面焖煮中...剩余 ' + pad(Math.floor(noodleSecsLeft / 60)) + ':' + pad(noodleSecsLeft % 60);
     }
 
     function noodleTick() {
@@ -1193,7 +1294,7 @@
 
     /* ── Pomodoro Timer ─────────────────────────────────── */
     var pomo = {
-      phase: 'focus', running: false,
+      phase: 'focus', running: false, waitingToStart: false,
       focusMins: 25, breakMins: 5, totalRounds: 4,
       currentRound: 1, secsLeft: 0, totalFocusSecs: 0, timer: null
     };
@@ -1203,6 +1304,8 @@
       for (var i = 0; i < 3; i++) {
         document.getElementById('pomo-s' + i).style.display = (i === s) ? '' : 'none';
       }
+      var navEl = document.getElementById('bottom-nav');
+      if (navEl) { navEl.style.display = (s === 1) ? 'none' : ''; }
     }
 
     function setPomoFocus(m) {
@@ -1234,6 +1337,7 @@
       pomo.totalFocusSecs = 0;
       pomo.phase = 'focus';
       pomo.secsLeft = pomo.focusMins;
+      pomo.waitingToStart = false;
       pomo.running = true;
       showPomoState(1);
       updatePomoDisplay();
@@ -1256,6 +1360,7 @@
           pomo.phase = 'break';
           pomo.secsLeft = pomo.breakMins;
           pomo.running = false;
+          pomo.waitingToStart = true;
           updatePomoDisplay();
         }
       } else {
@@ -1263,6 +1368,7 @@
         pomo.phase = 'focus';
         pomo.secsLeft = pomo.focusMins;
         pomo.running = false;
+        pomo.waitingToStart = true;
         updatePomoDisplay();
       }
     }
@@ -1273,6 +1379,7 @@
         pomo.running = false;
       } else {
         pomo.running = true;
+        pomo.waitingToStart = false;
         pomo.timer = setInterval(pomoTick, 1000);
       }
       updatePomoDisplay();
@@ -1280,7 +1387,7 @@
 
     function restartPomo() {
       if (pomo.timer) { clearInterval(pomo.timer); pomo.timer = null; }
-      pomo.secsLeft = (pomo.phase === 'focus' ? pomo.focusMins : pomo.breakMins);
+      pomo.secsLeft = (pomo.phase === 'focus' ? pomo.focusMins : pomo.breakMins) * 60;
       pomo.running = false;
       updatePomoDisplay();
     }
@@ -1296,6 +1403,7 @@
         pomo.phase = 'focus';
         pomo.secsLeft = pomo.focusMins;
         pomo.running = false;
+        pomo.waitingToStart = true;
         updatePomoDisplay();
       }
     }
@@ -1319,21 +1427,54 @@
     }
 
     function updatePomoDisplay() {
-      var totalSecs = (pomo.phase === 'focus' ? pomo.focusMins : pomo.breakMins);
-      var progress = (totalSecs - pomo.secsLeft) / totalSecs;
-      document.getElementById('pomo-arc').setAttribute('stroke-dashoffset', String(POMO_CIRC * (1 - progress)));
-      document.getElementById('pomo-round-label').textContent =
-        '第' + pomo.currentRound + '/' + pomo.totalRounds + '轮' +
-        (pomo.phase === 'break' ? ' 已完成专注' : '');
-      document.getElementById('pomo-phase-title').textContent =
-        pomo.phase === 'focus' ? (pomo.running ? '专注中' : '暂停专注') : '休息一下';
-      document.getElementById('pomo-circle-label').textContent = pomo.phase === 'focus' ? 'FOCUS' : 'BREAK';
+      var phaseText;
+      if (pomo.phase === 'focus') {
+        phaseText = pomo.running ? '专注中' : (pomo.waitingToStart ? '等你开始' : '暂停中');
+      } else {
+        phaseText = pomo.running ? '歇一会儿 · 看看远处' : (pomo.waitingToStart ? '等你开始' : '暂停中');
+      }
+      document.getElementById('pomo-round-label').textContent = '第' + pomo.currentRound + '/' + pomo.totalRounds + '轮';
+      document.getElementById('pomo-phase-title').textContent = phaseText;
       document.getElementById('pomo-circle-time').textContent =
         pad(Math.floor(pomo.secsLeft / 60)) + ':' + pad(pomo.secsLeft % 60);
       document.getElementById('pomo-icon-pause').style.display = pomo.running ? '' : 'none';
       document.getElementById('pomo-icon-play').style.display = pomo.running ? 'none' : '';
       document.getElementById('pomo-icon-close').style.display = pomo.phase === 'focus' ? '' : 'none';
       document.getElementById('pomo-icon-skip').style.display = pomo.phase === 'break' ? '' : 'none';
+      var illusEl = document.getElementById('pomo-illus-img');
+      if (illusEl) { illusEl.src = (pomo.phase === 'break' || (pomo.phase === 'focus' && pomo.waitingToStart)) ? 'img/pomo-break.png' : 'img/pomo-focus.png'; }
+      var blackPath = document.getElementById('pomo-black-path');
+      if (blackPath) {
+        var totalSecs = pomo.phase === 'focus' ? pomo.focusMins : pomo.breakMins;
+        var elapsed = totalSecs - pomo.secsLeft;
+        var progress = totalSecs > 0 ? elapsed / totalSecs : 0;
+        if (progress <= 0) {
+          blackPath.style.display = 'none';
+        } else {
+          blackPath.style.display = '';
+          if (progress >= 1) {
+            blackPath.setAttribute('d', 'M -200,-50 C 200,160 612,160 1012,-50');
+          } else {
+            // Find bezier parameter bt for x(bt) = progress*812
+            // Bezier: P0=(-200,-50) P1=(200,160) P2=(612,160) P3=(1012,-50)
+            // x(t) = -200 + 1200t + 36t² - 24t³
+            var cx = progress * 812;
+            var bt = (cx + 200) / 1212;
+            for (var i = 0; i < 8; i++) {
+              var xt = -200 + bt * (1200 + bt * (36 - 24 * bt));
+              var dxt = 1200 + bt * (72 - 72 * bt);
+              bt -= (xt - cx) / dxt;
+            }
+            // Sub-bezier from t=0 to t=bt via de Casteljau
+            var cy = -50 + 630 * bt * (1 - bt);
+            var q1x = -200 + 400 * bt;
+            var q1y = -50 + 210 * bt;
+            var q2x = -200 + 800 * bt + 12 * bt * bt;
+            var q2y = -50 + 420 * bt - 210 * bt * bt;
+            blackPath.setAttribute('d', 'M -200,-50 C ' + q1x.toFixed(2) + ',' + q1y.toFixed(2) + ' ' + q2x.toFixed(2) + ',' + q2y.toFixed(2) + ' ' + cx.toFixed(2) + ',' + cy.toFixed(2));
+          }
+        }
+      }
     }
 
     /* ── Hitokoto Quote ──────────────────────────────────── */
