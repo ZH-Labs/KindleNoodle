@@ -137,26 +137,43 @@
     .quote-author { font-size: 22px; color: #ababab; text-align: right; -webkit-flex-shrink: 0; flex-shrink: 0; }
 
     /* ── Nav Bar ───────────────────────────────────────── */
-    .bottom-nav {
-      background: #fff; border-radius: 60px;
-      border-top: 1px solid #DDDDDD; border-left: 1px solid #DDDDDD; border-right: 1px solid #DDDDDD; border-bottom: 3px solid #DDDDDD;
+    #bottom-nav, #daily-nav {
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: horizontal; -webkit-flex-direction: row; flex-direction: row;
+      -webkit-box-align: start; -webkit-align-items: flex-start; align-items: flex-start;
       height: 90px; -webkit-flex-shrink: 0; flex-shrink: 0;
-      padding: 15px 99px; position: relative; overflow: hidden;
       margin: 0 8px 8px;
     }
-
+    .nav-card {
+      background: #fff; border-radius: 60px;
+      border-top: 1px solid #DDDDDD; border-left: 1px solid #DDDDDD;
+      border-right: 1px solid #DDDDDD; border-bottom: 3px solid #DDDDDD;
+      height: 90px; position: relative; overflow: hidden;
+      -webkit-flex-shrink: 0; flex-shrink: 0;
+    }
+    .nav-card-flex { -webkit-box-flex: 1; -webkit-flex: 1 0 0; flex: 1 0 0; min-width: 0; }
+    .nav-card-main {
+      padding: 16px 64px 18px;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
+      -webkit-box-align: start; -webkit-align-items: flex-start; align-items: flex-start;
+    }
+    .nav-card-sm { padding: 16px 32px 18px; }
+    .nav-card-gap { margin-right: 12px; }
+    .nav-icons-row {
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: horizontal; -webkit-flex-direction: row; flex-direction: row;
+      -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
+      width: 100%;
+    }
     .nav-active-bar {
-      position: absolute; bottom: 0; left: 85px;
+      position: absolute; bottom: 0; left: 49px;
       width: 86px; height: 6px; background: #000;
       border-radius: 58px 58px 0 0;
     }
-
-    .nav-icons { overflow: hidden; }
-    .nav-icon {
-      float: left; width: 56px; height: 56px; overflow: hidden; cursor: pointer;
-    }
-    .nav-icon + .nav-icon { margin-left: 106px; }
-    .nav-icon svg, .nav-icon img { width: 56px; height: 56px; }
+    .nav-icon { width: 56px; height: 56px; cursor: pointer; -webkit-flex-shrink: 0; flex-shrink: 0; overflow: hidden; }
+    .nav-icon svg, .nav-icon img { width: 56px; height: 56px; display: block; }
 
     /* ── Clock Colon (module style) ───────────────────── */
     .clock-colon {
@@ -635,6 +652,96 @@
     .ob-tip-title { font-size: 26px; font-weight: 700; color: #000; line-height: 1.2; }
     .ob-tip-sub { font-size: 18px; color: #9a9a9a; margin-top: 6px; line-height: 1.35; }
     .ob-tail { -webkit-flex-shrink: 0; flex-shrink: 0; font-size: 16px; color: #a0a0a0; text-align: center; padding: 0 48px 20px; }
+
+    /* ── Daily Report Page ────────────────────────────────── */
+    .daily-page {
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
+      min-height: 0; overflow: hidden;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
+      padding: 24px 24px 16px;
+    }
+    .daily-tag {
+      font-size: 72px; color: #999; margin-bottom: 16px;
+      -webkit-flex-shrink: 0; flex-shrink: 0; letter-spacing: 1px;
+    }
+    .daily-date {
+      font-size: 56px; color: #666; margin-bottom: 24px;
+      -webkit-flex-shrink: 0; flex-shrink: 0;
+    }
+    .daily-cover-title {
+      font-size: 26px; font-weight: bold; color: #000;
+      line-height: 1.4; margin-bottom: 20px;
+      -webkit-flex-shrink: 0; flex-shrink: 0;
+    }
+    .daily-cover-lead {
+      font-size: 18px; color: #666; line-height: 1.6;
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; min-height: 0; overflow: hidden;
+    }
+    .daily-section-label {
+      font-size: 40px; font-weight: bold; color: #000;
+      margin-bottom: 0px; -webkit-flex-shrink: 0; flex-shrink: 0;
+      padding-bottom: 12px; border-bottom: 2px solid #000;
+    }
+    .daily-items {
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; min-height: 0; overflow: h idden;
+    }
+    .daily-item { padding: 16px 0; border-bottom: 1px solid #e0e0e0; }
+    .daily-item:last-child { border-bottom: none; }
+    .daily-item-title {
+      font-size: 30px; font-weight: bold; color: #000; line-height: 1.4; margin-bottom: 6px;
+    }
+    .daily-item-summary {
+      font-size: 24px; color: #666; line-height: 1.5; margin-bottom: 4px;
+      overflow: hidden; display: -webkit-box;
+      -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+    }
+    .daily-item-source { font-size: 20px; color: #999; cursor: pointer; }
+    .daily-empty { font-size: 18px; color: #999; padding: 24px 0; }
+    .daily-flash-title {
+      font-size: 24px; font-weight: bold; color: #000;
+      margin-bottom: 20px; -webkit-flex-shrink: 0; flex-shrink: 0;
+    }
+    .daily-flash-item {
+      padding: 14px 0; border-bottom: 1px solid #e0e0e0; cursor: pointer;
+    }
+    .daily-flash-item:last-child { border-bottom: none; }
+    .daily-flash-name { font-size: 18px; color: #000; line-height: 1.4; margin-bottom: 4px; }
+    .daily-flash-source { font-size: 14px; color: #999; }
+    .daily-status {
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
+      -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
+      font-size: 24px; color: #666; text-align: center; padding: 40px;
+    }
+
+    /* ── Daily Mode Nav (second card layout) ─────────────── */
+    .daily-right-row {
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: horizontal; -webkit-flex-direction: row; flex-direction: row;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
+      width: 100%;
+    }
+    .daily-right-row .nav-icon { margin-right: 40px; }
+    .daily-sep {
+      -webkit-flex-shrink: 0; flex-shrink: 0;
+      width: 1px; height: 56px; background: #ddd; margin-right: 40px;
+    }
+    .daily-page-btns {
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: horizontal; -webkit-flex-direction: row; flex-direction: row;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
+      -webkit-box-pack: end; -webkit-justify-content: flex-end; justify-content: flex-end;
+    }
+    .daily-nav-btn {
+      font-size: 32px; font-weight: 500; color: #000; cursor: pointer; min-height: 44px;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
+    }
+    .daily-nav-btn + .daily-nav-btn { margin-left: 120px; }
+    .daily-nav-btn.disabled { color: #bbb; cursor: default; }
   </style>
 </head>
 <body>
@@ -1043,7 +1150,39 @@
       </div>
     </div>
 
+    <!-- Page 4: AI Daily Report -->
+    <div id="page-4" class="page" style="display:none">
+      <div class="daily-page" id="daily-content">
+        <div class="daily-status">点击下方图标进入日报</div>
+      </div>
+    </div>
+
   </div><!-- #page-wrapper -->
+
+  <!-- Daily Mode Nav Bar -->
+  <div id="daily-nav" style="display:none">
+    <!-- Left small card: previous tab icon -->
+    <div class="nav-card nav-card-sm nav-card-gap">
+      <div class="nav-icon" id="daily-prev-tab-icon" onclick="exitDailyMode()"></div>
+    </div>
+    <!-- Right main card: news icon + separator + prev/next -->
+    <div class="nav-card nav-card-flex nav-card-main">
+      <div class="nav-active-bar"></div>
+      <div class="daily-right-row">
+        <div class="nav-icon" onclick="dailyGoHome()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+            <path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/>
+          </svg>
+        </div>
+        <div class="daily-sep"></div>
+        <div class="daily-page-btns">
+          <div class="daily-nav-btn disabled" id="daily-prev-btn" onclick="dailyPrevPage()">上一页</div>
+          <div class="daily-nav-btn" id="daily-next-btn" onclick="dailyNextPage()">下一页</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Clock Style Settings Panel -->
   <div id="clock-settings-panel">
@@ -1072,56 +1211,73 @@
   </div>
 
   <!-- Shared Nav Bar -->
-  <div class="bottom-nav" id="bottom-nav">
-    <div class="nav-active-bar" id="nav-bar"></div>
-    <div class="nav-icons">
+  <div id="bottom-nav">
+    <!-- Left card: 4 main icons -->
+    <div class="nav-card nav-card-flex nav-card-main nav-card-gap">
+      <div class="nav-active-bar" id="nav-bar"></div>
+      <div class="nav-icons-row">
 
-      <div class="nav-icon" onclick="switchTab(0)">
-        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <g clip-path="url(#clip-nav-clock)">
-            <circle cx="28" cy="28" r="21" stroke="black" stroke-width="5.83333" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M25.6666 18.6666V30.3333H37.3333" stroke="black" stroke-width="5.83333" stroke-linecap="round" stroke-linejoin="round"/>
-          </g>
-          <defs>
-            <clipPath id="clip-nav-clock">
-              <rect width="56" height="56" fill="white"/>
-            </clipPath>
-          </defs>
+        <div class="nav-icon" onclick="switchTab(0)">
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip-nav-clock)">
+              <circle cx="28" cy="28" r="21" stroke="black" stroke-width="5.83333" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M25.6666 18.6666V30.3333H37.3333" stroke="black" stroke-width="5.83333" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <defs><clipPath id="clip-nav-clock"><rect width="56" height="56" fill="white"/></clipPath></defs>
+          </svg>
+        </div>
+
+        <div class="nav-icon" onclick="switchTab(1)">
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M28 28L42.2926 37.7285C43.5693 38.5976 44.3334 40.0419 44.3334 41.5863V47.8333C44.3334 48.4777 43.811 49 43.1667 49H12.8334C12.189 49 11.6667 48.4777 11.6667 47.8333V41.5863C11.6667 40.0419 12.4308 38.5976 13.7075 37.7285L28 28ZM28 28L42.2926 18.2715C43.5693 17.4024 44.3334 15.9581 44.3334 14.4137V8.16667C44.3334 7.52233 43.811 7 43.1667 7H12.8334C12.189 7 11.6667 7.52233 11.6667 8.16667V14.4137C11.6667 15.9581 12.4308 17.4024 13.7075 18.2715L28 28Z" stroke="black" stroke-width="4.66667" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M35 47.1499V48.65C35 48.8433 34.8433 49 34.65 49H21.35C21.1567 49 21 48.8433 21 48.65V47.1499C21 46.8405 21.1229 46.5437 21.3417 46.3249L26.6801 40.9866C27.409 40.2576 28.591 40.2576 29.3199 40.9866L34.6583 46.3249C34.8771 46.5437 35 46.8405 35 47.1499Z" fill="black"/>
+            <path d="M28 25.6666L39.6666 18.6666H16.3333L28 25.6666Z" fill="black"/>
+            <path d="M28 42V28" stroke="black" stroke-width="4.66667" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <div class="nav-icon" onclick="switchTab(2)">
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M33.75 10.75C36.3959 10.75 39.0064 11.3587 41.3795 12.5289C43.7525 13.6992 45.8246 15.3997 47.4353 17.4989C49.0461 19.598 50.1523 22.0396 50.6685 24.6347C51.1847 27.2298 51.097 29.9088 50.4122 32.4646C49.7274 35.0204 48.4638 37.3844 46.7192 39.3737C44.9746 41.363 42.7958 42.9244 40.3513 43.9369C37.9068 44.9495 35.2621 45.3861 32.6218 45.2131C29.9815 45.04 27.4164 44.2619 25.125 42.9389" stroke="black" stroke-width="5.75" stroke-linecap="round"/>
+            <path d="M13.625 48.125V7.875" stroke="black" stroke-width="5.75"/>
+            <path d="M22.25 7.875V20.8125C22.25 23.1942 20.3192 25.125 17.9375 25.125C15.5558 25.125 13.625 23.1942 13.625 20.8125V7.875" stroke="black" stroke-width="5.75"/>
+            <path d="M5 7.875V20.8125C5 23.1942 6.93077 25.125 9.3125 25.125C11.6942 25.125 13.625 23.1942 13.625 20.8125V7.875" stroke="black" stroke-width="5.75"/>
+          </svg>
+        </div>
+
+        <div class="nav-icon" onclick="switchTab(3)">
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M46.6666 28V39.6667C46.6666 44.0664 46.6666 46.2663 45.2998 47.6332C43.933 49 41.7331 49 37.3333 49H15.1666C11.945 49 9.33331 46.3883 9.33331 43.1667M46.6666 28V16.3333C46.6666 11.9336 46.6666 9.73367 45.2998 8.36684C43.933 7 41.7331 7 37.3333 7H18.6666C14.2669 7 12.067 7 10.7001 8.36684C9.33331 9.73367 9.33331 11.9336 9.33331 16.3333V43.1667M46.6666 28C46.6666 32.3998 46.6666 34.5997 45.2998 35.9665C43.933 37.3333 41.7331 37.3333 37.3333 37.3333H15.1666C11.945 37.3333 9.33331 39.945 9.33331 43.1667" stroke="black" stroke-width="4.66667"/>
+            <path d="M21 18.6666L35 18.6666" stroke="black" stroke-width="4.66667" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+      </div>
+    </div>
+    <!-- Right card: news icon -->
+    <div class="nav-card nav-card-sm">
+      <div class="nav-icon" onclick="switchTab(4)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+          <path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/>
         </svg>
       </div>
-
-      <div class="nav-icon" onclick="switchTab(1)">
-        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M28 28L42.2926 37.7285C43.5693 38.5976 44.3334 40.0419 44.3334 41.5863V47.8333C44.3334 48.4777 43.811 49 43.1667 49H12.8334C12.189 49 11.6667 48.4777 11.6667 47.8333V41.5863C11.6667 40.0419 12.4308 38.5976 13.7075 37.7285L28 28ZM28 28L42.2926 18.2715C43.5693 17.4024 44.3334 15.9581 44.3334 14.4137V8.16667C44.3334 7.52233 43.811 7 43.1667 7H12.8334C12.189 7 11.6667 7.52233 11.6667 8.16667V14.4137C11.6667 15.9581 12.4308 17.4024 13.7075 18.2715L28 28Z" stroke="black" stroke-width="4.66667" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M35 47.1499V48.65C35 48.8433 34.8433 49 34.65 49H21.35C21.1567 49 21 48.8433 21 48.65V47.1499C21 46.8405 21.1229 46.5437 21.3417 46.3249L26.6801 40.9866C27.409 40.2576 28.591 40.2576 29.3199 40.9866L34.6583 46.3249C34.8771 46.5437 35 46.8405 35 47.1499Z" fill="black"/>
-          <path d="M28 25.6666L39.6666 18.6666H16.3333L28 25.6666Z" fill="black"/>
-          <path d="M28 42V28" stroke="black" stroke-width="4.66667" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-
-      <div class="nav-icon" onclick="switchTab(2)">
-        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M33.75 10.75C36.3959 10.75 39.0064 11.3587 41.3795 12.5289C43.7525 13.6992 45.8246 15.3997 47.4353 17.4989C49.0461 19.598 50.1523 22.0396 50.6685 24.6347C51.1847 27.2298 51.097 29.9088 50.4122 32.4646C49.7274 35.0204 48.4638 37.3844 46.7192 39.3737C44.9746 41.363 42.7958 42.9244 40.3513 43.9369C37.9068 44.9495 35.2621 45.3861 32.6218 45.2131C29.9815 45.04 27.4164 44.2619 25.125 42.9389" stroke="black" stroke-width="5.75" stroke-linecap="round"/>
-          <path d="M13.625 48.125V7.875" stroke="black" stroke-width="5.75"/>
-          <path d="M22.25 7.875V20.8125C22.25 23.1942 20.3192 25.125 17.9375 25.125C15.5558 25.125 13.625 23.1942 13.625 20.8125V7.875" stroke="black" stroke-width="5.75"/>
-          <path d="M5 7.875V20.8125C5 23.1942 6.93077 25.125 9.3125 25.125C11.6942 25.125 13.625 23.1942 13.625 20.8125V7.875" stroke="black" stroke-width="5.75"/>
-        </svg>
-      </div>
-
-      <div class="nav-icon" onclick="switchTab(3)">
-        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M46.6666 28V39.6667C46.6666 44.0664 46.6666 46.2663 45.2998 47.6332C43.933 49 41.7331 49 37.3333 49H15.1666C11.945 49 9.33331 46.3883 9.33331 43.1667M46.6666 28V16.3333C46.6666 11.9336 46.6666 9.73367 45.2998 8.36684C43.933 7 41.7331 7 37.3333 7H18.6666C14.2669 7 12.067 7 10.7001 8.36684C9.33331 9.73367 9.33331 11.9336 9.33331 16.3333V43.1667M46.6666 28C46.6666 32.3998 46.6666 34.5997 45.2998 35.9665C43.933 37.3333 41.7331 37.3333 37.3333 37.3333H15.1666C11.945 37.3333 9.33331 39.945 9.33331 43.1667" stroke="black" stroke-width="4.66667"/>
-          <path d="M21 18.6666L35 18.6666" stroke="black" stroke-width="4.66667" stroke-linecap="round"/>
-        </svg>
-      </div>
-
     </div>
   </div>
 
   <script>
     /* ── Tab Switching ──────────────────────────────────── */
     var currentTab = 0;
-    var NAV_LEFT = [84, 246, 408, 570];
+    var NAV_LEFT = [49, 191, 333, 475];
+
+    var dailyState = {
+      previousTab: 0,
+      currentPage: 1,
+      data: null,
+      loaded: false,
+      loading: false,
+      active: false
+    };
 
     function forceEinkRefresh(callback) {
       var base = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999;';
@@ -1141,13 +1297,20 @@
     }
 
     function switchTab(tab) {
+      if (tab === 4) { enterDailyMode(); return; }
+      if (dailyState.active) {
+        dailyState.active = false;
+        dailyState.currentPage = 1;
+      }
       if (currentTab === 2 && tab !== 2) { pauseNoodleTimer(); }
       if (currentTab === 1 && tab !== 1) { pausePomoTimer(); }
       if (tab === 2 && noodleState === 1) { resumeNoodleTimer(); }
       forceEinkRefresh(function() {
-        for (var i = 0; i < 4; i++) {
+        for (var i = 0; i <= 4; i++) {
           document.getElementById('page-' + i).style.display = (i === tab) ? '' : 'none';
         }
+        document.getElementById('daily-nav').style.display = 'none';
+        document.getElementById('bottom-nav').style.display = '';
         document.getElementById('nav-bar').style.left = NAV_LEFT[tab] + 'px';
         currentTab = tab;
       });
@@ -1610,6 +1773,196 @@
       try { saved = localStorage.getItem(CS_KEY) || 'flip'; } catch(e) { saved = 'flip'; }
       applyClockStyle(saved);
     })();
+
+    /* ── AI Daily Report ─────────────────────────────────── */
+    var DAILY_TOTAL_PAGES = 7;
+    var DAILY_SECTION_LABELS = ['模型发布/更新','产品发布/更新','行业动态','论文研究','技巧与观点'];
+    var DAILY_WEEKDAYS = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+
+    function enterDailyMode() {
+      if (!dailyState.active) {
+        dailyState.previousTab = currentTab;
+      }
+      dailyState.active = true;
+      if (currentTab === 2) { pauseNoodleTimer(); }
+      if (currentTab === 1) { pausePomoTimer(); }
+
+      var navIcons = document.querySelectorAll('#bottom-nav .nav-icon');
+      var prevEl = document.getElementById('daily-prev-tab-icon');
+      if (navIcons[dailyState.previousTab]) {
+        prevEl.innerHTML = navIcons[dailyState.previousTab].innerHTML;
+      }
+
+      forceEinkRefresh(function() {
+        for (var i = 0; i <= 3; i++) {
+          document.getElementById('page-' + i).style.display = 'none';
+        }
+        document.getElementById('page-4').style.display = '';
+        document.getElementById('bottom-nav').style.display = 'none';
+        document.getElementById('daily-nav').style.display = '';
+        currentTab = 4;
+
+        if (dailyState.loaded) {
+          renderDailyPage(dailyState.currentPage);
+        } else if (!dailyState.loading) {
+          fetchDailyData();
+        }
+      });
+    }
+
+    function exitDailyMode() {
+      dailyState.active = false;
+      dailyState.currentPage = 1;
+      var prevTab = dailyState.previousTab;
+      forceEinkRefresh(function() {
+        document.getElementById('page-4').style.display = 'none';
+        for (var i = 0; i <= 3; i++) {
+          document.getElementById('page-' + i).style.display = (i === prevTab) ? '' : 'none';
+        }
+        document.getElementById('daily-nav').style.display = 'none';
+        document.getElementById('bottom-nav').style.display = '';
+        document.getElementById('nav-bar').style.left = NAV_LEFT[prevTab] + 'px';
+        currentTab = prevTab;
+        if (prevTab === 2 && noodleState === 1) { resumeNoodleTimer(); }
+      });
+    }
+
+    function dailyGoHome() {
+      dailyState.currentPage = 1;
+      renderDailyPage(1);
+    }
+
+    function dailyPrevPage() {
+      if (dailyState.currentPage <= 1) { return; }
+      dailyState.currentPage--;
+      renderDailyPage(dailyState.currentPage);
+    }
+
+    function dailyNextPage() {
+      if (dailyState.currentPage >= DAILY_TOTAL_PAGES) { return; }
+      dailyState.currentPage++;
+      renderDailyPage(dailyState.currentPage);
+    }
+
+    function fetchDailyData() {
+      dailyState.loading = true;
+      showDailyStatus('正在加载日报...');
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', './data/daily.json', true);
+      xhr.timeout = 5000;
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          dailyState.loading = false;
+          if (xhr.status === 200) {
+            try {
+              dailyState.data = JSON.parse(xhr.responseText);
+              dailyState.loaded = true;
+              renderDailyPage(dailyState.currentPage);
+            } catch(e) { showDailyStatus('日报数据格式错误，请明天再来'); }
+          } else if (xhr.status === 404) {
+            showDailyStatus('今日日报暂未生成，请明天再来');
+          } else {
+            showDailyStatus('加载失败，请检查网络连接');
+          }
+        }
+      };
+      xhr.ontimeout = function() { dailyState.loading = false; showDailyStatus('加载超时，请检查网络'); };
+      xhr.onerror  = function() { dailyState.loading = false; showDailyStatus('今日日报暂未生成，请明天再来'); };
+      xhr.send();
+    }
+
+    function showDailyStatus(msg) {
+      document.getElementById('daily-content').innerHTML = '<div class="daily-status">' + escHtml(msg) + '</div>';
+      updateDailyNavBtns();
+    }
+
+    function escHtml(s) {
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    function updateDailyNavBtns() {
+      var p = dailyState.currentPage;
+      var prev = document.getElementById('daily-prev-btn');
+      var next = document.getElementById('daily-next-btn');
+      if (prev) { prev.className = 'daily-nav-btn' + (p <= 1 ? ' disabled' : ''); }
+      if (next) { next.className = 'daily-nav-btn' + (p >= DAILY_TOTAL_PAGES ? ' disabled' : ''); }
+    }
+
+    function formatDailyDate(dateStr) {
+      if (!dateStr) { return ''; }
+      var parts = dateStr.split('-');
+      if (parts.length !== 3) { return dateStr; }
+      var y = parseInt(parts[0], 10), m = parseInt(parts[1], 10), d = parseInt(parts[2], 10);
+      var dow = new Date(Date.UTC(y, m - 1, d)).getUTCDay();
+      return y + '年' + m + '月' + d + '日 ' + DAILY_WEEKDAYS[dow];
+    }
+
+    function renderDailyPage(page) {
+      updateDailyNavBtns();
+      var data = dailyState.data;
+      var html = '';
+
+      if (page === 1) {
+        html += '<div class="daily-tag">AI HOT 日报</div>';
+        html += '<div class="daily-date">' + escHtml(formatDailyDate(data.date)) + '</div>';
+        if (data.lead && data.lead.title) {
+          html += '<div class="daily-cover-title">' + escHtml(data.lead.title) + '</div>';
+          html += '<div class="daily-cover-lead">' + escHtml(data.lead.leadParagraph || '') + '</div>';
+        } else {
+          html += '<div class="daily-cover-lead">今日日报已就绪，点击下一页阅读</div>';
+        }
+      } else if (page >= 2 && page <= 6) {
+        var labelName = DAILY_SECTION_LABELS[page - 2];
+        var section = null;
+        if (data.sections) {
+          for (var i = 0; i < data.sections.length; i++) {
+            if (data.sections[i].label === labelName) { section = data.sections[i]; break; }
+          }
+        }
+        html += '<div class="daily-section-label">' + escHtml(labelName) + '</div>';
+        html += '<div class="daily-items">';
+        var items = section && section.items;
+        if (items && items.length > 0) {
+          for (var j = 0; j < items.length; j++) {
+            var item = items[j];
+            html += '<div class="daily-item">';
+            html += '<div class="daily-item-title">' + escHtml(item.title || '') + '</div>';
+            if (item.summary) {
+              html += '<div class="daily-item-summary">' + escHtml(item.summary) + '</div>';
+            }
+            if (item.sourceName) {
+              var srcAttr = item.sourceUrl ? ' onclick="window.open(\'' + escHtml(item.sourceUrl) + '\',\'_blank\')"' : '';
+              html += '<div class="daily-item-source"' + srcAttr + '>' + escHtml(item.sourceName) + '</div>';
+            }
+            html += '</div>';
+          }
+        } else {
+          html += '<div class="daily-empty">今日暂无此类内容</div>';
+        }
+        html += '</div>';
+      } else if (page === 7) {
+        html += '<div class="daily-flash-title">今日快讯</div>';
+        html += '<div class="daily-items">';
+        var flashes = data.flashes;
+        if (flashes && flashes.length > 0) {
+          for (var k = 0; k < flashes.length; k++) {
+            var flash = flashes[k];
+            var fAttr = flash.sourceUrl ? ' onclick="window.open(\'' + escHtml(flash.sourceUrl) + '\',\'_blank\')"' : '';
+            html += '<div class="daily-flash-item"' + fAttr + '>';
+            html += '<div class="daily-flash-name">' + escHtml(flash.title || '') + '</div>';
+            if (flash.sourceName) {
+              html += '<div class="daily-flash-source">' + escHtml(flash.sourceName) + '</div>';
+            }
+            html += '</div>';
+          }
+        } else {
+          html += '<div class="daily-empty">今日暂无快讯</div>';
+        }
+        html += '</div>';
+      }
+
+      document.getElementById('daily-content').innerHTML = html;
+    }
 
     /* ── Onboarding (first-run) ─────────────────────────── */
     (function() {
