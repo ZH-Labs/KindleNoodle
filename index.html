@@ -659,62 +659,74 @@
       min-height: 0; overflow: hidden;
       display: -webkit-box; display: -webkit-flex; display: flex;
       -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
-      padding: 24px 24px 16px;
+      padding: 40px 56px 32px;
     }
-    .daily-tag {
-      font-size: 72px; color: #999; margin-bottom: 16px;
-      -webkit-flex-shrink: 0; flex-shrink: 0; letter-spacing: 1px;
-    }
-    .daily-date {
-      font-size: 56px; color: #666; margin-bottom: 24px;
-      -webkit-flex-shrink: 0; flex-shrink: 0;
-    }
-    .daily-cover-title {
-      font-size: 26px; font-weight: bold; color: #000;
-      line-height: 1.4; margin-bottom: 20px;
-      -webkit-flex-shrink: 0; flex-shrink: 0;
-    }
-    .daily-cover-lead {
-      font-size: 18px; color: #666; line-height: 1.6;
-      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; min-height: 0; overflow: hidden;
-    }
-    .daily-section-label {
-      font-size: 40px; font-weight: bold; color: #000;
-      margin-bottom: 0px; -webkit-flex-shrink: 0; flex-shrink: 0;
-      padding-bottom: 12px; border-bottom: 2px solid #000;
-    }
-    .daily-items {
-      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; min-height: 0; overflow: h idden;
-    }
-    .daily-item { padding: 16px 0; border-bottom: 1px solid #e0e0e0; }
-    .daily-item:last-child { border-bottom: none; }
-    .daily-item-title {
-      font-size: 30px; font-weight: bold; color: #000; line-height: 1.4; margin-bottom: 6px;
-    }
-    .daily-item-summary {
-      font-size: 24px; color: #666; line-height: 1.5; margin-bottom: 4px;
-      overflow: hidden; display: -webkit-box;
-      -webkit-line-clamp: 3; -webkit-box-orient: vertical;
-    }
-    .daily-item-source { font-size: 20px; color: #999; cursor: pointer; }
-    .daily-empty { font-size: 18px; color: #999; padding: 24px 0; }
-    .daily-flash-title {
-      font-size: 24px; font-weight: bold; color: #000;
-      margin-bottom: 20px; -webkit-flex-shrink: 0; flex-shrink: 0;
-    }
-    .daily-flash-item {
-      padding: 14px 0; border-bottom: 1px solid #e0e0e0; cursor: pointer;
-    }
-    .daily-flash-item:last-child { border-bottom: none; }
-    .daily-flash-name { font-size: 18px; color: #000; line-height: 1.4; margin-bottom: 4px; }
-    .daily-flash-source { font-size: 14px; color: #999; }
     .daily-status {
       -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
       display: -webkit-box; display: -webkit-flex; display: flex;
       -webkit-box-align: center; -webkit-align-items: center; align-items: center;
       -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
-      font-size: 24px; color: #666; text-align: center; padding: 40px;
+      font-size: 24px; color: #666; text-align: center;
     }
+    .daily-header {
+      margin-bottom: 20px;
+      -webkit-flex-shrink: 0; flex-shrink: 0;
+    }
+    .daily-header-title {
+      font-size: 80px; font-weight: 900; color: #000;
+      line-height: 1; font-family: Georgia, serif;
+    }
+    .daily-header-hot { color: #666; }
+    .daily-header-meta {
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: horizontal; -webkit-flex-direction: row; flex-direction: row;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
+      margin-top: 14px;
+    }
+    .daily-header-date { font-size: 22px; color: #666; white-space: nowrap; }
+    .daily-header-line {
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
+      height: 1px; background: #ccc; margin: 0 20px;
+    }
+    .daily-header-label { font-size: 18px; color: #999; white-space: nowrap; letter-spacing: 3px; }
+    .daily-toc-section {
+      font-size: 32px; font-weight: bold; color: #000;
+      margin-top: 28px; margin-bottom: 16px;
+      -webkit-flex-shrink: 0; flex-shrink: 0;
+    }
+    .daily-toc-num { color: #aaa; font-weight: normal; }
+    .daily-toc-count { font-weight: normal; color: #aaa; }
+    .daily-toc-section .daily-toc-num { font-size: 64px; font-weight: bold; }
+    .daily-toc-item {
+      font-size: 28px; color: #000; line-height: 1.4;
+      min-height: 64px; padding: 8px 0;
+      overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+      text-decoration: underline; text-underline-offset: 6px; text-decoration-color: #ccc;
+      cursor: pointer; -webkit-flex-shrink: 0; flex-shrink: 0;
+    }
+    .daily-toc-item.read { color: #bbb; text-decoration-color: #ddd; }
+    .daily-art-meta {
+      font-size: 24px; color: #999; margin-bottom: 10px;
+      -webkit-flex-shrink: 0; flex-shrink: 0;
+    }
+    .daily-art-divider {
+      height: 2px; background: #000; margin-bottom: 18px;
+      -webkit-flex-shrink: 0; flex-shrink: 0;
+    }
+    .daily-art-title {
+      font-size: 36px; font-weight: bold; color: #000;
+      line-height: 1.3; margin-bottom: 20px;
+      -webkit-flex-shrink: 0; flex-shrink: 0;
+    }
+    .daily-art-body {
+      font-size: 28px; color: #333; line-height: 1.7; margin-bottom: 12px;
+      -webkit-flex-shrink: 0; flex-shrink: 0;
+    }
+    .daily-art-source {
+      font-size: 22px; color: #999;
+      -webkit-flex-shrink: 0; flex-shrink: 0;
+    }
+    .daily-art-gap { height: 40px; -webkit-flex-shrink: 0; flex-shrink: 0; }
 
     /* ── Daily Mode Nav (second card layout) ─────────────── */
     .daily-right-row {
@@ -733,15 +745,15 @@
       display: -webkit-box; display: -webkit-flex; display: flex;
       -webkit-box-orient: horizontal; -webkit-flex-direction: row; flex-direction: row;
       -webkit-box-align: center; -webkit-align-items: center; align-items: center;
-      -webkit-box-pack: end; -webkit-justify-content: flex-end; justify-content: flex-end;
+      -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between;
     }
     .daily-nav-btn {
       font-size: 32px; font-weight: 500; color: #000; cursor: pointer; min-height: 44px;
       display: -webkit-box; display: -webkit-flex; display: flex;
       -webkit-box-align: center; -webkit-align-items: center; align-items: center;
     }
-    .daily-nav-btn + .daily-nav-btn { margin-left: 120px; }
     .daily-nav-btn.disabled { color: #bbb; cursor: default; }
+    .daily-page-indicator { font-size: 28px; color: #999; text-align: center; }
   </style>
 </head>
 <body>
@@ -1178,6 +1190,7 @@
         <div class="daily-sep"></div>
         <div class="daily-page-btns">
           <div class="daily-nav-btn disabled" id="daily-prev-btn" onclick="dailyPrevPage()">上一页</div>
+          <div class="daily-page-indicator" id="daily-page-indicator">1/1</div>
           <div class="daily-nav-btn" id="daily-next-btn" onclick="dailyNextPage()">下一页</div>
         </div>
       </div>
@@ -1270,9 +1283,15 @@
     var currentTab = 0;
     var NAV_LEFT = [49, 191, 333, 475];
 
+    var DAILY_READ_KEY = 'ai_daily_read_';
+
     var dailyState = {
       previousTab: 0,
-      currentPage: 1,
+      currentPage: 0,
+      totalPages: 0,
+      tocPageCount: 0,
+      pages: [],
+      articlePageMap: {},
       data: null,
       loaded: false,
       loading: false,
@@ -1300,7 +1319,7 @@
       if (tab === 4) { enterDailyMode(); return; }
       if (dailyState.active) {
         dailyState.active = false;
-        dailyState.currentPage = 1;
+        dailyState.currentPage = 0;
       }
       if (currentTab === 2 && tab !== 2) { pauseNoodleTimer(); }
       if (currentTab === 1 && tab !== 1) { pausePomoTimer(); }
@@ -1775,14 +1794,292 @@
     })();
 
     /* ── AI Daily Report ─────────────────────────────────── */
-    var DAILY_TOTAL_PAGES = 7;
-    var DAILY_SECTION_LABELS = ['模型发布/更新','产品发布/更新','行业动态','论文研究','技巧与观点'];
     var DAILY_WEEKDAYS = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
 
-    function enterDailyMode() {
-      if (!dailyState.active) {
-        dailyState.previousTab = currentTab;
+    function formatDailyDate(dateStr) {
+      if (!dateStr) return '';
+      var parts = dateStr.split('-');
+      if (parts.length !== 3) return dateStr;
+      var y = parseInt(parts[0],10), m = parseInt(parts[1],10), d = parseInt(parts[2],10);
+      return y+'年'+m+'月'+d+'日 '+DAILY_WEEKDAYS[new Date(Date.UTC(y,m-1,d)).getUTCDay()];
+    }
+
+    function formatDateChinese(dateStr) {
+      if (!dateStr) return '';
+      var parts = dateStr.split('-');
+      if (parts.length !== 3) return dateStr;
+      var y = parseInt(parts[0],10), m = parseInt(parts[1],10), d = parseInt(parts[2],10);
+      var dg = ['〇','一','二','三','四','五','六','七','八','九'];
+      var yearStr = String(y).split('').map(function(c){return dg[+c];}).join('');
+      function cnNum(n) {
+        if (n < 10) return dg[n];
+        if (n === 10) return '十';
+        if (n < 20) return '十'+dg[n-10];
+        if (n % 10 === 0) return dg[Math.floor(n/10)]+'十';
+        return dg[Math.floor(n/10)]+'十'+dg[n%10];
       }
+      var dow = new Date(Date.UTC(y,m-1,d)).getUTCDay();
+      return yearStr+'年'+cnNum(m)+'月'+cnNum(d)+'日　'+DAILY_WEEKDAYS[dow];
+    }
+
+    function isDailyRead(articleId) {
+      try {
+        var key = DAILY_READ_KEY + (dailyState.data ? dailyState.data.date : '');
+        return JSON.parse(localStorage.getItem(key)||'[]').indexOf(articleId) >= 0;
+      } catch(e) { return false; }
+    }
+
+    function markDailyRead(articleId) {
+      try {
+        var key = DAILY_READ_KEY + (dailyState.data ? dailyState.data.date : '');
+        var readSet = JSON.parse(localStorage.getItem(key)||'[]');
+        if (readSet.indexOf(articleId) < 0) { readSet.push(articleId); localStorage.setItem(key,JSON.stringify(readSet)); }
+      } catch(e) {}
+    }
+
+    function packTocIntoPages(items, availH) {
+      var pages = [], cur = [], curH = 0;
+      for (var i = 0; i < items.length; i++) {
+        var item = items[i];
+        var isSection = item.el.className === 'daily-toc-section';
+        var nextIsNonSection = isSection && i + 1 < items.length && items[i+1].el.className !== 'daily-toc-section';
+        /* Check if adding this item would overflow */
+        if (curH + item.h > availH && cur.length > 0) {
+          pages.push(cur.slice()); cur = [item.el]; curH = item.h;
+        } else {
+          /* If this is a section header and it would be the last item on the page (no next item fits), push it to next page */
+          var nextH = nextIsNonSection ? items[i+1].h : 0;
+          if (isSection && cur.length > 0 && nextH > 0 && curH + item.h + nextH > availH) {
+            pages.push(cur.slice()); cur = [item.el]; curH = item.h;
+          } else {
+            cur.push(item.el); curH += item.h;
+          }
+        }
+      }
+      if (cur.length > 0) pages.push(cur);
+      return pages;
+    }
+
+    function buildDailyPages() {
+      var data = dailyState.data;
+      var contentEl = document.getElementById('daily-content');
+      var availH = contentEl.getBoundingClientRect().height - 72; /* subtract top(40)+bottom(32) padding */
+      if (availH <= 0) availH = 780;
+      var GAP = 12;
+
+      var mEl = document.createElement('div');
+      mEl.style.cssText = 'position:absolute;top:-9999px;left:0;width:646px;visibility:hidden;font-family:Arial,Helvetica,sans-serif;';
+      document.body.appendChild(mEl);
+
+      /* Collect articles */
+      var allArticles = [];
+      if (data.sections) {
+        for (var si = 0; si < data.sections.length; si++) {
+          var sec = data.sections[si];
+          if (sec.items) {
+            for (var ai = 0; ai < sec.items.length; ai++) {
+              allArticles.push({ id:'s'+si+'_'+ai, sectionLabel:sec.label,
+                artIndex:ai+1, artTotal:sec.items.length,
+                title:sec.items[ai].title||'', summary:sec.items[ai].summary||'',
+                sourceName:sec.items[ai].sourceName||'', sourceUrl:sec.items[ai].sourceUrl||'' });
+            }
+          }
+        }
+      }
+      if (data.flashes) {
+        for (var fi = 0; fi < data.flashes.length; fi++) {
+          allArticles.push({ id:'f_'+fi, sectionLabel:'今日快讯',
+            artIndex:fi+1, artTotal:data.flashes.length,
+            title:data.flashes[fi].title||'', summary:'',
+            sourceName:data.flashes[fi].sourceName||'', sourceUrl:data.flashes[fi].sourceUrl||'' });
+        }
+      }
+
+      /* Build & measure TOC elements */
+      var tocItems = [];
+      var dateEl = document.createElement('div');
+      dateEl.className = 'daily-header';
+      dateEl.innerHTML =
+        '<div class="daily-header-title">AI <span class="daily-header-hot">HOT</span> 日报</div>' +
+        '<div class="daily-header-meta">' +
+          '<span class="daily-header-date">' + formatDateChinese(data.date) + '</span>' +
+          '<div class="daily-header-line"></div>' +
+          '<span class="daily-header-label">DAILY &middot; 每早八时</span>' +
+        '</div>';
+      mEl.appendChild(dateEl);
+      tocItems.push({ el:dateEl, h:dateEl.getBoundingClientRect().height+GAP });
+
+      var tocSections = {}, tocSectionOrder = [];
+      for (var a = 0; a < allArticles.length; a++) {
+        if (!tocSections[allArticles[a].sectionLabel]) {
+          tocSections[allArticles[a].sectionLabel] = [];
+          tocSectionOrder.push(allArticles[a].sectionLabel);
+        }
+        tocSections[allArticles[a].sectionLabel].push(allArticles[a]);
+      }
+      for (var s = 0; s < tocSectionOrder.length; s++) {
+        var secLabel = tocSectionOrder[s];
+        var secEl = document.createElement('div');
+        secEl.className = 'daily-toc-section';
+        var numSpan = document.createElement('span');
+        numSpan.className = 'daily-toc-num';
+        numSpan.textContent = (s + 1 < 10 ? '0' : '') + (s + 1) + '  ';
+        secEl.appendChild(numSpan);
+        var secArtsCount = tocSections[secLabel].length;
+        secEl.appendChild(document.createTextNode(secLabel));
+        var countSpan = document.createElement('span');
+        countSpan.className = 'daily-toc-count';
+        countSpan.textContent = ' · ' + secArtsCount + '篇';
+        secEl.appendChild(countSpan);
+        mEl.appendChild(secEl);
+        tocItems.push({ el:secEl, h:secEl.getBoundingClientRect().height+GAP });
+        var secArts = tocSections[secLabel];
+        for (var t = 0; t < secArts.length; t++) {
+          var tArt = secArts[t];
+          var itemEl = document.createElement('div');
+          itemEl.className = 'daily-toc-item'+(isDailyRead(tArt.id)?' read':'');
+          itemEl.textContent = tArt.title;
+          itemEl.setAttribute('data-article-id', tArt.id);
+          mEl.appendChild(itemEl);
+          tocItems.push({ el:itemEl, h:itemEl.getBoundingClientRect().height+GAP });
+        }
+      }
+
+      /* Build section number lookup */
+      var sectionNumMap = {};
+      for (var sn = 0; sn < tocSectionOrder.length; sn++) {
+        sectionNumMap[tocSectionOrder[sn]] = (sn + 1 < 10 ? '0' : '') + (sn + 1);
+      }
+
+      /* Build & measure article elements */
+      var artGroups = [];
+      for (var ar = 0; ar < allArticles.length; ar++) {
+        var art = allArticles[ar];
+        var els = [], totalH = 0;
+
+        var metaEl = document.createElement('div');
+        metaEl.className = 'daily-art-meta';
+        var artNum = sectionNumMap[art.sectionLabel] || '';
+        var artNumSpan = document.createElement('span');
+        artNumSpan.className = 'daily-toc-num';
+        artNumSpan.textContent = artNum + '  ';
+        metaEl.appendChild(artNumSpan);
+        metaEl.appendChild(document.createTextNode(art.sectionLabel));
+        var artCountSpan = document.createElement('span');
+        artCountSpan.className = 'daily-toc-count';
+        artCountSpan.textContent = ' · ' + art.artIndex + '/' + art.artTotal + '篇';
+        metaEl.appendChild(artCountSpan);
+        mEl.appendChild(metaEl);
+        totalH += metaEl.getBoundingClientRect().height+GAP; els.push(metaEl);
+
+        var divEl = document.createElement('div');
+        divEl.className = 'daily-art-divider';
+        mEl.appendChild(divEl);
+        totalH += divEl.getBoundingClientRect().height+GAP; els.push(divEl);
+
+        var titleEl = document.createElement('div');
+        titleEl.className = 'daily-art-title';
+        titleEl.textContent = art.title;
+        mEl.appendChild(titleEl);
+        totalH += titleEl.getBoundingClientRect().height+GAP; els.push(titleEl);
+
+        if (art.summary) {
+          var bodyEl = document.createElement('div');
+          bodyEl.className = 'daily-art-body';
+          bodyEl.textContent = art.summary;
+          mEl.appendChild(bodyEl);
+          totalH += bodyEl.getBoundingClientRect().height+GAP; els.push(bodyEl);
+        }
+        if (art.sourceName) {
+          var srcEl = document.createElement('div');
+          srcEl.className = 'daily-art-source';
+          srcEl.textContent = art.sourceName;
+          mEl.appendChild(srcEl);
+          totalH += srcEl.getBoundingClientRect().height+GAP; els.push(srcEl);
+        }
+        var gapEl = document.createElement('div');
+        gapEl.className = 'daily-art-gap';
+        mEl.appendChild(gapEl);
+        totalH += 40+GAP; els.push(gapEl);
+
+        artGroups.push({ id:art.id, els:els, h:totalH });
+      }
+
+      document.body.removeChild(mEl);
+
+      /* Pack TOC pages */
+      var tocPages = packTocIntoPages(tocItems, availH);
+
+      /* Pack article pages (each article is atomic) */
+      var artPages = [], curPage = [], curH = 0;
+      for (var ap = 0; ap < artGroups.length; ap++) {
+        var grp = artGroups[ap];
+        if (curH + grp.h > availH && curPage.length > 0) {
+          artPages.push(curPage.slice()); curPage = [grp]; curH = grp.h;
+        } else { curPage.push(grp); curH += grp.h; }
+      }
+      if (curPage.length > 0) artPages.push(curPage);
+
+      /* Build articlePageMap */
+      var tocPageCount = tocPages.length;
+      var articlePageMap = {};
+      for (var pg = 0; pg < artPages.length; pg++) {
+        for (var ag = 0; ag < artPages[pg].length; ag++) {
+          articlePageMap[artPages[pg][ag].id] = tocPageCount + pg;
+        }
+      }
+
+      /* Wire TOC item clicks */
+      for (var ti = 0; ti < tocItems.length; ti++) {
+        var tocEl = tocItems[ti].el;
+        if (tocEl.hasAttribute && tocEl.hasAttribute('data-article-id')) {
+          (function(aid) {
+            tocEl.onclick = function() { jumpToArticle(aid); };
+          })(tocEl.getAttribute('data-article-id'));
+        }
+      }
+
+      /* Assemble pages */
+      var pages = [];
+      for (var tp = 0; tp < tocPages.length; tp++) pages.push(tocPages[tp]);
+      for (var artp = 0; artp < artPages.length; artp++) {
+        var flatEls = [];
+        for (var ag2 = 0; ag2 < artPages[artp].length; ag2++) flatEls = flatEls.concat(artPages[artp][ag2].els);
+        pages.push(flatEls);
+      }
+
+      dailyState.pages = pages;
+      dailyState.totalPages = pages.length;
+      dailyState.tocPageCount = tocPageCount;
+      dailyState.articlePageMap = articlePageMap;
+      dailyState.currentPage = 0;
+      renderDailyCurrentPage();
+    }
+
+    function renderDailyCurrentPage() {
+      var contentEl = document.getElementById('daily-content');
+      while (contentEl.firstChild) contentEl.removeChild(contentEl.firstChild);
+      var page = dailyState.pages[dailyState.currentPage];
+      if (!page) return;
+      for (var i = 0; i < page.length; i++) contentEl.appendChild(page[i]);
+      if (dailyState.currentPage >= dailyState.tocPageCount) {
+        for (var aid in dailyState.articlePageMap) {
+          if (dailyState.articlePageMap[aid] === dailyState.currentPage) markDailyRead(aid);
+        }
+      }
+      updateDailyNavBtns();
+    }
+
+    function jumpToArticle(articleId) {
+      var pageIndex = dailyState.articlePageMap[articleId];
+      if (pageIndex === undefined) return;
+      markDailyRead(articleId);
+      dailyState.currentPage = pageIndex;
+      renderDailyCurrentPage();
+    }
+
+    function enterDailyMode() {
+      if (!dailyState.active) { dailyState.previousTab = currentTab; }
       dailyState.active = true;
       if (currentTab === 2) { pauseNoodleTimer(); }
       if (currentTab === 1) { pausePomoTimer(); }
@@ -1803,7 +2100,7 @@
         currentTab = 4;
 
         if (dailyState.loaded) {
-          renderDailyPage(dailyState.currentPage);
+          renderDailyCurrentPage();
         } else if (!dailyState.loading) {
           fetchDailyData();
         }
@@ -1812,11 +2109,9 @@
 
     function exitDailyMode() {
       dailyState.active = false;
-      dailyState.currentPage = 1;
       var prevTab = dailyState.previousTab;
       forceEinkRefresh(function() {
-        document.getElementById('page-4').style.display = 'none';
-        for (var i = 0; i <= 3; i++) {
+        for (var i = 0; i <= 4; i++) {
           document.getElementById('page-' + i).style.display = (i === prevTab) ? '' : 'none';
         }
         document.getElementById('daily-nav').style.display = 'none';
@@ -1828,20 +2123,20 @@
     }
 
     function dailyGoHome() {
-      dailyState.currentPage = 1;
-      renderDailyPage(1);
+      dailyState.currentPage = 0;
+      renderDailyCurrentPage();
     }
 
     function dailyPrevPage() {
-      if (dailyState.currentPage <= 1) { return; }
+      if (dailyState.currentPage <= 0) return;
       dailyState.currentPage--;
-      renderDailyPage(dailyState.currentPage);
+      renderDailyCurrentPage();
     }
 
     function dailyNextPage() {
-      if (dailyState.currentPage >= DAILY_TOTAL_PAGES) { return; }
+      if (dailyState.currentPage >= dailyState.totalPages - 1) return;
       dailyState.currentPage++;
-      renderDailyPage(dailyState.currentPage);
+      renderDailyCurrentPage();
     }
 
     function fetchDailyData() {
@@ -1849,21 +2144,20 @@
       showDailyStatus('正在加载日报...');
       var xhr = new XMLHttpRequest();
       xhr.open('GET', './data/daily.json', true);
-      xhr.timeout = 5000;
+      xhr.timeout = 10000;
       xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4) {
-          dailyState.loading = false;
-          if (xhr.status === 200) {
-            try {
-              dailyState.data = JSON.parse(xhr.responseText);
-              dailyState.loaded = true;
-              renderDailyPage(dailyState.currentPage);
-            } catch(e) { showDailyStatus('日报数据格式错误，请明天再来'); }
-          } else if (xhr.status === 404) {
-            showDailyStatus('今日日报暂未生成，请明天再来');
-          } else {
-            showDailyStatus('加载失败，请检查网络连接');
-          }
+        if (xhr.readyState !== 4) return;
+        dailyState.loading = false;
+        if (xhr.status === 200) {
+          try {
+            dailyState.data = JSON.parse(xhr.responseText);
+            dailyState.loaded = true;
+            buildDailyPages();
+          } catch(e) { showDailyStatus('日报数据格式错误，请明天再来'); }
+        } else if (xhr.status === 0 || xhr.status === 404) {
+          showDailyStatus('今日日报暂未生成，请明天再来');
+        } else {
+          showDailyStatus('加载失败，请检查网络连接');
         }
       };
       xhr.ontimeout = function() { dailyState.loading = false; showDailyStatus('加载超时，请检查网络'); };
@@ -1872,96 +2166,24 @@
     }
 
     function showDailyStatus(msg) {
-      document.getElementById('daily-content').innerHTML = '<div class="daily-status">' + escHtml(msg) + '</div>';
+      var contentEl = document.getElementById('daily-content');
+      while (contentEl.firstChild) contentEl.removeChild(contentEl.firstChild);
+      var div = document.createElement('div');
+      div.className = 'daily-status';
+      div.textContent = msg;
+      contentEl.appendChild(div);
+      dailyState.totalPages = 0;
       updateDailyNavBtns();
-    }
-
-    function escHtml(s) {
-      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
     }
 
     function updateDailyNavBtns() {
-      var p = dailyState.currentPage;
+      var p = dailyState.currentPage, total = dailyState.totalPages;
       var prev = document.getElementById('daily-prev-btn');
       var next = document.getElementById('daily-next-btn');
-      if (prev) { prev.className = 'daily-nav-btn' + (p <= 1 ? ' disabled' : ''); }
-      if (next) { next.className = 'daily-nav-btn' + (p >= DAILY_TOTAL_PAGES ? ' disabled' : ''); }
-    }
-
-    function formatDailyDate(dateStr) {
-      if (!dateStr) { return ''; }
-      var parts = dateStr.split('-');
-      if (parts.length !== 3) { return dateStr; }
-      var y = parseInt(parts[0], 10), m = parseInt(parts[1], 10), d = parseInt(parts[2], 10);
-      var dow = new Date(Date.UTC(y, m - 1, d)).getUTCDay();
-      return y + '年' + m + '月' + d + '日 ' + DAILY_WEEKDAYS[dow];
-    }
-
-    function renderDailyPage(page) {
-      updateDailyNavBtns();
-      var data = dailyState.data;
-      var html = '';
-
-      if (page === 1) {
-        html += '<div class="daily-tag">AI HOT 日报</div>';
-        html += '<div class="daily-date">' + escHtml(formatDailyDate(data.date)) + '</div>';
-        if (data.lead && data.lead.title) {
-          html += '<div class="daily-cover-title">' + escHtml(data.lead.title) + '</div>';
-          html += '<div class="daily-cover-lead">' + escHtml(data.lead.leadParagraph || '') + '</div>';
-        } else {
-          html += '<div class="daily-cover-lead">今日日报已就绪，点击下一页阅读</div>';
-        }
-      } else if (page >= 2 && page <= 6) {
-        var labelName = DAILY_SECTION_LABELS[page - 2];
-        var section = null;
-        if (data.sections) {
-          for (var i = 0; i < data.sections.length; i++) {
-            if (data.sections[i].label === labelName) { section = data.sections[i]; break; }
-          }
-        }
-        html += '<div class="daily-section-label">' + escHtml(labelName) + '</div>';
-        html += '<div class="daily-items">';
-        var items = section && section.items;
-        if (items && items.length > 0) {
-          for (var j = 0; j < items.length; j++) {
-            var item = items[j];
-            html += '<div class="daily-item">';
-            html += '<div class="daily-item-title">' + escHtml(item.title || '') + '</div>';
-            if (item.summary) {
-              html += '<div class="daily-item-summary">' + escHtml(item.summary) + '</div>';
-            }
-            if (item.sourceName) {
-              var srcAttr = item.sourceUrl ? ' onclick="window.open(\'' + escHtml(item.sourceUrl) + '\',\'_blank\')"' : '';
-              html += '<div class="daily-item-source"' + srcAttr + '>' + escHtml(item.sourceName) + '</div>';
-            }
-            html += '</div>';
-          }
-        } else {
-          html += '<div class="daily-empty">今日暂无此类内容</div>';
-        }
-        html += '</div>';
-      } else if (page === 7) {
-        html += '<div class="daily-flash-title">今日快讯</div>';
-        html += '<div class="daily-items">';
-        var flashes = data.flashes;
-        if (flashes && flashes.length > 0) {
-          for (var k = 0; k < flashes.length; k++) {
-            var flash = flashes[k];
-            var fAttr = flash.sourceUrl ? ' onclick="window.open(\'' + escHtml(flash.sourceUrl) + '\',\'_blank\')"' : '';
-            html += '<div class="daily-flash-item"' + fAttr + '>';
-            html += '<div class="daily-flash-name">' + escHtml(flash.title || '') + '</div>';
-            if (flash.sourceName) {
-              html += '<div class="daily-flash-source">' + escHtml(flash.sourceName) + '</div>';
-            }
-            html += '</div>';
-          }
-        } else {
-          html += '<div class="daily-empty">今日暂无快讯</div>';
-        }
-        html += '</div>';
-      }
-
-      document.getElementById('daily-content').innerHTML = html;
+      var indicator = document.getElementById('daily-page-indicator');
+      if (prev) prev.className = 'daily-nav-btn' + (p <= 0 ? ' disabled' : '');
+      if (next) next.className = 'daily-nav-btn' + (p >= total - 1 || total === 0 ? ' disabled' : '');
+      if (indicator) indicator.textContent = total > 0 ? (p + 1) + '/' + total : '';
     }
 
     /* ── Onboarding (first-run) ─────────────────────────── */
