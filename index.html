@@ -128,7 +128,7 @@
       display: -webkit-box; display: -webkit-flex; display: flex;
       -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
       -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
-      overflow: hidden;
+      overflow: hidden; padding-bottom: 16px;
     }
     .quote-body {
       font-size: 30px; font-weight: 500; color: #000;
@@ -503,7 +503,7 @@
       margin-bottom: 8px;
     }
     .pomo-info-round, .pomo-info-phase { font-size: 32px; color: #555; line-height: 1; }
-    .pomo-info-sep { width: 1px; height: 33px; background: #ccc; margin: 0 16px; -webkit-flex-shrink: 0; flex-shrink: 0; }
+    .pomo-info-sep { width: 2px; height: 33px; background: #ccc; margin: 0 16px; -webkit-flex-shrink: 0; flex-shrink: 0; }
     .pomo-clock { font-size: 88px; font-weight: bold; color: #000; line-height: 1; }
     .pomo-new-controls {
       -webkit-flex-shrink: 0; flex-shrink: 0; padding: 16px 0;
@@ -519,7 +519,7 @@
       -webkit-box-align: center; -webkit-align-items: center; align-items: center;
     }
     .pomo-ctrl-side {
-      width: 76px; height: 76px; border-radius: 50%; border: 2px solid #000; cursor: pointer;
+      width: 76px; height: 76px; border-radius: 38px; border: 2px solid #000; cursor: pointer;
       display: -webkit-box; display: -webkit-flex; display: flex;
       -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
       -webkit-box-align: center; -webkit-align-items: center; align-items: center;
@@ -527,7 +527,7 @@
     }
     .pomo-ctrl-side svg { width: 40px; height: 40px; display: block; }
     .pomo-ctrl-center {
-      width: 100px; height: 100px; border-radius: 50%; background: #000; cursor: pointer;
+      width: 100px; height: 100px; border-radius: 50px; background: #000; cursor: pointer;
       display: -webkit-box; display: -webkit-flex; display: flex;
       -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
       -webkit-box-align: center; -webkit-align-items: center; align-items: center;
@@ -543,7 +543,7 @@
       text-align: center; padding: 0 40px;
     }
     .pomo-done-circle {
-      width: 300px; height: 300px; border-radius: 50%; border: 5px solid #000;
+      width: 300px; height: 300px; border-radius: 150px; border: 5px solid #000;
       display: -webkit-box; display: -webkit-flex; display: flex;
       -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
       -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
@@ -561,13 +561,13 @@
       -webkit-box-align: center; -webkit-align-items: center; align-items: center;
     }
     .pomo-btn-again {
-      border: 2px solid #000; border-radius: 45px; background: none;
+      border: 4px solid #000; border-radius: 45px; background: none;
       font-size: 32px; font-weight: bold; line-height: 1; color: #000;
       padding: 16px 32px; cursor: pointer; margin-right: 24px;
     }
     .pomo-btn-finish {
       background: #000; color: #fff; border-radius: 45px;
-      border: 2px solid #000;
+      border: 4px solid #000;
       font-size: 32px; font-weight: bold; line-height: 1;
       padding: 16px 32px; cursor: pointer;
     }
@@ -1013,28 +1013,42 @@
         </div>
         <div class="pomo-new-controls">
           <div class="pomo-ctrl-side" onclick="restartPomo()">
-            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 20a12 12 0 1 0 2.4-7.2" stroke="#000" stroke-width="2.5" stroke-linecap="round"/>
-              <path d="M7 11.5l1 8.5 8.5-1" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_2316_779)">
+                <path d="M20 4.99976C28.2843 4.99976 35 11.7155 35 19.9998C35 28.284 28.2843 34.9998 20 34.9998C11.7157 34.9998 5 28.284 5 19.9998C5 15.2876 7.17278 11.083 10.5711 8.33309" stroke="black" stroke-width="4.16667" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M5 7.49976H11.6667V14.1664" stroke="black" stroke-width="4.16667" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <defs><clipPath id="clip0_2316_779"><rect width="40" height="40" fill="white"/></clipPath></defs>
             </svg>
           </div>
           <div class="pomo-ctrl-center" onclick="togglePomo()">
-            <svg id="pomo-icon-pause" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="17" y="14" width="8" height="28" rx="2" fill="#fff"/>
-              <rect x="31" y="14" width="8" height="28" rx="2" fill="#fff"/>
+            <svg id="pomo-icon-pause" width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_2316_777)">
+                <path d="M11.6667 16.3333C11.6667 13.756 13.756 11.6666 16.3334 11.6666H18.6667C21.244 11.6666 23.3334 13.756 23.3334 16.3333V39.6666C23.3334 42.244 21.244 44.3333 18.6667 44.3333H16.3334C13.756 44.3333 11.6667 42.244 11.6667 39.6666V16.3333Z" stroke="white" stroke-width="5.83333" stroke-linejoin="round"/>
+                <path d="M32.6667 16.3333C32.6667 13.756 34.756 11.6666 37.3334 11.6666H39.6667C42.244 11.6666 44.3334 13.756 44.3334 16.3333V39.6666C44.3334 42.244 42.244 44.3333 39.6667 44.3333H37.3334C34.756 44.3333 32.6667 42.244 32.6667 39.6666V16.3333Z" stroke="white" stroke-width="5.83333" stroke-linejoin="round"/>
+              </g>
+              <defs><clipPath id="clip0_2316_777"><rect width="56" height="56" fill="white"/></clipPath></defs>
             </svg>
-            <svg id="pomo-icon-play" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none">
-              <path d="M20 14l22 14-22 14z" fill="#fff"/>
+            <svg id="pomo-icon-play" width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none">
+              <g clip-path="url(#clip0_2317_1046)">
+                <path d="M44.3334 23.9585C47.4445 25.7547 47.4445 30.2452 44.3334 32.0414L23.3334 44.1658C20.2223 45.962 16.3334 43.7167 16.3334 40.1243L16.3334 15.8756C16.3334 12.2832 20.2223 10.0379 23.3334 11.8341L44.3334 23.9585Z" stroke="white" stroke-width="5.83333" stroke-linejoin="round"/>
+              </g>
+              <defs><clipPath id="clip0_2317_1046"><rect width="56" height="56" fill="white"/></clipPath></defs>
             </svg>
           </div>
           <div class="pomo-ctrl-side" onclick="pomoRightAction()">
-            <svg id="pomo-icon-close" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <line x1="10" y1="10" x2="30" y2="30" stroke="#000" stroke-width="2.5" stroke-linecap="round"/>
-              <line x1="30" y1="10" x2="10" y2="30" stroke="#000" stroke-width="2.5" stroke-linecap="round"/>
+            <svg id="pomo-icon-close" width="40" height="40" viewBox="4 4 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_2316_781)">
+                <path d="M11.6667 11.6666L28.3334 28.3333M11.6667 28.3333L28.3334 11.6666" stroke="black" stroke-width="4.16667" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <defs><clipPath id="clip0_2316_781"><rect width="40" height="40" fill="white"/></clipPath></defs>
             </svg>
-            <svg id="pomo-icon-skip" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none">
-              <path d="M7 10l16 10-16 10z" fill="#000"/>
-              <rect x="27" y="10" width="5" height="20" rx="1.5" fill="#000"/>
+            <svg id="pomo-icon-skip" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none">
+              <g clip-path="url(#clip0_2317_1097)">
+                <path d="M28.3332 17.1133C30.5555 18.3963 30.5555 21.6038 28.3333 22.8868L13.3333 31.547C11.111 32.83 8.33325 31.2263 8.33325 28.6603L8.33325 11.3398C8.33325 8.77379 11.111 7.17003 13.3333 8.45303L28.3332 17.1133Z" stroke="black" stroke-width="4.16667" stroke-linejoin="round"/>
+                <path d="M33.3333 8.33337V31.6667" stroke="black" stroke-width="4.16667" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <defs><clipPath id="clip0_2317_1097"><rect width="40" height="40" fill="white"/></clipPath></defs>
             </svg>
           </div>
         </div>
@@ -1182,9 +1196,14 @@
       <div class="nav-active-bar"></div>
       <div class="daily-right-row">
         <div class="nav-icon" onclick="dailyGoHome()">
-          <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
-            <path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/>
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_2397_685b)">
+              <path d="M5.5 8V43C5.5 45.7614 7.73858 48 10.5 48H40.5H45.5C48.2614 48 50.5 45.7614 50.5 43V18H40.5" stroke="black" stroke-width="4.67" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M5.5 8H40.5V43C40.5 45.7614 42.7386 48 45.5 48" stroke="black" stroke-width="4.67" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M30.5 18L15.5 18" stroke="black" stroke-width="4.67" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M30.5 28L20.5 28" stroke="black" stroke-width="4.67" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <defs><clipPath id="clip0_2397_685b"><rect width="56" height="56" fill="white"/></clipPath></defs>
           </svg>
         </div>
         <div class="daily-sep"></div>
@@ -1232,29 +1251,28 @@
 
         <div class="nav-icon" onclick="switchTab(0)">
           <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(#clip-nav-clock)">
-              <circle cx="28" cy="28" r="21" stroke="black" stroke-width="5.83333" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M25.6666 18.6666V30.3333H37.3333" stroke="black" stroke-width="5.83333" stroke-linecap="round" stroke-linejoin="round"/>
-            </g>
-            <defs><clipPath id="clip-nav-clock"><rect width="56" height="56" fill="white"/></clipPath></defs>
+            <circle cx="28" cy="28" r="21" stroke="black" stroke-width="4.67" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M25.667 18.6666V30.3333H37.3337" stroke="black" stroke-width="4.67" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
 
         <div class="nav-icon" onclick="switchTab(1)">
-          <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M28 28L42.2926 37.7285C43.5693 38.5976 44.3334 40.0419 44.3334 41.5863V47.8333C44.3334 48.4777 43.811 49 43.1667 49H12.8334C12.189 49 11.6667 48.4777 11.6667 47.8333V41.5863C11.6667 40.0419 12.4308 38.5976 13.7075 37.7285L28 28ZM28 28L42.2926 18.2715C43.5693 17.4024 44.3334 15.9581 44.3334 14.4137V8.16667C44.3334 7.52233 43.811 7 43.1667 7H12.8334C12.189 7 11.6667 7.52233 11.6667 8.16667V14.4137C11.6667 15.9581 12.4308 17.4024 13.7075 18.2715L28 28Z" stroke="black" stroke-width="4.66667" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M35 47.1499V48.65C35 48.8433 34.8433 49 34.65 49H21.35C21.1567 49 21 48.8433 21 48.65V47.1499C21 46.8405 21.1229 46.5437 21.3417 46.3249L26.6801 40.9866C27.409 40.2576 28.591 40.2576 29.3199 40.9866L34.6583 46.3249C34.8771 46.5437 35 46.8405 35 47.1499Z" fill="black"/>
-            <path d="M28 25.6666L39.6666 18.6666H16.3333L28 25.6666Z" fill="black"/>
-            <path d="M28 42V28" stroke="black" stroke-width="4.66667" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg width="56" height="56" viewBox="1.5 3.5 53 53" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M28.9242 39.6655L28.4841 39.2245L28.0431 39.6655C27.6905 39.9984 27.222 40.1807 26.7372 40.1738C26.2523 40.167 25.7892 39.9714 25.4462 39.6286C25.1032 39.2858 24.9073 38.8229 24.9001 38.338C24.8929 37.8532 25.0749 37.3846 25.4076 37.0318L27.1646 35.2748C27.3372 35.1018 27.5421 34.9647 27.7678 34.8711C27.9935 34.7776 28.2354 34.7295 28.4797 34.7296C28.7252 34.7286 28.9684 34.7762 29.1954 34.8698C29.4223 34.9634 29.6284 35.101 29.8018 35.2748L31.5597 37.0318C31.8924 37.3846 32.0744 37.8532 32.0672 38.338C32.06 38.8229 31.8641 39.2858 31.5211 39.6286C31.1781 39.9714 30.715 40.167 30.2301 40.1738C29.7453 40.1807 29.2768 39.9984 28.9242 39.6655Z" fill="black"/>
+            <path d="M32.5281 10.0179C32.0881 10.265 31.7051 10.6073 31.4081 11.0205C36.8462 10.0554 41.3932 11.3071 44.7753 14.1295C48.7873 17.4775 50.8193 22.7527 50.9883 28.1109C51.1583 33.4883 49.4723 39.1969 45.7323 43.5921C41.9522 48.0338 36.1822 51 28.5001 51C20.817 51 15.0489 48.0348 11.2678 43.5921C7.5278 39.1969 5.84078 33.4863 6.01178 28.1109C6.18179 22.7537 8.21181 17.4775 12.2259 14.1285C15.6079 11.3071 20.154 10.0554 25.592 11.0195C25.2952 10.6067 24.913 10.2646 24.472 10.0169C23.39 9.39209 22.141 9.3131 21.758 9.3131C21.4729 9.32195 21.189 9.27273 20.923 9.16836C20.6571 9.06399 20.4146 8.9066 20.2098 8.70552C20.0051 8.50443 19.8423 8.26376 19.7311 7.99777C19.62 7.73178 19.5627 7.44589 19.5627 7.15706C19.5627 6.86823 19.62 6.58234 19.7311 6.31634C19.8423 6.05035 20.0051 5.80968 20.2098 5.6086C20.4146 5.40752 20.6571 5.25012 20.923 5.14575C21.189 5.04138 21.4729 4.99216 21.758 5.00101C22.439 5.00101 24.561 5.10228 26.584 6.27297C27.2985 6.68353 27.9451 7.20499 28.5001 7.81835C29.0552 7.20511 29.7017 6.68367 30.4161 6.27297C32.4401 5.10228 34.5611 5.00101 35.2421 5.00101C35.5272 4.99216 35.8112 5.04138 36.0771 5.14575C36.343 5.25012 36.5856 5.40752 36.7903 5.6086C36.9951 5.80968 37.1578 6.05035 37.269 6.31634C37.3802 6.58234 37.4374 6.86823 37.4374 7.15706C37.4374 7.44589 37.3802 7.73178 37.269 7.99777C37.1578 8.26376 36.9951 8.50443 36.7903 8.70552C36.5856 8.9066 36.343 9.06399 36.0771 9.16836C35.8112 9.27273 35.5272 9.32195 35.2421 9.3131C34.8591 9.3131 33.6101 9.39209 32.5281 10.0179ZM29.2101 16.0182C28.7501 16.1833 28.2481 16.1833 27.7891 16.0182C21.894 14.0688 17.6919 15.1554 14.9319 17.4573C12.0809 19.8371 10.4078 23.815 10.2668 28.2496C10.2538 28.6446 10.2538 29.0406 10.2668 29.4385H17.1439V28.0005C17.156 27.4366 17.3856 26.9 17.7837 26.5055C18.1817 26.1111 18.7165 25.8902 19.2734 25.8902C19.8304 25.8902 20.3651 26.1111 20.7632 26.5055C21.1612 26.9 21.3909 27.4366 21.403 28.0005V29.4385H26.371V25.1254C26.3623 24.8367 26.4109 24.5492 26.514 24.2799C26.617 24.0106 26.7724 23.765 26.971 23.5576C27.1696 23.3503 27.4072 23.1854 27.6699 23.0729C27.9325 22.9603 28.2149 22.9023 28.5001 22.9023C28.7853 22.9023 29.0676 22.9603 29.3302 23.0729C29.5929 23.1854 29.8306 23.3503 30.0291 23.5576C30.2277 23.765 30.3831 24.0106 30.4862 24.2799C30.5892 24.5492 30.6378 24.8367 30.6291 25.1254V29.4385H35.5972V28.0005C35.6092 27.4366 35.8389 26.9 36.2369 26.5055C36.635 26.1111 37.1698 25.8902 37.7267 25.8902C38.2836 25.8902 38.8184 26.1111 39.2164 26.5055C39.6145 26.9 39.8441 27.4366 39.8562 28.0005V29.4385H46.7333C46.7454 29.0423 46.7454 28.6458 46.7333 28.2496C46.5923 23.815 44.9193 19.8371 42.0672 17.4573C39.3072 15.1554 35.1051 14.0688 29.2101 16.0192V16.0182ZM10.8878 33.7516C11.5549 36.3037 12.7549 38.7341 14.4939 40.7778C17.4209 44.2189 21.988 46.6889 28.5001 46.6889C35.0121 46.6889 39.5782 44.2189 42.5062 40.7778C44.2463 38.7341 45.4453 36.3026 46.1123 33.7516H10.8878Z" fill="black"/>
           </svg>
         </div>
 
         <div class="nav-icon" onclick="switchTab(2)">
-          <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M33.75 10.75C36.3959 10.75 39.0064 11.3587 41.3795 12.5289C43.7525 13.6992 45.8246 15.3997 47.4353 17.4989C49.0461 19.598 50.1523 22.0396 50.6685 24.6347C51.1847 27.2298 51.097 29.9088 50.4122 32.4646C49.7274 35.0204 48.4638 37.3844 46.7192 39.3737C44.9746 41.363 42.7958 42.9244 40.3513 43.9369C37.9068 44.9495 35.2621 45.3861 32.6218 45.2131C29.9815 45.04 27.4164 44.2619 25.125 42.9389" stroke="black" stroke-width="5.75" stroke-linecap="round"/>
-            <path d="M13.625 48.125V7.875" stroke="black" stroke-width="5.75"/>
-            <path d="M22.25 7.875V20.8125C22.25 23.1942 20.3192 25.125 17.9375 25.125C15.5558 25.125 13.625 23.1942 13.625 20.8125V7.875" stroke="black" stroke-width="5.75"/>
-            <path d="M5 7.875V20.8125C5 23.1942 6.93077 25.125 9.3125 25.125C11.6942 25.125 13.625 23.1942 13.625 20.8125V7.875" stroke="black" stroke-width="5.75"/>
+          <svg width="56" height="56" viewBox="0.75 1.75 54.5 54.5" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_2395_788)">
+              <path d="M13 15L14.8215 43.5524C14.9811 46.0533 17.0559 48 19.5619 48H36.4381C38.944 48 41.0189 46.0533 41.1785 43.5524L43 15" stroke="black" stroke-width="4.67" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 14L46 14" stroke="black" stroke-width="4.67" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 14C10 14 15.7229 14 19 13C23.7249 11.5582 35.4751 8.05242 41 4.5" stroke="black" stroke-width="4.67" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M16 22.6875H40" stroke="black" stroke-width="4.66667" stroke-linecap="round"/>
+              <path d="M16 39.6875H40" stroke="black" stroke-width="4.66667" stroke-linecap="round"/>
+            </g>
+            <defs><clipPath id="clip0_2395_788"><rect width="56" height="56" fill="white"/></clipPath></defs>
           </svg>
         </div>
 
@@ -1270,9 +1288,14 @@
     <!-- Right card: news icon -->
     <div class="nav-card nav-card-sm">
       <div class="nav-icon" onclick="switchTab(4)">
-        <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
-          <path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/>
+        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#clip0_2397_685)">
+            <path d="M5.5 8V43C5.5 45.7614 7.73858 48 10.5 48H40.5H45.5C48.2614 48 50.5 45.7614 50.5 43V18H40.5" stroke="black" stroke-width="4.67" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M5.5 8H40.5V43C40.5 45.7614 42.7386 48 45.5 48" stroke="black" stroke-width="4.67" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M30.5 18L15.5 18" stroke="black" stroke-width="4.67" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M30.5 28L20.5 28" stroke="black" stroke-width="4.67" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+          <defs><clipPath id="clip0_2397_685"><rect width="56" height="56" fill="white"/></clipPath></defs>
         </svg>
       </div>
     </div>
@@ -1502,11 +1525,13 @@
     }
 
     function showPomoState(s) {
-      for (var i = 0; i < 3; i++) {
-        document.getElementById('pomo-s' + i).style.display = (i === s) ? '' : 'none';
-      }
-      var navEl = document.getElementById('bottom-nav');
-      if (navEl) { navEl.style.display = (s === 1) ? 'none' : ''; }
+      forceEinkRefresh(function() {
+        for (var i = 0; i < 3; i++) {
+          document.getElementById('pomo-s' + i).style.display = (i === s) ? '' : 'none';
+        }
+        var navEl = document.getElementById('bottom-nav');
+        if (navEl) { navEl.style.display = (s === 1) ? 'none' : ''; }
+      });
     }
 
     function setPomoFocus(m) {
@@ -1578,12 +1603,18 @@
       if (pomo.running) {
         if (pomo.timer) { clearInterval(pomo.timer); pomo.timer = null; }
         pomo.running = false;
+        updatePomoDisplay();
       } else {
+        var switchingToFocus = pomo.phase === 'focus' && pomo.waitingToStart;
         pomo.running = true;
         pomo.waitingToStart = false;
         pomo.timer = setInterval(pomoTick, 1000);
+        if (switchingToFocus) {
+          forceEinkRefresh(function() { updatePomoDisplay(); });
+        } else {
+          updatePomoDisplay();
+        }
       }
-      updatePomoDisplay();
     }
 
     function restartPomo() {
@@ -2123,8 +2154,13 @@
     }
 
     function dailyGoHome() {
-      dailyState.currentPage = 0;
-      renderDailyCurrentPage();
+      var onToc = dailyState.tocPageCount > 0 && dailyState.currentPage < dailyState.tocPageCount;
+      if (onToc) {
+        forceEinkRefresh(function() { renderDailyCurrentPage(); });
+      } else {
+        dailyState.currentPage = 0;
+        renderDailyCurrentPage();
+      }
     }
 
     function dailyPrevPage() {
@@ -2205,7 +2241,7 @@
 
       window.obFinish = function() {
         try { localStorage.setItem(KEY, '1'); } catch(e) {}
-        overlay.style.display = 'none';
+        forceEinkRefresh(function() { overlay.style.display = 'none'; });
       };
     })();
   </script>
