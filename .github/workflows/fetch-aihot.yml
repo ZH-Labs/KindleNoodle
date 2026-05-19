@@ -1,0 +1,62 @@
+name: Fetch AI HOT Daily Report
+
+on:
+  schedule:
+    # 每天 UTC 01:00 跑（北京时间 09:00，日报 08:00 生成后留 1 小时容错）
+    - cron: '0 1 * * *'
+  workflow_dispatch: # 允许手动触发（用于测试）
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create data directory
+        run: mkdir -p data/archive
+
+      - name: Fetch latest daily report
+        run: |
+          UA="Mozilla/5.0 (kindle-clock; +https://github.com/${{ github.repository }})"
+
+          # 拉最新日报
+          HTTP_STATUS=$(curl -s -o data/daily.json -w "%{http_code}" \
+            -H "User-Agent: $UA" \
+            https://aihot.virxact.com/api/public/daily)
+
+          if [ "$HTTP_STATUS" != "200" ]; then
+            echo "API returned $HTTP_STATUS, skipping commit"
+            exit 0
+          fi
+
+          echo "Fetched daily.json successfully"
+
+      - name: Archive today's report
+        run: |
+          UA="Mozilla/5.0 (kindle-clock; +https://github.com/${{ github.repository }})"
+          TODAY=$(date -u +%Y-%m-%d)
+
+          # 把今天的日报也存一份到 archive（用于历史翻页）
+          cp data/daily.json data/archive/$TODAY.json
+          echo "Archived to data/archive/$TODAY.json"
+
+      - name: Fetch dailies index (最近 30 期列表)
+        run: |
+          UA="Mozilla/5.0 (kindle-clock; +https://github.com/${{ github.repository }})"
+
+          curl -s -o data/dailies-index.json \
+            -H "User-Agent: $UA" \
+            'https://aihot.virxact.com/api/public/dailies?take=30'
+
+          echo "Fetched dailies-index.json"
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          # 只有有变化才 commit，避免产生无意义的提交记录
+          git diff --cached --quiet && echo "No changes" || \
+            (git commit -m "chore: update AI HOT daily $(date -u +%Y-%m-%d)" && git push)
