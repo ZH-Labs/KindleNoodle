@@ -1315,6 +1315,7 @@
       tocPageCount: 0,
       pages: [],
       articlePageMap: {},
+      articleTocPageMap: {},
       data: null,
       loaded: false,
       loading: false,
@@ -1926,6 +1927,12 @@
         }
       }
 
+      if (allArticles.length === 0) {
+        document.body.removeChild(mEl);
+        showDailyStatus('日报内容为空，请明天再来');
+        return;
+      }
+
       /* Build & measure TOC elements */
       var tocItems = [];
       var dateEl = document.createElement('div');
@@ -2079,10 +2086,21 @@
         pages.push(flatEls);
       }
 
+      var articleTocPageMap = {};
+      for (var tp = 0; tp < tocPages.length; tp++) {
+        for (var ti = 0; ti < tocPages[tp].length; ti++) {
+          var el = tocPages[tp][ti];
+          if (el.getAttribute && el.getAttribute('data-article-id')) {
+            articleTocPageMap[el.getAttribute('data-article-id')] = tp;
+          }
+        }
+      }
+
       dailyState.pages = pages;
       dailyState.totalPages = pages.length;
       dailyState.tocPageCount = tocPageCount;
       dailyState.articlePageMap = articlePageMap;
+      dailyState.articleTocPageMap = articleTocPageMap;
       dailyState.currentPage = 0;
       renderDailyCurrentPage();
     }
@@ -2096,6 +2114,14 @@
       if (dailyState.currentPage >= dailyState.tocPageCount) {
         for (var aid in dailyState.articlePageMap) {
           if (dailyState.articlePageMap[aid] === dailyState.currentPage) markDailyRead(aid);
+        }
+      } else {
+        for (var j = 0; j < page.length; j++) {
+          var el = page[j];
+          if (el.getAttribute && el.getAttribute('data-article-id')) {
+            var aid2 = el.getAttribute('data-article-id');
+            el.className = 'daily-toc-item' + (isDailyRead(aid2) ? ' read' : '');
+          }
         }
       }
       updateDailyNavBtns();
@@ -2130,8 +2156,22 @@
         document.getElementById('daily-nav').style.display = '';
         currentTab = 4;
 
-        if (dailyState.loaded) {
+        var todayStr = (function() {
+          var d = new Date();
+          var y = d.getFullYear();
+          var m = String(d.getMonth() + 1).padStart(2, '0');
+          var day = String(d.getDate()).padStart(2, '0');
+          return y + '-' + m + '-' + day;
+        })();
+        var dataIsToday = dailyState.loaded && dailyState.data && dailyState.data.date === todayStr;
+        var now = new Date();
+        var pastNine = now.getHours() > 8 || (now.getHours() === 8 && now.getMinutes() >= 45);
+
+        if (dataIsToday || (!pastNine && dailyState.loaded)) {
           renderDailyCurrentPage();
+        } else if (pastNine && !dailyState.loading) {
+          dailyState.loaded = false;
+          fetchDailyData();
         } else if (!dailyState.loading) {
           fetchDailyData();
         }
@@ -2154,12 +2194,29 @@
     }
 
     function dailyGoHome() {
-      var onToc = dailyState.tocPageCount > 0 && dailyState.currentPage < dailyState.tocPageCount;
-      if (onToc) {
-        forceEinkRefresh(function() { renderDailyCurrentPage(); });
-      } else {
+      var onArticle = dailyState.tocPageCount > 0 && dailyState.currentPage >= dailyState.tocPageCount;
+      var onTocNotHome = !onArticle && dailyState.currentPage > 0;
+      var onTocHome = !onArticle && dailyState.currentPage === 0;
+
+      if (onArticle) {
+        // 找当前页上第一篇文章，反查它在哪个目录页
+        var tocTarget = 0;
+        for (var aid in dailyState.articlePageMap) {
+          if (dailyState.articlePageMap[aid] === dailyState.currentPage) {
+            if (dailyState.articleTocPageMap[aid] !== undefined) {
+              tocTarget = dailyState.articleTocPageMap[aid];
+            }
+            break;
+          }
+        }
+        dailyState.currentPage = tocTarget;
+        renderDailyCurrentPage();
+      } else if (onTocNotHome) {
         dailyState.currentPage = 0;
         renderDailyCurrentPage();
+      } else if (onTocHome) {
+        dailyState.loaded = false;
+        fetchDailyData();
       }
     }
 
@@ -2196,18 +2253,26 @@
           showDailyStatus('加载失败，请检查网络连接');
         }
       };
-      xhr.ontimeout = function() { dailyState.loading = false; showDailyStatus('加载超时，请检查网络'); };
-      xhr.onerror  = function() { dailyState.loading = false; showDailyStatus('今日日报暂未生成，请明天再来'); };
+      xhr.ontimeout = function() { dailyState.loading = false; showDailyStatus('加载超时，请检查网络', true); };
+      xhr.onerror  = function() { dailyState.loading = false; showDailyStatus('网络连接失败，请检查网络后重试', true); };
       xhr.send();
     }
 
-    function showDailyStatus(msg) {
+    function showDailyStatus(msg, showRetry) {
       var contentEl = document.getElementById('daily-content');
       while (contentEl.firstChild) contentEl.removeChild(contentEl.firstChild);
       var div = document.createElement('div');
       div.className = 'daily-status';
       div.textContent = msg;
       contentEl.appendChild(div);
+      if (showRetry) {
+        var btn = document.createElement('div');
+        btn.className = 'daily-nav-btn';
+        btn.style.cssText = 'margin-top:24px;text-align:center;';
+        btn.textContent = '重试';
+        btn.onclick = function() { dailyState.loaded = false; fetchDailyData(); };
+        contentEl.appendChild(btn);
+      }
       dailyState.totalPages = 0;
       updateDailyNavBtns();
     }
