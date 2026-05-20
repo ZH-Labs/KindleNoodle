@@ -6,6 +6,9 @@ on:
     - cron: '0 1 * * *'
   workflow_dispatch: # 允许手动触发（用于测试）
 
+permissions:
+  contents: write
+
 jobs:
   fetch:
     runs-on: ubuntu-latest
