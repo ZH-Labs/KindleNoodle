@@ -2,8 +2,8 @@ name: Fetch AI HOT Daily Report
 
 on:
   schedule:
-    # 每天 UTC 00:45 跑（北京时间 08:45，日报 08:00 生成后留 45 分钟容错）
-    - cron: '45 0 * * *'
+    # 临时测试：UTC 03:27（北京时间 11:27）
+    - cron: '27 3 * * *'
   workflow_dispatch: # 允许手动触发（用于测试）
 
 permissions:
@@ -12,6 +12,8 @@ permissions:
 jobs:
   fetch:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
 
     steps:
       - name: Checkout repository
