@@ -1,10 +1,7 @@
 name: Fetch AI HOT Daily Report
 
 on:
-  schedule:
-    # 临时测试：UTC 03:27（北京时间 11:27）
-    - cron: '27 3 * * *'
-  workflow_dispatch: # 允许手动触发（用于测试）
+  workflow_dispatch: # 由外部 cron-job.org 触发，不依赖 GitHub 自带定时
 
 permissions:
   contents: write
