@@ -988,7 +988,8 @@
       <div id="pomo-s1" class="pomo-page pomo-timer-screen pomo-focus-mode" style="display:none">
         <div class="pomo-top-section">
           <div class="pomo-illus">
-            <img id="pomo-illus-img" src="img/pomo-focus.png" alt="">
+            <img id="pomo-illus-focus" src="img/pomo-focus.png" alt="">
+            <img id="pomo-illus-break" src="img/pomo-break.png" alt="" style="display:none">
           </div>
           <div class="pomo-wave-container">
             <div class="pomo-wave-gray">
@@ -1219,6 +1220,8 @@
   </div>
 
   <!-- Clock Style Settings Panel -->
+  <img src="img/preview-flip.png" style="display:none">
+  <img src="img/preview-module.png" style="display:none">
   <div id="clock-settings-panel">
     <div class="csp-sheet">
       <div class="csp-title">时钟样式设置</div>
@@ -1372,11 +1375,39 @@
       '廿一','廿二','廿三','廿四','廿五','廿六','廿七','廿八','廿九','三十'];
 
     var MS_PER_DAY = 86400000;
-    var LUNAR_ANCHORS = [
-      { g: Date.UTC(2025, 0, 29), lm: 0 },
-      { g: Date.UTC(2026, 0, 28), lm: 0 }
+    /* 农历查表：1900–2100 标准数据，每年一个十六进制（高位月份大小 + 低4位闰月）。
+       纯本地位运算，正确处理闰月，2100 年前无需维护。基准日 1900-01-31 = 农历正月初一。 */
+    var LUNAR_INFO = [
+      0x04bd8,0x04ae0,0x0a570,0x054d5,0x0d260,0x0d950,0x16554,0x056a0,0x09ad0,0x055d2,
+      0x04ae0,0x0a5b6,0x0a4d0,0x0d250,0x1d255,0x0b540,0x0d6a0,0x0ada2,0x095b0,0x14977,
+      0x04970,0x0a4b0,0x0b4b5,0x06a50,0x06d40,0x1ab54,0x02b60,0x09570,0x052f2,0x04970,
+      0x06566,0x0d4a0,0x0ea50,0x06e95,0x05ad0,0x02b60,0x186e3,0x092e0,0x1c8d7,0x0c950,
+      0x0d4a0,0x1d8a6,0x0b550,0x056a0,0x1a5b4,0x025d0,0x092d0,0x0d2b2,0x0a950,0x0b557,
+      0x06ca0,0x0b550,0x15355,0x04da0,0x0a5d0,0x14573,0x052d0,0x0a9a8,0x0e950,0x06aa0,
+      0x0aea6,0x0ab50,0x04b60,0x0aae4,0x0a570,0x05260,0x0f263,0x0d950,0x05b57,0x056a0,
+      0x096d0,0x04dd5,0x04ad0,0x0a4d0,0x0d4d4,0x0d250,0x0d558,0x0b540,0x0b6a0,0x195a6,
+      0x095b0,0x049b0,0x0a974,0x0a4b0,0x0b27a,0x06a50,0x06d40,0x0af46,0x0ab60,0x09570,
+      0x04af5,0x04970,0x064b0,0x074a3,0x0ea50,0x06b58,0x055c0,0x0ab60,0x096d5,0x092e0,
+      0x0c960,0x0d954,0x0d4a0,0x0da50,0x07552,0x056a0,0x0abb7,0x025d0,0x092d0,0x0cab5,
+      0x0a950,0x0b4a0,0x0baa4,0x0ad50,0x055d9,0x04ba0,0x0a5b0,0x15176,0x052b0,0x0a930,
+      0x07954,0x06aa0,0x0ad50,0x05b52,0x04b60,0x0a6e6,0x0a4e0,0x0d260,0x0ea65,0x0d530,
+      0x05aa0,0x076a3,0x096d0,0x04bd7,0x04ad0,0x0a4d0,0x1d0b6,0x0d250,0x0d520,0x0dd45,
+      0x0b5a0,0x056d0,0x055b2,0x049b0,0x0a577,0x0a4b0,0x0aa50,0x1b255,0x06d20,0x0ada0,
+      0x14b63,0x09370,0x049f8,0x04970,0x064b0,0x168a6,0x0ea50,0x06b20,0x1a6c4,0x0aae0,
+      0x0a2e0,0x0d2e3,0x0c960,0x0d557,0x0d4a0,0x0da50,0x05d55,0x056a0,0x0a6d0,0x055d4,
+      0x052d0,0x0a9b8,0x0a950,0x0b4a0,0x0b6a6,0x0ad50,0x055a0,0x0aba4,0x0a5b0,0x052b0,
+      0x0b273,0x06930,0x07337,0x06aa0,0x0ad50,0x14b55,0x04b60,0x0a570,0x054e4,0x0d160,
+      0x0e968,0x0d520,0x0daa0,0x16aa6,0x056d0,0x04ae0,0x0a9d4,0x0a2d0,0x0d150,0x0f252,
+      0x0d520
     ];
-    var LUNAR_MONTH_LENGTHS = [30,29,30,29,30,30,29,30,29,30,29,30];
+    function lLeapMonth(y) { return LUNAR_INFO[y - 1900] & 0xf; }
+    function lLeapDays(y) { return lLeapMonth(y) ? ((LUNAR_INFO[y - 1900] & 0x10000) ? 30 : 29) : 0; }
+    function lMonthDays(y, m) { return (LUNAR_INFO[y - 1900] & (0x10000 >> m)) ? 30 : 29; }
+    function lYearDays(y) {
+      var sum = 348;
+      for (var i = 0x8000; i > 0x8; i >>= 1) { sum += (LUNAR_INFO[y - 1900] & i) ? 1 : 0; }
+      return sum + lLeapDays(y);
+    }
     var tzOffsetMs = 8 * 3600000;
     var _lunarCache = { day: -1, label: '' };
 
@@ -1386,20 +1417,23 @@
       var y = date.getUTCFullYear(), mo = date.getUTCMonth(), d = date.getUTCDate();
       var key = d + mo * 31 + y * 372;
       if (_lunarCache.day === key) { return _lunarCache.label; }
-      var dayMs = Date.UTC(y, mo, d);
-      var anchor = LUNAR_ANCHORS[0];
-      for (var i = 0; i < LUNAR_ANCHORS.length; i++) {
-        if (dayMs >= LUNAR_ANCHORS[i].g) { anchor = LUNAR_ANCHORS[i]; } else { break; }
+      var offset = Math.round((Date.UTC(y, mo, d) - Date.UTC(1900, 0, 31)) / MS_PER_DAY);
+      var temp = 0, ly;
+      for (ly = 1900; ly < 2101 && offset > 0; ly++) { temp = lYearDays(ly); offset -= temp; }
+      if (offset < 0) { offset += temp; ly--; }
+      var leap = lLeapMonth(ly), isLeap = false, lm;
+      for (lm = 1; lm < 13 && offset > 0; lm++) {
+        if (leap > 0 && lm === leap + 1 && isLeap === false) { --lm; isLeap = true; temp = lLeapDays(ly); }
+        else { temp = lMonthDays(ly, lm); }
+        if (isLeap === true && lm === leap + 1) { isLeap = false; }
+        offset -= temp;
       }
-      var remaining = Math.floor((dayMs - anchor.g) / MS_PER_DAY);
-      var lm = anchor.lm, ld = 0;
-      for (var j = 0; j < LUNAR_MONTH_LENGTHS.length; j++) {
-        var len = LUNAR_MONTH_LENGTHS[(lm + j) % 12];
-        if (remaining < len) { lm = (lm + j) % 12; ld = remaining; break; }
-        remaining -= len;
+      if (offset === 0 && leap > 0 && lm === leap + 1) {
+        if (isLeap) { isLeap = false; } else { isLeap = true; --lm; }
       }
+      if (offset < 0) { offset += temp; --lm; }
       _lunarCache.day = key;
-      _lunarCache.label = LUNAR_MONTHS[lm] + LUNAR_DAYS[ld];
+      _lunarCache.label = (isLeap ? '闰' : '') + LUNAR_MONTHS[lm - 1] + LUNAR_DAYS[offset];
       return _lunarCache.label;
     }
 
@@ -1593,6 +1627,7 @@
           pomo.running = false;
           pomo.waitingToStart = true;
           updatePomoDisplay();
+          forceEinkRefresh(function() {});
         }
       } else {
         pomo.currentRound++;
@@ -1615,7 +1650,8 @@
         pomo.waitingToStart = false;
         pomo.timer = setInterval(pomoTick, 1000);
         if (switchingToFocus) {
-          forceEinkRefresh(function() { updatePomoDisplay(); });
+          updatePomoDisplay();
+          forceEinkRefresh(function() {});
         } else {
           updatePomoDisplay();
         }
@@ -1633,7 +1669,16 @@
       if (pomo.phase === 'focus') {
         if (pomo.timer) { clearInterval(pomo.timer); pomo.timer = null; }
         pomo.running = false;
-        showPomoState(0);
+        if (pomo.totalFocusSecs > 0) {
+          var sessionMins = Math.floor(pomo.totalFocusSecs / 60);
+          pomoSaveSessionMins(sessionMins);
+          var todayMins = pomoLoadTodayMins();
+          document.getElementById('pomo-done-rounds').textContent = pomo.currentRound - 1;
+          document.getElementById('pomo-done-title').textContent = '今天已沉下心' + todayMins + '分钟';
+          showPomoState(2);
+        } else {
+          showPomoState(0);
+        }
       } else {
         if (pomo.timer) { clearInterval(pomo.timer); pomo.timer = null; }
         pomo.currentRound++;
@@ -1670,7 +1715,7 @@
       if (pomo.phase === 'focus') {
         phaseText = pomo.running ? '专注中' : (pomo.waitingToStart ? '等你开始' : '暂停中');
       } else {
-        phaseText = pomo.running ? '歇一会儿 · 看看远处' : (pomo.waitingToStart ? '等你开始' : '暂停中');
+        phaseText = (pomo.running || pomo.waitingToStart) ? '歇一会儿 · 看看远处' : '暂停中';
       }
       document.getElementById('pomo-round-label').textContent = '第' + pomo.currentRound + '/' + pomo.totalRounds + '轮';
       document.getElementById('pomo-phase-title').textContent = phaseText;
@@ -1680,8 +1725,11 @@
       document.getElementById('pomo-icon-play').style.display = pomo.running ? 'none' : '';
       document.getElementById('pomo-icon-close').style.display = pomo.phase === 'focus' ? '' : 'none';
       document.getElementById('pomo-icon-skip').style.display = pomo.phase === 'break' ? '' : 'none';
-      var illusEl = document.getElementById('pomo-illus-img');
-      if (illusEl) { illusEl.src = (pomo.phase === 'break' || (pomo.phase === 'focus' && pomo.waitingToStart)) ? 'img/pomo-break.png' : 'img/pomo-focus.png'; }
+      var showBreak = (pomo.phase === 'break' || (pomo.phase === 'focus' && pomo.waitingToStart));
+      var focusEl = document.getElementById('pomo-illus-focus');
+      var breakEl = document.getElementById('pomo-illus-break');
+      if (focusEl) { focusEl.style.display = showBreak ? 'none' : ''; }
+      if (breakEl) { breakEl.style.display = showBreak ? '' : 'none'; }
       var blackPath = document.getElementById('pomo-black-path');
       if (blackPath) {
         var totalSecs = (pomo.phase === 'focus' ? pomo.focusMins : pomo.breakMins) * 60;
@@ -1776,15 +1824,28 @@
 
     fetchQuote();
 
-    (function scheduleHourlyEinkRefresh() {
-      var now = new Date();
-      var msUntilNextHour = (60 - now.getMinutes()) * 60000 - now.getSeconds() * 1000 - now.getMilliseconds();
-      setTimeout(function() {
-        if (currentTab === 0) { forceEinkRefresh(function() {}); }
-        setInterval(function() {
+    (function scheduleDailyEinkRefresh() {
+      var REFRESH_TIMES = [[6, 55], [12, 0], [17, 55]];
+      function msUntilNext() {
+        var now = new Date();
+        var nowMins = now.getHours() * 60 + now.getMinutes();
+        for (var i = 0; i < REFRESH_TIMES.length; i++) {
+          var t = REFRESH_TIMES[i];
+          var tMins = t[0] * 60 + t[1];
+          if (tMins > nowMins) {
+            return (tMins - nowMins) * 60000 - now.getSeconds() * 1000 - now.getMilliseconds();
+          }
+        }
+        var first = REFRESH_TIMES[0];
+        return (24 * 60 - nowMins + first[0] * 60 + first[1]) * 60000 - now.getSeconds() * 1000 - now.getMilliseconds();
+      }
+      function scheduleNext() {
+        setTimeout(function() {
           if (currentTab === 0) { forceEinkRefresh(function() {}); }
-        }, 3600000);
-      }, msUntilNextHour);
+          scheduleNext();
+        }, msUntilNext());
+      }
+      scheduleNext();
     })();
 
     /* ── Clock Style ────────────────────────────────────── */
