@@ -406,6 +406,12 @@
       min-height: 0;
       display: -webkit-box; display: -webkit-flex; display: flex;
       -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
+      position: relative;
+    }
+    .pomo-hint {
+      position: absolute; bottom: 20px; left: 0; right: 0;
+      text-align: center; font-size: 20px; color: #666666;
+      pointer-events: none;
     }
 
     .pomo-setup-header {
@@ -585,75 +591,201 @@
       display: -webkit-box; display: -webkit-flex; display: flex;
       -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
     }
-    .ob-eyebrow {
-      -webkit-flex-shrink: 0; flex-shrink: 0;
-      text-align: center; padding: 40px 56px 0;
-      font-size: 22px; font-weight: 500; color: #9a9a9a; letter-spacing: 2px;
+    /* Vertical micro-label top-right */
+    .ob-vlabel {
+      position: absolute; top: 50px; right: 50px;
+      font-size: 14px; color: #666666; letter-spacing: 2px; font-weight: 500;
+      -webkit-writing-mode: vertical-rl; writing-mode: vertical-rl;
+      z-index: 2;
     }
-    .ob-img-grow {
-      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
-      min-height: 0; overflow: hidden; text-align: center; padding: 16px 0;
-    }
-    .ob-img-grow img { width: 360px; height: 360px; }
-    .ob-brand-wrap { -webkit-flex-shrink: 0; flex-shrink: 0; text-align: center; padding: 0 56px; }
-    .ob-brand-title { font-size: 76px; font-weight: 800; color: #000; line-height: 0.95; letter-spacing: -1px; }
-    .ob-brand-line2 { font-size: 76px; font-weight: 800; color: #000; line-height: 0.95; letter-spacing: -1px; margin-top: 10px; }
-    .ob-b-dash { display: inline-block; vertical-align: middle; width: 56px; height: 2px; background: #000; margin: 0 18px; }
-    .ob-brand-sub { margin-top: 18px; font-size: 18px; color: #9a9a9a; font-style: italic; letter-spacing: 1px; }
-    .ob-footer { -webkit-flex-shrink: 0; flex-shrink: 0; padding: 20px 48px 40px; text-align: center; }
-    .ob-next-btn {
-      display: block; width: 88px; height: 88px; border-radius: 44px;
-      background: #000; cursor: pointer; margin: 0 auto 22px; padding-top: 27px;
-    }
-    .ob-start-btn {
-      display: block; width: 100%; height: 76px; border-radius: 38px;
-      background: #000; color: #fff; border: none;
-      font-size: 26px; font-weight: 600; letter-spacing: 1px;
-      cursor: pointer; margin-bottom: 22px;
-      font-family: Arial, Helvetica, sans-serif;
-    }
+    /* Shared dots */
     .ob-dot {
       display: inline-block; width: 10px; height: 10px; border-radius: 5px;
       background: transparent; border: 1.5px solid #000; margin: 0 6px;
     }
     .ob-dot-active { background: #000; }
-    .ob-s2-head { -webkit-flex-shrink: 0; flex-shrink: 0; padding: 40px 56px 16px; }
-    .ob-s2-label { font-size: 24px; font-weight: 500; color: #9a9a9a; letter-spacing: 2px; margin-bottom: 10px; }
-    .ob-s2-title-big { font-size: 60px; font-weight: 800; color: #000; line-height: 0.95; letter-spacing: -1px; }
-    .ob-s2-title-indent { font-size: 60px; font-weight: 800; color: #000; line-height: 0.95; letter-spacing: -1px; margin-top: 6px; padding-left: 76px; position: relative; }
-    .ob-indent-dash { position: absolute; left: 0; top: 50%; width: 56px; height: 2px; background: #000; margin-top: -1px; }
-    .ob-roles {
-      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
-      min-height: 0; overflow: hidden; padding: 0 56px; position: relative;
+    /* NavFooter: skip | dots | arrow (3-col) */
+    .ob-nav-footer { -webkit-flex-shrink: 0; flex-shrink: 0; padding: 16px 48px 36px; }
+    .ob-nav-row {
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: horizontal; -webkit-flex-direction: row; flex-direction: row;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
     }
-    .ob-timeline { position: absolute; left: 88px; top: 50px; bottom: 44px; width: 0; border-left: 1.5px dashed #c8c8c8; }
-    .ob-tl-dot { position: absolute; left: 84px; width: 7px; height: 7px; border-radius: 4px; background: #000; }
-    .ob-tl-top { top: 46px; }
-    .ob-tl-bottom { bottom: 40px; }
-    .ob-role-item { overflow: hidden; padding: 14px 0; border-bottom: 1px solid #DDDDDD; position: relative; z-index: 1; }
-    .ob-role-item:last-child { border-bottom: none; }
-    .ob-role-icon { float: left; width: 64px; height: 64px; background: #fff; margin-right: 24px; text-align: center; }
-    .ob-role-text { overflow: hidden; padding-top: 8px; }
-    .ob-role-main { font-size: 28px; font-weight: 700; color: #000; line-height: 1.2; }
-    .ob-role-sub { font-size: 18px; color: #9a9a9a; margin-top: 2px; }
+    .ob-nav-skip {
+      -webkit-flex-shrink: 0; flex-shrink: 0;
+      width: 88px; height: 88px; border-radius: 44px;
+      border: 2px solid #000; background: transparent;
+      font-size: 22px; color: #000; font-weight: 500; letter-spacing: 2px;
+      cursor: pointer; text-align: center; line-height: 88px;
+      font-family: inherit; display: block;
+    }
+    .ob-nav-dots { -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; text-align: center; }
+    .ob-nav-arrow {
+      -webkit-flex-shrink: 0; flex-shrink: 0;
+      width: 88px; height: 88px; border-radius: 44px;
+      background: #000; cursor: pointer; border: none;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
+      -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
+    }
+    /* ── Screen 1 · Brand Reveal (居中 + 设计感) ── */
+    .ob-s1-eyebrow {
+      -webkit-flex-shrink: 0; flex-shrink: 0;
+      padding: 56px 56px 0;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: horizontal; -webkit-flex-direction: row; flex-direction: row;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
+      -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
+      font-size: 22px; font-weight: 500; color: #666666; letter-spacing: 2px;
+    }
+    .ob-s1-eyebrow-line { display: inline-block; width: 36px; height: 1px; background: #c8c8c8; margin: 0 14px; }
+    .ob-s1-illus {
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; min-height: 0; overflow: hidden;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
+      -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
+      padding: 0 24px;
+    }
+    .ob-s1-illus img { width: 564px; height: 564px; max-width: 100%; max-height: 100%; }
+    .ob-s1-title { -webkit-flex-shrink: 0; flex-shrink: 0; text-align: center; padding: 0 56px 8px; }
+    .ob-s1-t1 { font-size: 76px; font-weight: 800; color: #000; line-height: 0.95; letter-spacing: -1px; }
+    .ob-s1-t2 {
+      margin-top: 10px;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: horizontal; -webkit-flex-direction: row; flex-direction: row;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
+      -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
+      font-size: 76px; font-weight: 800; color: #000; line-height: 0.95; letter-spacing: -1px;
+    }
+    .ob-t2-dash { display: inline-block; width: 56px; height: 2px; background: #000; margin: 0 18px; }
+    .ob-s1-sub { margin-top: 18px; font-size: 18px; color: #666666; font-style: italic; letter-spacing: 1px; }
+    /* ── Screen 2 · Five Roles (2×3 outline grid) ── */
+    .ob-s2-head { -webkit-flex-shrink: 0; flex-shrink: 0; padding: 36px 56px 12px; position: relative; }
+    .ob-s2-main { font-size: 60px; font-weight: 800; color: #000; letter-spacing: -1px; line-height: 1.02; }
+    .ob-s2-sub { margin: 10px 0 0; font-size: 24px; color: #666666; font-weight: 400; line-height: 1.4; }
+    /* ── Screen 2 · Bento Grid (02A · 大方块) ── */
+    .ob-bento {
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; min-height: 0;
+      padding: 6px 48px 0;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
+    }
+    .ob-bento-top {
+      -webkit-box-flex: 2; -webkit-flex: 2; flex: 2; min-height: 0;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: horizontal; -webkit-flex-direction: row; flex-direction: row;
+      margin-bottom: 12px;
+    }
+    .ob-bento-bot {
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; min-height: 0;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: horizontal; -webkit-flex-direction: row; flex-direction: row;
+    }
+    .ob-bento-rcol {
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; min-height: 0; margin-left: 12px;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
+    }
+    .ob-tile {
+      position: relative; overflow: hidden;
+      border: 1.5px solid #e2e1dd; border-radius: 18px; padding: 15px 18px;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
+    }
+    .ob-tile-big {
+      -webkit-box-flex: 2; -webkit-flex: 2; flex: 2;
+      border-color: #111; border-radius: 22px; padding: 20px 22px; margin-right: 12px;
+    }
+    .ob-tile-sm { -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; }
+    .ob-tile-sm + .ob-tile-sm { margin-top: 12px; }
+    .ob-tile-wide { -webkit-box-flex: 2; -webkit-flex: 2; flex: 2; margin-left: 12px; }
+    /* Bleed decorative icon (bottom-right, cropped by overflow:hidden) */
+    .ob-bleed { position: absolute; right: -26px; bottom: -30px; pointer-events: none; line-height: 0; }
+    /* Sequence number tag */
+    .ob-tno { position: absolute; top: 12px; right: 14px; font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #c4c3bf; }
+    /* "默认待机" badge on clock tile */
+    .ob-tile-badge {
+      display: inline-block; border: 1px solid #ccc; border-radius: 20px;
+      padding: 5px 13px; font-size: 13px; color: #999; font-weight: 500;
+      -webkit-flex-shrink: 0; flex-shrink: 0;
+    }
+    /* Tile text */
+    .ob-tn { font-size: 19px; font-weight: 700; color: #111; line-height: 1.15; margin-top: 10px; }
+    .ob-td { font-size: 13px; color: #666666; line-height: 1.4; margin-top: 5px; }
+    .ob-tile-big .ob-tn { font-size: 30px; font-weight: 800; letter-spacing: -0.5px; margin-top: 0; }
+    .ob-tile-big .ob-td { font-size: 15px; margin-top: 9px; max-width: 220px; }
+    /* Wide tile row layout */
+    .ob-wide-row {
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: horizontal; -webkit-flex-direction: row; flex-direction: row;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
+    }
+    /* ── Screen 2 · List Layout (02C · 目录列表) ── */
+    .ob-s2-list {
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; min-height: 0;
+      padding: 20px 48px 40px;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
+    }
+    .ob-s2-row {
+      -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; min-height: 0;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-orient: horizontal; -webkit-flex-direction: row; flex-direction: row;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
+      border-top: 1px solid #dddddd;
+    }
+    .ob-s2-row:first-child { border-top: none; }
+    .ob-s2-row-icon {
+      width: 64px; -webkit-flex-shrink: 0; flex-shrink: 0; margin-right: 22px;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
+      -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
+    }
+    .ob-s2-row-text { -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; min-width: 0; margin-right: 22px; }
+    .ob-s2-row-name { font-size: 28px; font-weight: 700; line-height: 1.18; color: #111; }
+    .ob-s2-row-desc { font-size: 20px; color: #666666; line-height: 1.4; margin-top: 5px; }
+    .ob-s2-row-num { font-size: 26px; font-weight: 600; color: #c4c3bf; -webkit-flex-shrink: 0; flex-shrink: 0; }
+    /* ── Screen 3 · Tips & Start ── */
     .ob-s3-head { -webkit-flex-shrink: 0; flex-shrink: 0; padding: 40px 56px 16px; }
-    .ob-s3-label { font-size: 22px; font-weight: 500; color: #9a9a9a; letter-spacing: 2px; margin-bottom: 10px; }
-    .ob-s3-title { font-size: 56px; font-weight: 800; color: #000; line-height: 0.95; letter-spacing: -1px; }
-    .ob-s3-dash { display: inline-block; vertical-align: middle; width: 48px; height: 2px; background: #000; margin-right: 20px; }
+    .ob-s3-eyebrow { font-size: 24px; font-weight: 400; color: #666666; letter-spacing: 1px; margin-bottom: 10px; }
+    .ob-s3-title { font-size: 60px; font-weight: 800; color: #000; line-height: 1.02; letter-spacing: -1px; }
     .ob-tips {
       -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; min-height: 0;
-      padding: 12px 48px 0;
+      padding: 0 48px;
       display: -webkit-box; display: -webkit-flex; display: flex;
       -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
       -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
     }
-    .ob-tip-card { border: 1.5px solid #d8d8d8; border-radius: 24px; padding: 24px 26px; overflow: hidden; background: #fff; }
-    .ob-tip-card + .ob-tip-card { margin-top: 20px; }
-    .ob-tip-num { float: left; width: 56px; height: 56px; border-radius: 14px; background: #000; color: #fff; font-size: 30px; font-weight: 700; text-align: center; line-height: 56px; margin-right: 22px; }
-    .ob-tip-text { overflow: hidden; padding-top: 4px; }
-    .ob-tip-title { font-size: 26px; font-weight: 700; color: #000; line-height: 1.2; }
-    .ob-tip-sub { font-size: 18px; color: #9a9a9a; margin-top: 6px; line-height: 1.35; }
-    .ob-tail { -webkit-flex-shrink: 0; flex-shrink: 0; font-size: 16px; color: #a0a0a0; text-align: center; padding: 0 48px 20px; }
+    .ob-tip-card {
+      border: 1.5px solid #d8d8d8; border-radius: 24px;
+      padding: 24px 30px; overflow: hidden; background: #fff; position: relative;
+      display: -webkit-box; display: -webkit-flex; display: flex;
+      -webkit-box-align: center; -webkit-align-items: center; align-items: center;
+    }
+    .ob-tip-card + .ob-tip-card { margin-top: 16px; }
+    .ob-tip-icon-bg { position: absolute; right: -34px; top: 50%; margin-top: -72px; pointer-events: none; line-height: 0; }
+    .ob-tip-num {
+      -webkit-flex-shrink: 0; flex-shrink: 0;
+      width: 64px; height: 64px; border-radius: 16px;
+      background: #000; color: #fff; font-size: 32px; font-weight: 700;
+      text-align: center; line-height: 64px; margin-right: 24px;
+    }
+    .ob-tip-body { -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; min-width: 0; padding-right: 90px; }
+    .ob-tip-title { font-size: 28px; font-weight: 700; color: #000; line-height: 1.2; }
+    .ob-tip-sub { font-size: 20px; color: #666666; margin-top: 7px; line-height: 1.4; }
+    .ob-tip-note { font-size: 20px; color: #666666; margin-top: 9px; line-height: 1.35; }
+    .ob-cta {
+      -webkit-flex-shrink: 0; flex-shrink: 0; padding: 16px 48px 0;
+    }
+    .ob-start-btn {
+      display: block; width: 100%;
+      height: 76px; border-radius: 38px;
+      background: #000; color: #fff; border: none;
+      font-size: 26px; font-weight: 600; letter-spacing: 1px;
+      cursor: pointer; margin-bottom: 24px; font-family: inherit;
+    }
+    .ob-tail { font-size: 24px; color: #666; text-align: center; }
 
     /* ── Daily Report Page ────────────────────────────────── */
     .daily-page {
@@ -763,140 +895,170 @@
   <!-- ── Onboarding Overlay (first-run only) ──────────── -->
   <div id="ob-overlay">
 
-    <!-- Screen 1: Brand reveal (01A · 居中版) -->
+    <!-- Screen 1: Brand Reveal (original layout) -->
     <div id="ob-s1" class="ob-screen">
-      <div class="ob-img-grow" style="padding-top:30px;">
-        <img src="img/kindle_noodle_2_v2.png" alt="Kindle Noodle" style="width:420px;height:420px;">
+      <div class="ob-s1-illus" style="padding-top:16px;">
+        <img src="img/kindle_noodle_2_v2.png" alt="Kindle Noodle">
       </div>
       <div style="-webkit-flex-shrink:0;flex-shrink:0;text-align:center;padding:0 48px;">
         <div style="font-size:64px;font-weight:900;color:#000;letter-spacing:-1px;line-height:1.05;">Kindle Noodle</div>
-        <div style="margin-top:12px;font-size:22px;color:#9a9a9a;font-style:italic;letter-spacing:0.5px;">Much More Than A Soup</div>
+        <div style="margin-top:12px;font-size:22px;color:#666666;font-style:italic;letter-spacing:0.5px;">Much More Than A Soup</div>
         <div style="margin-top:28px;font-size:26px;color:#666;line-height:1.5;">不只是泡面，是你 Kindle 的新生活</div>
       </div>
-      <div class="ob-footer">
-        <div class="ob-next-btn" onclick="obGo(2)">
-          <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
-            <path d="M8 17 L26 17 M19 9 L27 17 L19 25" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="ob-dots">
-          <span class="ob-dot ob-dot-active"></span>
-          <span class="ob-dot"></span>
-          <span class="ob-dot"></span>
+      <div class="ob-nav-footer">
+        <div class="ob-nav-row">
+          <div class="ob-nav-skip" onclick="obFinish()">跳过</div>
+          <div class="ob-nav-dots">
+            <span class="ob-dot ob-dot-active"></span>
+            <span class="ob-dot"></span>
+            <span class="ob-dot"></span>
+          </div>
+          <div class="ob-nav-arrow" onclick="obGo(2)">
+            <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+              <path d="M8 17 L26 17 M19 9 L27 17 L19 25" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Screen 2: Four roles -->
+    <!-- Screen 2: Five Roles (2×3 outline grid, brand emblem centre) -->
     <div id="ob-s2" class="ob-screen" style="display:none">
+
       <div class="ob-s2-head">
-        <div class="ob-s2-label">你的桌面搭子</div>
-        <div class="ob-s2-title-big">随时</div>
-        <div class="ob-s2-title-indent">
-          <span class="ob-indent-dash"></span>切换角色
+        <div class="ob-s2-main">你的桌面搭子</div>
+        <div class="ob-s2-sub">拍了拍身上的灰，我决定重新上岗</div>
+      </div>
+
+      <!-- List layout (02C · 目录列表) -->
+      <div class="ob-s2-list">
+        <!-- 01 桌面时钟 -->
+        <div class="ob-s2-row">
+          <div class="ob-s2-row-icon"><svg width="60" height="60" viewBox="0 0 56 56" fill="none"><circle cx="28" cy="28" r="21" stroke="#111" stroke-width="4.67" stroke-linecap="round" stroke-linejoin="round"/><path d="M25.667 18.6666V30.3333H37.3337" stroke="#111" stroke-width="4.67" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="ob-s2-row-text">
+            <div class="ob-s2-row-name">桌面时钟</div>
+            <div class="ob-s2-row-desc">多数时候我安静待着，沉在自然光里陪你</div>
+          </div>
+          <div class="ob-s2-row-num">01</div>
+        </div>
+        <!-- 02 极简番茄钟 -->
+        <div class="ob-s2-row">
+          <div class="ob-s2-row-icon"><svg width="60" height="60" viewBox="1.5 3.5 53 53" fill="none"><path d="M28.9242 39.6655L28.4841 39.2245L28.0431 39.6655C27.6905 39.9984 27.222 40.1807 26.7372 40.1738C26.2523 40.167 25.7892 39.9714 25.4462 39.6286C25.1032 39.2858 24.9073 38.8229 24.9001 38.338C24.8929 37.8532 25.0749 37.3846 25.4076 37.0318L27.1646 35.2748C27.3372 35.1018 27.5421 34.9647 27.7678 34.8711C27.9935 34.7776 28.2354 34.7295 28.4797 34.7296C28.7252 34.7286 28.9684 34.7762 29.1954 34.8698C29.4223 34.9634 29.6284 35.101 29.8018 35.2748L31.5597 37.0318C31.8924 37.3846 32.0744 37.8532 32.0672 38.338C32.06 38.8229 31.8641 39.2858 31.5211 39.6286C31.1781 39.9714 30.715 40.167 30.2301 40.1738C29.7453 40.1807 29.2768 39.9984 28.9242 39.6655Z" fill="#111"/><path d="M32.5281 10.0179C32.0881 10.265 31.7051 10.6073 31.4081 11.0205C36.8462 10.0554 41.3932 11.3071 44.7753 14.1295C48.7873 17.4775 50.8193 22.7527 50.9883 28.1109C51.1583 33.4883 49.4723 39.1969 45.7323 43.5921C41.9522 48.0338 36.1822 51 28.5001 51C20.817 51 15.0489 48.0348 11.2678 43.5921C7.5278 39.1969 5.84078 33.4863 6.01178 28.1109C6.18179 22.7537 8.21181 17.4775 12.2259 14.1285C15.6079 11.3071 20.154 10.0554 25.592 11.0195C25.2952 10.6067 24.913 10.2646 24.472 10.0169C23.39 9.39209 22.141 9.3131 21.758 9.3131C21.4729 9.32195 21.189 9.27273 20.923 9.16836C20.6571 9.06399 20.4146 8.9066 20.2098 8.70552C20.0051 8.50443 19.8423 8.26376 19.7311 7.99777C19.62 7.73178 19.5627 7.44589 19.5627 7.15706C19.5627 6.86823 19.62 6.58234 19.7311 6.31634C19.8423 6.05035 20.0051 5.80968 20.2098 5.6086C20.4146 5.40752 20.6571 5.25012 20.923 5.14575C21.189 5.04138 21.4729 4.99216 21.758 5.00101C22.439 5.00101 24.561 5.10228 26.584 6.27297C27.2985 6.68353 27.9451 7.20499 28.5001 7.81835C29.0552 7.20511 29.7017 6.68367 30.4161 6.27297C32.4401 5.10228 34.5611 5.00101 35.2421 5.00101C35.5272 4.99216 35.8112 5.04138 36.0771 5.14575C36.343 5.25012 36.5856 5.40752 36.7903 5.6086C36.9951 5.80968 37.1578 6.05035 37.269 6.31634C37.3802 6.58234 37.4374 6.86823 37.4374 7.15706C37.4374 7.44589 37.3802 7.73178 37.269 7.99777C37.1578 8.26376 36.9951 8.50443 36.7903 8.70552C36.5856 8.9066 36.343 9.06399 36.0771 9.16836C35.8112 9.27273 35.5272 9.32195 35.2421 9.3131C34.8591 9.3131 33.6101 9.39209 32.5281 10.0179ZM29.2101 16.0182C28.7501 16.1833 28.2481 16.1833 27.7891 16.0182C21.894 14.0688 17.6919 15.1554 14.9319 17.4573C12.0809 19.8371 10.4078 23.815 10.2668 28.2496C10.2538 28.6446 10.2538 29.0406 10.2668 29.4385H17.1439V28.0005C17.156 27.4366 17.3856 26.9 17.7837 26.5055C18.1817 26.1111 18.7165 25.8902 19.2734 25.8902C19.8304 25.8902 20.3651 26.1111 20.7632 26.5055C21.1612 26.9 21.3909 27.4366 21.403 28.0005V29.4385H26.371V25.1254C26.3623 24.8367 26.4109 24.5492 26.514 24.2799C26.617 24.0106 26.7724 23.765 26.971 23.5576C27.1696 23.3503 27.4072 23.1854 27.6699 23.0729C27.9325 22.9603 28.2149 22.9023 28.5001 22.9023C28.7853 22.9023 29.0676 22.9603 29.3302 23.0729C29.5929 23.1854 29.8306 23.3503 30.0291 23.5576C30.2277 23.765 30.3831 24.0106 30.4862 24.2799C30.5892 24.5492 30.6378 24.8367 30.6291 25.1254V29.4385H35.5972V28.0005C35.6092 27.4366 35.8389 26.9 36.2369 26.5055C36.635 26.1111 37.1698 25.8902 37.7267 25.8902C38.2836 25.8902 38.8184 26.1111 39.2164 26.5055C39.6145 26.9 39.8441 27.4366 39.8562 28.0005V29.4385H46.7333C46.7454 29.0423 46.7454 28.6458 46.7333 28.2496C46.5923 23.815 44.9193 19.8371 42.0672 17.4573C39.3072 15.1554 35.1051 14.0688 29.2101 16.0192V16.0182ZM10.8878 33.7516C11.5549 36.3037 12.7549 38.7341 14.4939 40.7778C17.4209 44.2189 21.988 46.6889 28.5001 46.6889C35.0121 46.6889 39.5782 44.2189 42.5062 40.7778C44.2463 38.7341 45.4453 36.3026 46.1123 33.7516H10.8878Z" fill="#111"/></svg></div>
+          <div class="ob-s2-row-text">
+            <div class="ob-s2-row-name">极简番茄钟</div>
+            <div class="ob-s2-row-desc">你要沉下来的时候，计时的事交给我</div>
+          </div>
+          <div class="ob-s2-row-num">02</div>
+        </div>
+        <!-- 03 盖泡面倒计时 -->
+        <div class="ob-s2-row">
+          <div class="ob-s2-row-icon"><svg width="60" height="60" viewBox="0.75 1.75 54.5 54.5" fill="none"><path d="M13 15L14.8215 43.5524C14.9811 46.0533 17.0559 48 19.5619 48H36.4381C38.944 48 41.0189 46.0533 41.1785 43.5524L43 15" stroke="#111" stroke-width="4.67" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 14L46 14" stroke="#111" stroke-width="4.67" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 14C10 14 15.7229 14 19 13C23.7249 11.5582 35.4751 8.05242 41 4.5" stroke="#111" stroke-width="4.67" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 22.6875H40" stroke="#111" stroke-width="4.66667" stroke-linecap="round"/><path d="M16 39.6875H40" stroke="#111" stroke-width="4.66667" stroke-linecap="round"/></svg></div>
+          <div class="ob-s2-row-text">
+            <div class="ob-s2-row-name">盖泡面倒计时</div>
+            <div class="ob-s2-row-desc">你饿了，我盖在面上——干回老本行</div>
+          </div>
+          <div class="ob-s2-row-num">03</div>
+        </div>
+        <!-- 04 微信读书网页版 -->
+        <div class="ob-s2-row">
+          <div class="ob-s2-row-icon"><svg width="60" height="60" viewBox="0 0 56 56" fill="none"><path d="M46.6666 28V39.6667C46.6666 44.0664 46.6666 46.2663 45.2998 47.6332C43.933 49 41.7331 49 37.3333 49H15.1666C11.945 49 9.33331 46.3883 9.33331 43.1667M46.6666 28V16.3333C46.6666 11.9336 46.6666 9.73367 45.2998 8.36684C43.933 7 41.7331 7 37.3333 7H18.6666C14.2669 7 12.067 7 10.7001 8.36684C9.33331 9.73367 9.33331 11.9336 9.33331 16.3333V43.1667M46.6666 28C46.6666 32.3998 46.6666 34.5997 45.2998 35.9665C43.933 37.3333 41.7331 37.3333 37.3333 37.3333H15.1666C11.945 37.3333 9.33331 39.945 9.33331 43.1667" stroke="#111" stroke-width="4.66667"/><path d="M21 18.6666L35 18.6666" stroke="#111" stroke-width="4.66667" stroke-linecap="round"/></svg></div>
+          <div class="ob-s2-row-text">
+            <div class="ob-s2-row-name">微信读书网页版</div>
+            <div class="ob-s2-row-desc">想读书？这其实才是我的正经主业</div>
+          </div>
+          <div class="ob-s2-row-num">04</div>
+        </div>
+        <!-- 05 AI 日报 -->
+        <div class="ob-s2-row">
+          <div class="ob-s2-row-icon"><svg width="60" height="60" viewBox="0 0 56 56" fill="none"><path d="M5.5 8V43C5.5 45.7614 7.73858 48 10.5 48H40.5H45.5C48.2614 48 50.5 45.7614 50.5 43V18H40.5" stroke="#111" stroke-width="4.67" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 8H40.5V43C40.5 45.7614 42.7386 48 45.5 48" stroke="#111" stroke-width="4.67" stroke-linecap="round" stroke-linejoin="round"/><path d="M30.5 18L15.5 18" stroke="#111" stroke-width="4.67" stroke-linecap="round" stroke-linejoin="round"/><path d="M30.5 28L20.5 28" stroke="#111" stroke-width="4.67" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="ob-s2-row-text">
+            <div class="ob-s2-row-name">AI 日报 · 每天 8:15</div>
+            <div class="ob-s2-row-desc">每天一份 AI 晨报，我替你备着</div>
+          </div>
+          <div class="ob-s2-row-num">05</div>
         </div>
       </div>
-      <div class="ob-roles">
-        <div class="ob-timeline"></div>
-        <div class="ob-tl-dot ob-tl-top"></div>
-        <div class="ob-tl-dot ob-tl-bottom"></div>
-        <div class="ob-role-item">
-          <div class="ob-role-icon">
-            <svg width="52" height="52" viewBox="0 0 56 56" fill="none" style="display:block;margin:6px auto 0">
-              <circle cx="28" cy="28" r="22" stroke="#000" stroke-width="2.5" stroke-linecap="round"/>
-              <path d="M28 14 L28 28 L38 34" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <!-- Nav footer: skip | dots | next -->
+      <div class="ob-nav-footer">
+        <div class="ob-nav-row">
+          <div class="ob-nav-skip" onclick="obFinish()">跳过</div>
+          <div class="ob-nav-dots">
+            <span class="ob-dot"></span>
+            <span class="ob-dot ob-dot-active"></span>
+            <span class="ob-dot"></span>
+          </div>
+          <div class="ob-nav-arrow" onclick="obGo(3)">
+            <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+              <path d="M8 17 L26 17 M19 9 L27 17 L19 25" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
-          <div class="ob-role-text">
-            <div class="ob-role-main">帮你看时间</div>
-            <div class="ob-role-sub">闲着的时候</div>
-          </div>
-        </div>
-        <div class="ob-role-item">
-          <div class="ob-role-icon">
-            <svg width="52" height="52" viewBox="0 0 56 56" fill="none" style="display:block;margin:6px auto 0">
-              <path d="M14 8 H42 M14 48 H42" stroke="#000" stroke-width="2.5" stroke-linecap="round"/>
-              <path d="M14 8 C14 22 28 24 28 28 C28 32 14 34 14 48" stroke="#000" stroke-width="2.5" stroke-linecap="round"/>
-              <path d="M42 8 C42 22 28 24 28 28 C28 32 42 34 42 48" stroke="#000" stroke-width="2.5" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="ob-role-text">
-            <div class="ob-role-main">陪你专注</div>
-            <div class="ob-role-sub">忙起来的时候</div>
-          </div>
-        </div>
-        <div class="ob-role-item">
-          <div class="ob-role-icon">
-            <svg width="52" height="52" viewBox="0 0 56 56" fill="none" style="display:block;margin:6px auto 0">
-              <path d="M14 10 L14 26 M10 10 L10 18 M18 10 L18 18 M14 26 L14 46" stroke="#000" stroke-width="2.5" stroke-linecap="round"/>
-              <path d="M42 10 C46 14 46 22 42 26 L42 46" stroke="#000" stroke-width="2.5" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="ob-role-text">
-            <div class="ob-role-main">陪你焖面</div>
-            <div class="ob-role-sub">饿了的时候</div>
-          </div>
-        </div>
-        <div class="ob-role-item">
-          <div class="ob-role-icon">
-            <svg width="52" height="52" viewBox="0 0 56 56" fill="none" style="display:block;margin:6px auto 0">
-              <rect x="10" y="6" width="36" height="44" rx="2" stroke="#000" stroke-width="2.5" fill="none"/>
-              <path d="M28 6 L28 50" stroke="#000" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="ob-role-text">
-            <div class="ob-role-main">提醒你喂喂脑子</div>
-            <div class="ob-role-sub">吃饱了</div>
-          </div>
-        </div>
-      </div>
-      <div class="ob-footer">
-        <div class="ob-next-btn" onclick="obGo(3)">
-          <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
-            <path d="M8 17 L26 17 M19 9 L27 17 L19 25" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="ob-dots">
-          <span class="ob-dot"></span>
-          <span class="ob-dot ob-dot-active"></span>
-          <span class="ob-dot"></span>
         </div>
       </div>
     </div>
 
-    <!-- Screen 3: Tips + Start -->
+    <!-- Screen 3: Tips & Start -->
     <div id="ob-s3" class="ob-screen" style="display:none">
+
       <div class="ob-s3-head">
-        <div class="ob-s3-label">开始之前</div>
-        <div class="ob-s3-title">
-          <span class="ob-s3-dash"></span>两个小提示
-        </div>
+        <div class="ob-s3-eyebrow">开始之前</div>
+        <div class="ob-s3-title">三个小提示</div>
       </div>
+
       <div class="ob-tips">
+        <!-- Tip 1: Keep screen awake -->
         <div class="ob-tip-card">
+          <div class="ob-tip-icon-bg">
+            <svg width="144" height="144" viewBox="0 0 118 118" fill="none"><rect x="22" y="26" width="74" height="54" rx="8" stroke="#ededed" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M48 92 H70 M59 80 V92" stroke="#ededed" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M59 40 V58 M59 58 L71 58" stroke="#ededed" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
           <div class="ob-tip-num">1</div>
-          <div class="ob-tip-text">
-            <div class="ob-tip-title">建议先收藏到书签</div>
-            <div class="ob-tip-sub">方便下次快速打开</div>
+          <div class="ob-tip-body">
+            <div class="ob-tip-title">先别让屏幕睡着</div>
+            <div class="ob-tip-sub">在 Kindle 主页搜索框输入 ~ds，开启屏幕常亮</div>
+            <div class="ob-tip-note">· 退出常亮？长按电源键重启即可</div>
           </div>
         </div>
+        <!-- Tip 2: Bookmark -->
         <div class="ob-tip-card">
+          <div class="ob-tip-icon-bg">
+            <svg width="144" height="144" viewBox="0 0 118 118" fill="none"><path d="M59 24 L69 48 L95 50 L75 67 L81 93 L59 79 L37 93 L43 67 L23 50 L49 48 Z" stroke="#ededed" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
           <div class="ob-tip-num">2</div>
-          <div class="ob-tip-text">
+          <div class="ob-tip-body">
+            <div class="ob-tip-title">建议先收藏到书签</div>
+            <div class="ob-tip-sub">这是你下次一秒复活它的最快路径</div>
+          </div>
+        </div>
+        <!-- Tip 3: Back button -->
+        <div class="ob-tip-card">
+          <div class="ob-tip-icon-bg">
+            <svg width="144" height="144" viewBox="0 0 118 118" fill="none"><rect x="20" y="32" width="78" height="54" rx="12" stroke="#ededed" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M62 47 L49 59 L62 71 M49 59 H74" stroke="#ededed" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="ob-tip-num">3</div>
+          <div class="ob-tip-body">
             <div class="ob-tip-title">从微信读书返回</div>
-            <div class="ob-tip-sub">点击浏览器顶部的 ← 返回键即可</div>
+            <div class="ob-tip-sub">点浏览器顶部的 ← 返回键或从书签返回</div>
           </div>
         </div>
       </div>
-      <div class="ob-footer">
-        <button class="ob-start-btn" onclick="obFinish()">开始使用</button>
-        <div class="ob-dots">
-          <span class="ob-dot"></span>
-          <span class="ob-dot"></span>
-          <span class="ob-dot ob-dot-active"></span>
+
+      <!-- CTA block -->
+      <div class="ob-cta">
+        <button class="ob-start-btn" onclick="obFinish()">开始我的 Kindle 新生活</button>
+        <div class="ob-tail">不要说我不务正业，看书才是我的主业</div>
+      </div>
+      <!-- Nav footer: dots centered, same position as screens 1 & 2 -->
+      <div class="ob-nav-footer">
+        <div class="ob-nav-row" style="height:88px;">
+          <div style="width:88px;"></div>
+          <div class="ob-nav-dots">
+            <span class="ob-dot"></span>
+            <span class="ob-dot"></span>
+            <span class="ob-dot ob-dot-active"></span>
+          </div>
+          <div style="width:88px;"></div>
         </div>
       </div>
-      <div class="ob-tail">不要说我不务正业，看书才是我的主业</div>
     </div>
 
   </div><!-- #ob-overlay -->
@@ -982,6 +1144,7 @@
           </div>
         </div>
         <div class="pomo-start-btn" onclick="startPomo()">开始专注</div>
+        <div class="pomo-hint">*今天的记录我都记着呢，但关了浏览器我就失忆了</div>
       </div>
 
       <!-- State 1: Timer -->
@@ -1055,6 +1218,7 @@
             </svg>
           </div>
         </div>
+        <div class="pomo-hint">*今天的记录我都记着呢，但关了浏览器我就失忆了</div>
       </div>
 
       <!-- State 2: Done -->
@@ -1071,6 +1235,7 @@
             <div class="pomo-btn-finish" onclick="switchTab(0)">完成</div>
           </div>
         </div>
+        <div class="pomo-hint">*今天的记录我都记着呢，但关了浏览器我就失忆了</div>
       </div>
 
     </div>
@@ -1342,8 +1507,8 @@
         setTimeout(function() {
           callback();
           document.body.removeChild(white);
-        }, 10);
-      }, 10);
+        }, 150);
+      }, 150);
     }
 
     function switchTab(tab) {
@@ -2373,9 +2538,11 @@
       } catch(e) {}
 
       window.obGo = function(n) {
-        document.getElementById('ob-s1').style.display = (n === 1) ? '' : 'none';
-        document.getElementById('ob-s2').style.display = (n === 2) ? '' : 'none';
-        document.getElementById('ob-s3').style.display = (n === 3) ? '' : 'none';
+        forceEinkRefresh(function() {
+          document.getElementById('ob-s1').style.display = (n === 1) ? '' : 'none';
+          document.getElementById('ob-s2').style.display = (n === 2) ? '' : 'none';
+          document.getElementById('ob-s3').style.display = (n === 3) ? '' : 'none';
+        });
       };
 
       window.obFinish = function() {
