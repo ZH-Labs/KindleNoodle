@@ -2054,6 +2054,7 @@
       try { localStorage.setItem(CS_KEY, csDraft); } catch(e) {}
       applyClockStyle(csDraft);
       document.getElementById('clock-settings-panel').style.display = 'none';
+      forceEinkRefresh(function() {});
     }
 
     function csCancelSettings() {
