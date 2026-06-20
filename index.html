@@ -2556,6 +2556,8 @@
     (function() {
       function applyScale() {
         var scale = window.innerWidth / 758;
+        document.documentElement.style.height = window.innerHeight + 'px';
+        document.documentElement.style.overflow = 'hidden';
         document.body.style.webkitTransform = 'scale(' + scale + ')';
         document.body.style.transform = 'scale(' + scale + ')';
         document.body.style.webkitTransformOrigin = '0 0';
