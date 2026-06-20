@@ -2564,8 +2564,24 @@
         document.body.style.transformOrigin = '0 0';
         document.body.style.height = (window.innerHeight / scale) + 'px';
       }
-      applyScale();
-      window.addEventListener('resize', applyScale);
+      function resizeObS1Image() {
+        var illus = document.querySelector('#ob-s1 .ob-s1-illus');
+        if (!illus) return;
+        var img = illus.querySelector('img');
+        if (!img) return;
+        var h = illus.offsetHeight;
+        var w = illus.offsetWidth;
+        if (h <= 0 || w <= 0) return;
+        var size = Math.min(h, w, 564);
+        img.style.width = size + 'px';
+        img.style.height = size + 'px';
+      }
+      function applyAll() {
+        applyScale();
+        setTimeout(resizeObS1Image, 0);
+      }
+      applyAll();
+      window.addEventListener('resize', applyAll);
     })();
   </script>
 </body>
