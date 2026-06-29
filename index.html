@@ -2554,15 +2554,19 @@
 
     /* ── Viewport Scale ──────────────────────────────────── */
     (function() {
+      var lastW = -1, lastH = -1;
       function applyScale() {
-        var scale = window.innerWidth / 758;
-        document.documentElement.style.height = window.innerHeight + 'px';
+        var w = window.innerWidth, h = window.innerHeight;
+        if (w === lastW && h === lastH) return; /* 值没变就跳过，避免墨水屏重复刷新 */
+        lastW = w; lastH = h;
+        var scale = w / 758;
+        document.documentElement.style.height = h + 'px';
         document.documentElement.style.overflow = 'hidden';
         document.body.style.webkitTransform = 'scale(' + scale + ')';
         document.body.style.transform = 'scale(' + scale + ')';
         document.body.style.webkitTransformOrigin = '0 0';
         document.body.style.transformOrigin = '0 0';
-        document.body.style.height = (window.innerHeight / scale) + 'px';
+        document.body.style.height = (h / scale) + 'px';
       }
       function resizeObS1Image() {
         var illus = document.querySelector('#ob-s1 .ob-s1-illus');
@@ -2581,7 +2585,13 @@
         setTimeout(resizeObS1Image, 0);
       }
       applyAll();
+      window.addEventListener('load', applyAll);            /* 资源加载完后再量一次 */
       window.addEventListener('resize', applyAll);
+      window.addEventListener('orientationchange', applyAll);
+      /* 兜底：慢速 e-ink 浏览器工具栏定型后重新测量，纠正首次量早导致的压缩/留白 */
+      setTimeout(applyAll, 150);
+      setTimeout(applyAll, 500);
+      setTimeout(applyAll, 1200);
     })();
   </script>
 </body>
