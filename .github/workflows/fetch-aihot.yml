@@ -22,12 +22,16 @@ jobs:
       - name: Fetch latest daily report
         id: fetch
         run: |
-          UA="Mozilla/5.0 (kindle-clock; +https://github.com/${{ github.repository }})"
+          # 网站新规则：定时任务用「能识别的非浏览器 UA」，不要伪装 Mozilla/Chrome/Safari
+          UA="kindle-clock/1.0 (+https://github.com/${{ github.repository }})"
 
           # 先写临时文件，成功后再替换，避免损坏现有数据
+          # 加超时/重试，避免被静默丢包时傻等 5 分钟（curl 默认连接超时 300s → exit 28）
           HTTP_STATUS=$(curl -s -o data/daily.json.tmp -w "%{http_code}" \
+            --connect-timeout 15 --max-time 60 \
+            --retry 3 --retry-delay 5 --retry-all-errors \
             -H "User-Agent: $UA" \
-            https://aihot.virxact.com/api/public/daily)
+            https://aihot.virxact.com/api/public/daily) || HTTP_STATUS="000"
 
           if [ "$HTTP_STATUS" != "200" ]; then
             echo "API returned $HTTP_STATUS, skipping"
@@ -50,11 +54,13 @@ jobs:
       - name: Fetch dailies index (最近 30 期列表)
         if: steps.fetch.outputs.success == 'true'
         run: |
-          UA="Mozilla/5.0 (kindle-clock; +https://github.com/${{ github.repository }})"
+          UA="kindle-clock/1.0 (+https://github.com/${{ github.repository }})"
 
           HTTP_STATUS=$(curl -s -o data/dailies-index.json.tmp -w "%{http_code}" \
+            --connect-timeout 15 --max-time 60 \
+            --retry 3 --retry-delay 5 --retry-all-errors \
             -H "User-Agent: $UA" \
-            'https://aihot.virxact.com/api/public/dailies?take=30')
+            'https://aihot.virxact.com/api/public/dailies?take=30') || HTTP_STATUS="000"
 
           if [ "$HTTP_STATUS" != "200" ]; then
             echo "dailies-index API returned $HTTP_STATUS, skipping"
