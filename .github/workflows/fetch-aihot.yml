@@ -26,10 +26,13 @@ jobs:
           UA="kindle-clock/1.0 (+https://github.com/${{ github.repository }})"
 
           # 先写临时文件，成功后再替换，避免损坏现有数据
-          # 加超时/重试，避免被静默丢包时傻等 5 分钟（curl 默认连接超时 300s → exit 28）
+          # 正常响应 <1s；被边缘防护挂起(tarpit)时连接会静默停滞。
+          # --speed-time/--speed-limit: 连续 8s 速度低于 100B/s 视为被挂起，立刻掐掉换下一次重试，
+          # 比干等 --max-time 快得多。--max-time 20 只是兜底硬上限。
           HTTP_STATUS=$(curl -s -o data/daily.json.tmp -w "%{http_code}" \
-            --connect-timeout 15 --max-time 60 \
-            --retry 3 --retry-delay 5 --retry-all-errors \
+            --connect-timeout 10 --max-time 20 \
+            --speed-time 8 --speed-limit 100 \
+            --retry 5 --retry-delay 3 --retry-all-errors \
             -H "User-Agent: $UA" \
             https://aihot.virxact.com/api/public/daily) || HTTP_STATUS="000"
 
@@ -57,8 +60,9 @@ jobs:
           UA="kindle-clock/1.0 (+https://github.com/${{ github.repository }})"
 
           HTTP_STATUS=$(curl -s -o data/dailies-index.json.tmp -w "%{http_code}" \
-            --connect-timeout 15 --max-time 60 \
-            --retry 3 --retry-delay 5 --retry-all-errors \
+            --connect-timeout 10 --max-time 20 \
+            --speed-time 8 --speed-limit 100 \
+            --retry 5 --retry-delay 3 --retry-all-errors \
             -H "User-Agent: $UA" \
             'https://aihot.virxact.com/api/public/dailies?take=30') || HTTP_STATUS="000"
 
