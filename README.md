@@ -1,7 +1,7 @@
 # Kindle Noodle 🍜
 
 
-**把吃灰的 Kindle 变成你的桌面搭档。**
+**把吃灰的 Kindle 变成你的桌面搭子。**
 
 一个纯 HTML 单文件 Web App，专为 Kindle Paperwhite 的 E-ink 屏幕设计，让闲置的 Kindle 在桌面上重新发光。
 
