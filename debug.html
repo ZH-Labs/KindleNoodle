@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kindle Noodle 自检</title>
+<style>
+  /* 这一页故意不做任何缩放，布局也极简 ——
+     它要诊断的就是缩放和视口测量，自己绝不能用同一套机制 */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #fff; color: #000;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px 12px;
+    width: 100%; max-width: 600px;   /* 600 宽的机型正好铺满，再宽也切不掉 */
+  }
+  h1 { font-size: 27px; margin-bottom: 3px; }
+  .hint { font-size: 18px; line-height: 1.35; margin-bottom: 10px; }
+  table { border-collapse: collapse; width: 100%; }
+  td {
+    border-bottom: 1px solid #888; padding: 6px 3px;
+    font-size: 22px; vertical-align: baseline;
+  }
+  td.k { color: #333; }
+  td.v { text-align: right; font-weight: bold; font-size: 29px; }
+  tr.late td { background: #e8e8e8; }
+  #verdict {
+    margin-top: 12px; border: 3px solid #000; padding: 10px 12px;
+    font-size: 22px; line-height: 1.4;
+  }
+  #verdict b { font-size: 28px; }
+  #ua { margin-top: 10px; font-size: 12px; color: #333; line-height: 1.3; }
+</style>
+</head>
+<body>
+
+<h1>Kindle Noodle 自检</h1>
+<p class="hint">等两秒，把这一屏<b>拍张照片</b>发给作者即可，谢谢！</p>
+
+<table id="tb"></table>
+<div id="verdict">—</div>
+<div id="ua"></div>
+
+<script>
+(function() {
+  var de = document.documentElement;
+
+  function row(k, v, cls) {
+    return '<tr' + (cls ? ' class="' + cls + '"' : '') + '><td class="k">' + k
+         + '</td><td class="v">' + v + '</td></tr>';
+  }
+  function draw(late) {
+    var iw = window.innerWidth,  ih = window.innerHeight;
+    var cw = de.clientWidth,     ch = de.clientHeight;
+    var sw = window.screen ? window.screen.width  : 0;
+    var sh = window.screen ? window.screen.height : 0;
+
+    var html = row('innerWidth', iw)
+             + row('clientWidth', cw)
+             + row('innerHeight', ih)
+             + row('clientHeight', ch)
+             + row('screen 宽', sw)
+             + row('screen 高', sh);
+    if (late) {
+      html += row('2秒后 innerW', window.innerWidth, 'late')
+            + row('2秒后 innerH', window.innerHeight, 'late');
+    }
+    document.getElementById('tb').innerHTML = html;
+
+    /* 核心结论：缩放该用哪组数字，以及最终缩放比是多少 */
+    var w = cw || iw || 758;
+    var h = ch || ih || 1024;
+    var msg = '有效视口 <b>' + w + ' × ' + h + '</b><br>缩放比 <b>'
+            + (w / 758).toFixed(3) + '</b><br>';
+    msg += (!iw || !ih)
+      ? 'innerWidth / innerHeight 不可用（返回 ' + iw + '），本机必须用 clientWidth。'
+      : 'innerWidth / innerHeight 可用。';
+    document.getElementById('verdict').innerHTML = msg;
+  }
+
+  draw(false);
+  document.getElementById('ua').innerHTML = 'UA: ' + navigator.userAgent;
+  /* 有些浏览器要等工具栏定型后数值才对，2 秒后再量一次做对比 */
+  setTimeout(function() { draw(true); }, 2000);
+})();
+</script>
+
+</body>
+</html>

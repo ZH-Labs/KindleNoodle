@@ -2556,12 +2556,18 @@
     (function() {
       var lastW = -1, lastH = -1;
       function applyScale() {
-        var w = window.innerWidth, h = window.innerHeight;
-        if (w === lastW && h === lastH) return; /* 值没变就跳过，避免墨水屏重复刷新 */
+        var docEl = document.documentElement;
+        var prevH = docEl.style.height;
+        docEl.style.height = '';           /* 先松开，否则量到的是上一轮自己写进去的值 */
+        /* Kindle 浏览器（WebKit 534.26）的 window.innerWidth / innerHeight 返回 0，
+           必须用 documentElement 的 clientWidth / clientHeight，它们是正确的 CSS 像素 */
+        var w = docEl.clientWidth  || window.innerWidth  || 758;
+        var h = docEl.clientHeight || window.innerHeight || 1024;
+        if (w === lastW && h === lastH) { docEl.style.height = prevH; return; } /* 值没变就跳过，避免墨水屏重复刷新 */
         lastW = w; lastH = h;
         var scale = w / 758;
-        document.documentElement.style.height = h + 'px';
-        document.documentElement.style.overflow = 'hidden';
+        docEl.style.height = h + 'px';
+        docEl.style.overflow = 'hidden';
         document.body.style.webkitTransform = 'scale(' + scale + ')';
         document.body.style.transform = 'scale(' + scale + ')';
         document.body.style.webkitTransformOrigin = '0 0';
